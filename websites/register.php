@@ -57,16 +57,18 @@
 					throw new Exception("Błąd serwera!");
 				}
 				if($stmt = mysqli_prepare($link, "INSERT INTO users(id_state, email, name, surname, id_type, password) VALUES(?, ?, ?, ?, ?, ?)")){
-					$state = 1;
-					$type = 1;
+					$state = 2;
+					$type = 2;
 					if(!mysqli_stmt_bind_param($stmt, "isssis", $state, $email, $name, $surname, $type, $pwd)){
 						throw new Exception("Błąd serwera!");
 					}
 					if(!mysqli_stmt_execute($stmt)){
-						throw new Exception(mysqli_errno($link));
+						throw new Exception("Błąd serwera!");
 					}
 					mysqli_stmt_close($stmt);
-
+					if(!mysqli_commit($link)){
+						throw new Exception("Błąd serwera!");
+					}
 				} else {
 					throw new Exception("Błąd serwera!");
 				}

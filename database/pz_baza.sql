@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `account_types` (
   `type` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   PRIMARY KEY (`id_type`),
   UNIQUE KEY `account_types_un` (`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 -- Data exporting was unselected.
 -- Zrzut struktury tabela pz_projekt.achievements

@@ -1,15 +1,21 @@
 $(document).ready(function(){
     $("#cpwd").keyup(function(){
-		var pwd = $("#pwd").val();
-		var cPwd = $("#cpwd").val();
-		if(pwd != cPwd){
-			$("#cpwd")[0].setCustomValidity("Hasła nie pasują!");
-		} else {
-			$("#cpwd")[0].setCustomValidity("");
-		}
+		confirmPassword();
 	});
 	
 	$("#cpwd").change(function(){
+		confirmPassword();
+	});
+
+	$("#pwd").keyup(function(){
+		confirmPassword();
+	});
+	
+	$("#pwd").change(function(){
+		confirmPassword();
+	});
+
+	function confirmPassword(){
 		var pwd = $("#pwd").val();
 		var cPwd = $("#cpwd").val();
 		if(pwd != cPwd){
@@ -17,7 +23,7 @@ $(document).ready(function(){
 		} else {
 			$("#cpwd")[0].setCustomValidity("");
 		}
-	});
+	}
 	
 	$("#email").blur(function(){
 		var emailValue = $("#email").val();

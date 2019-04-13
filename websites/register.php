@@ -1,11 +1,13 @@
 <?php
+	include('../subsites/functions.php');
 	$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt") or die(mysqli_connect_error());
+	mysqli_set_charset($link, "utf8");
+	$errors = array();
 	if(isset($_POST['email']) && isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['pwd'])){
-		$email = trim(mysqli_real_escape_string($_POST['email']));
-		$name = trim(mysqli_real_escape_string($_POST['name']));
-		$surname = trim(mysqli_real_escape_string($_POST['surname']));
-		$pwd = $_POST['pwd'];
-		$errors = array();
+		$email = trim(mysqli_real_escape_string($link, $_POST['email']));
+		$name = trim(mysqli_real_escape_string($link, $_POST['name']));
+		$surname = trim(mysqli_real_escape_string($link, $_POST['surname']));
+		$pwd = $_POST['pwd'];		
 		if(!(filter_var($email, FILTER_VALIDATE_EMAIL) && strlen($email) <= 40)){
 			array_push($errors, "Błędny format adresu email!");
 		}
@@ -55,11 +57,13 @@
 					throw new Exception("Błąd serwera!");
 				}
 				if($stmt = mysqli_prepare($link, "INSERT INTO users(id_state, email, name, surname, id_type, password) VALUES(?, ?, ?, ?, ?, ?)")){
-					if(!mysqli_stmt_bind_param($stmt, "isssis", 1, $email, $name, $surname, 1, $pwd)){
+					$state = 1;
+					$type = 1;
+					if(!mysqli_stmt_bind_param($stmt, "isssis", $state, $email, $name, $surname, $type, $pwd)){
 						throw new Exception("Błąd serwera!");
 					}
 					if(!mysqli_stmt_execute($stmt)){
-						throw new Exception("Błąd serwera!");
+						throw new Exception(mysqli_errno($link));
 					}
 					mysqli_stmt_close($stmt);
 
@@ -89,12 +93,13 @@
         href="https://fonts.googleapis.com/css?family=Raleway%3A400%2C500%2C600%2C700%2C300%2C100%2C800%2C900%7COpen+Sans%3A400%2C300%2C300italic%2C400italic%2C600%2C600italic%2C700%2C700italic&amp;subset=latin%2Clatin-ext&amp;ver=1.3.6"
         type="text/css" media="all">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-    <link rel="stylesheet" href="../style/loginPage.css">
+	<link rel="stylesheet" href="../style/loginPage.css">
+	<link rel="stylesheet" href="../style/modal.css">
     <title>Rejestracja</title>
     <script type="text/javascript" src="../scripts/RegistrationValidation.js"></script>
 </head>
-    <div class="form-register">
-        <h1 class="title">Zarejestruj się</h1>
+    <div class="register-form">
+		<h1 class="title">Zarejestruj się</h1>
         <form id="register-form" method="POST">
           <div class="form-group">
               <label for="email">Email:</label>
@@ -118,7 +123,20 @@
           </div>
           <button type="submit" class="btn btn-outline-danger pinkbtn">Zarejestruj</button>
         </form>
-    </div>
+	</div>
+	<?php
+		if(count($errors) > 0){
+			ob_start();
+			?>
+				<?php foreach($errors as $error) : ?>
+					<div class="error">
+						<p><?php echo $error; ?></p>
+					</div>
+				<?php endforeach ?>
+			<?php
+			modal('errors', 'Nie udało się utworzyć konta!', ob_get_clean());
+		}
+	?>
 <body>
 </body>
 </html>

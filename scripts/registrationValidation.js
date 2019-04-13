@@ -29,7 +29,7 @@ $(document).ready(function(){
 		var emailValue = $("#email").val();
 		$.ajax({
 			method: "POST",
-			url: "checkEmail.php",
+			url: "../subsites/checkEmail.php",
 			data: {email: emailValue}
 		}).done(function(msg){
 			if(msg * 1 == 0){

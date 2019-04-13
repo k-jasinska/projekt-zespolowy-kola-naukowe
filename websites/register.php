@@ -15,31 +15,32 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <link rel="stylesheet" href="../style/loginPage.css">
     <title>Rejestracja</title>
+    <script type="text/javascript" src="../scripts/RegistrationValidation.js"></script>
 </head>
     <div class="form-register">
         <h1 class="title">Zarejestruj się</h1>
-        <form action="/action_page.php">
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email">
-        </div>
-        <div class="form-group">
-            <label for="name">Imię:</label>
-            <input type="text" class="form-control" id="name">
-        </div>
-        <div class="form-group">
-            <label for="surname">Nazwisko:</label>
-            <input type="surname" class="form-control" id="surname">
-        </div>
-        <div class="form-group">
-            <label for="pwd">Hasło:</label>
-            <input type="password" class="form-control" id="pwd">
-        </div>
-        <div class="form-group">
-            <label for="cpwd">Potwierdź hasło:</label>
-            <input type="password" class="form-control" id="cpwd">
-        </div>
-        <button  type="button" class="btn btn-outline-danger pinkbtn">Zarejestruj</button>
+        <form id="register-form">
+          <div class="form-group">
+              <label for="email">Email:</label>
+              <input id="email" type="email" class="form-control" id="email" required>
+          </div>
+          <div class="form-group">
+              <label for="name">Imię:</label>
+              <input type="text" class="form-control" id="name" required>
+          </div>
+          <div class="form-group">
+              <label for="surname">Nazwisko:</label>
+              <input type="surname" class="form-control" id="surname" required>
+          </div>
+          <div class="form-group">
+              <label for="pwd">Hasło:</label>
+              <input type="password" class="form-control" id="pwd" required>
+          </div>
+          <div class="form-group">
+              <label for="cpwd">Potwierdź hasło:</label>
+              <input type="password" class="form-control" id="cpwd" required>
+          </div>
+          <button type="submit" class="btn btn-outline-danger pinkbtn">Zarejestruj</button>
         </form>
     </div>
 <body>

@@ -37,9 +37,15 @@
 					throw new Exception("Błąd serwera!");
 				}
 				if($stmt = mysqli_prepare($link, "SELECT id_user FROM users WHERE email LIKE ?")){
-					mysqli_stmt_bind_param($stmt, "s", $email);
-					mysqli_stmt_execute($stmt);
-					mysqli_stmt_bind_result($stmt, $user);
+					if(!mysqli_stmt_bind_param($stmt, "s", $email)){
+						throw new Exception("Błąd serwera!");
+					}
+					if(!mysqli_stmt_execute($stmt)){
+						throw new Exception("Błąd serwera!");
+					}
+					if(!mysqli_stmt_bind_result($stmt, $user)){
+						throw new Exception("Błąd serwera!");
+					}
 					if(mysqli_stmt_fetch($stmt)){
 						mysqli_stmt_close($stmt);
 						throw new Exception("Email jest już zajęty!");
@@ -48,11 +54,22 @@
 				} else {
 					throw new Exception("Błąd serwera!");
 				}
-				if($stmt = mysqli_prepare($link, "INSERT INTO users()")){
+				if($stmt = mysqli_prepare($link, "INSERT INTO users(id_state, email, name, surname, id_type, password) VALUES(?, ?, ?, ?, ?, ?)")){
+					if(!mysqli_stmt_bind_param($stmt, "isssis", 1, $email, $name, $surname, 1, $pwd)){
+						throw new Exception("Błąd serwera!");
+					}
+					if(!mysqli_stmt_execute($stmt)){
+						throw new Exception("Błąd serwera!");
+					}
+					mysqli_stmt_close($stmt);
 
 				} else {
 					throw new Exception("Błąd serwera!");
 				}
+			}
+			catch(Exception $e){
+				mysqli_rollback($link);
+				array_push($errors, $e->getMessage());
 			}
 		}
 	}

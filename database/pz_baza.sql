@@ -24,7 +24,15 @@ CREATE TABLE IF NOT EXISTS `account_types` (
   UNIQUE KEY `account_types_un` (`type`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Data exporting was unselected.
+-- Zrzucanie danych dla tabeli pz_projekt.account_types: ~4 rows (około)
+/*!40000 ALTER TABLE `account_types` DISABLE KEYS */;
+INSERT INTO `account_types` (`id_type`, `type`) VALUES
+	(1, 'administrator'),
+	(4, 'opiekun koła'),
+	(3, 'przedstawiciel uczelni'),
+	(2, 'użytkownik');
+/*!40000 ALTER TABLE `account_types` ENABLE KEYS */;
+
 -- Zrzut struktury tabela pz_projekt.achievements
 CREATE TABLE IF NOT EXISTS `achievements` (
   `id_achievements` int(11) NOT NULL AUTO_INCREMENT,
@@ -35,7 +43,10 @@ CREATE TABLE IF NOT EXISTS `achievements` (
   CONSTRAINT `achievements_member_fk` FOREIGN KEY (`id_member`) REFERENCES `member` (`id_member`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Data exporting was unselected.
+-- Zrzucanie danych dla tabeli pz_projekt.achievements: ~0 rows (około)
+/*!40000 ALTER TABLE `achievements` DISABLE KEYS */;
+/*!40000 ALTER TABLE `achievements` ENABLE KEYS */;
+
 -- Zrzut struktury tabela pz_projekt.adding_requests
 CREATE TABLE IF NOT EXISTS `adding_requests` (
   `id_adding` int(11) NOT NULL AUTO_INCREMENT,
@@ -48,7 +59,10 @@ CREATE TABLE IF NOT EXISTS `adding_requests` (
   CONSTRAINT `adding_requests_users_fk` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Data exporting was unselected.
+-- Zrzucanie danych dla tabeli pz_projekt.adding_requests: ~0 rows (około)
+/*!40000 ALTER TABLE `adding_requests` DISABLE KEYS */;
+/*!40000 ALTER TABLE `adding_requests` ENABLE KEYS */;
+
 -- Zrzut struktury tabela pz_projekt.aplication_state
 CREATE TABLE IF NOT EXISTS `aplication_state` (
   `id_aplication_state` int(11) NOT NULL AUTO_INCREMENT,
@@ -56,7 +70,10 @@ CREATE TABLE IF NOT EXISTS `aplication_state` (
   PRIMARY KEY (`id_aplication_state`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Data exporting was unselected.
+-- Zrzucanie danych dla tabeli pz_projekt.aplication_state: ~0 rows (około)
+/*!40000 ALTER TABLE `aplication_state` DISABLE KEYS */;
+/*!40000 ALTER TABLE `aplication_state` ENABLE KEYS */;
+
 -- Zrzut struktury tabela pz_projekt.applications
 CREATE TABLE IF NOT EXISTS `applications` (
   `id_application` int(11) NOT NULL AUTO_INCREMENT,
@@ -73,7 +90,10 @@ CREATE TABLE IF NOT EXISTS `applications` (
   CONSTRAINT `applications_users_fk_1` FOREIGN KEY (`id_reciever`) REFERENCES `users` (`id_user`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Data exporting was unselected.
+-- Zrzucanie danych dla tabeli pz_projekt.applications: ~0 rows (około)
+/*!40000 ALTER TABLE `applications` DISABLE KEYS */;
+/*!40000 ALTER TABLE `applications` ENABLE KEYS */;
+
 -- Zrzut struktury tabela pz_projekt.authorization_tokens
 CREATE TABLE IF NOT EXISTS `authorization_tokens` (
   `id_token` int(11) NOT NULL AUTO_INCREMENT,
@@ -86,7 +106,10 @@ CREATE TABLE IF NOT EXISTS `authorization_tokens` (
   CONSTRAINT `authorization_tokens_users_fk` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Data exporting was unselected.
+-- Zrzucanie danych dla tabeli pz_projekt.authorization_tokens: ~0 rows (około)
+/*!40000 ALTER TABLE `authorization_tokens` DISABLE KEYS */;
+/*!40000 ALTER TABLE `authorization_tokens` ENABLE KEYS */;
+
 -- Zrzut struktury tabela pz_projekt.events
 CREATE TABLE IF NOT EXISTS `events` (
   `id_event` int(11) NOT NULL AUTO_INCREMENT,
@@ -100,7 +123,10 @@ CREATE TABLE IF NOT EXISTS `events` (
   CONSTRAINT `events_users_fk` FOREIGN KEY (`id_owner`) REFERENCES `users` (`id_user`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Data exporting was unselected.
+-- Zrzucanie danych dla tabeli pz_projekt.events: ~0 rows (około)
+/*!40000 ALTER TABLE `events` DISABLE KEYS */;
+/*!40000 ALTER TABLE `events` ENABLE KEYS */;
+
 -- Zrzut struktury tabela pz_projekt.groups
 CREATE TABLE IF NOT EXISTS `groups` (
   `id_group` int(11) NOT NULL AUTO_INCREMENT,
@@ -112,7 +138,10 @@ CREATE TABLE IF NOT EXISTS `groups` (
   CONSTRAINT `groups_users_fk` FOREIGN KEY (`id_coordinator`) REFERENCES `users` (`id_user`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Data exporting was unselected.
+-- Zrzucanie danych dla tabeli pz_projekt.groups: ~0 rows (około)
+/*!40000 ALTER TABLE `groups` DISABLE KEYS */;
+/*!40000 ALTER TABLE `groups` ENABLE KEYS */;
+
 -- Zrzut struktury tabela pz_projekt.group_achievements
 CREATE TABLE IF NOT EXISTS `group_achievements` (
   `id_group_achievement` int(11) NOT NULL,
@@ -125,7 +154,10 @@ CREATE TABLE IF NOT EXISTS `group_achievements` (
   CONSTRAINT `group_achievements_groups_fk` FOREIGN KEY (`id_group`) REFERENCES `groups` (`id_group`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Data exporting was unselected.
+-- Zrzucanie danych dla tabeli pz_projekt.group_achievements: ~0 rows (około)
+/*!40000 ALTER TABLE `group_achievements` DISABLE KEYS */;
+/*!40000 ALTER TABLE `group_achievements` ENABLE KEYS */;
+
 -- Zrzut struktury tabela pz_projekt.group_events
 CREATE TABLE IF NOT EXISTS `group_events` (
   `id_group_events` int(11) NOT NULL AUTO_INCREMENT,
@@ -138,7 +170,10 @@ CREATE TABLE IF NOT EXISTS `group_events` (
   CONSTRAINT `group_events_groups_fk` FOREIGN KEY (`id_group`) REFERENCES `groups` (`id_group`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Data exporting was unselected.
+-- Zrzucanie danych dla tabeli pz_projekt.group_events: ~0 rows (około)
+/*!40000 ALTER TABLE `group_events` DISABLE KEYS */;
+/*!40000 ALTER TABLE `group_events` ENABLE KEYS */;
+
 -- Zrzut struktury tabela pz_projekt.member
 CREATE TABLE IF NOT EXISTS `member` (
   `id_member` int(11) NOT NULL AUTO_INCREMENT,
@@ -151,7 +186,10 @@ CREATE TABLE IF NOT EXISTS `member` (
   CONSTRAINT `member_users_fk` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Data exporting was unselected.
+-- Zrzucanie danych dla tabeli pz_projekt.member: ~0 rows (około)
+/*!40000 ALTER TABLE `member` DISABLE KEYS */;
+/*!40000 ALTER TABLE `member` ENABLE KEYS */;
+
 -- Zrzut struktury tabela pz_projekt.member_rights
 CREATE TABLE IF NOT EXISTS `member_rights` (
   `id_member_right` int(11) NOT NULL AUTO_INCREMENT,
@@ -164,7 +202,10 @@ CREATE TABLE IF NOT EXISTS `member_rights` (
   CONSTRAINT `member_rights_rights_fk` FOREIGN KEY (`id_right`) REFERENCES `rights` (`id_right`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Data exporting was unselected.
+-- Zrzucanie danych dla tabeli pz_projekt.member_rights: ~0 rows (około)
+/*!40000 ALTER TABLE `member_rights` DISABLE KEYS */;
+/*!40000 ALTER TABLE `member_rights` ENABLE KEYS */;
+
 -- Zrzut struktury tabela pz_projekt.messages
 CREATE TABLE IF NOT EXISTS `messages` (
   `id_message` int(11) NOT NULL AUTO_INCREMENT,
@@ -180,7 +221,10 @@ CREATE TABLE IF NOT EXISTS `messages` (
   CONSTRAINT `messages_users_fk_1` FOREIGN KEY (`id_user_to`) REFERENCES `users` (`id_user`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Data exporting was unselected.
+-- Zrzucanie danych dla tabeli pz_projekt.messages: ~0 rows (około)
+/*!40000 ALTER TABLE `messages` DISABLE KEYS */;
+/*!40000 ALTER TABLE `messages` ENABLE KEYS */;
+
 -- Zrzut struktury tabela pz_projekt.news
 CREATE TABLE IF NOT EXISTS `news` (
   `id_news` int(11) NOT NULL AUTO_INCREMENT,
@@ -193,7 +237,10 @@ CREATE TABLE IF NOT EXISTS `news` (
   CONSTRAINT `news_users_fk` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Data exporting was unselected.
+-- Zrzucanie danych dla tabeli pz_projekt.news: ~0 rows (około)
+/*!40000 ALTER TABLE `news` DISABLE KEYS */;
+/*!40000 ALTER TABLE `news` ENABLE KEYS */;
+
 -- Zrzut struktury tabela pz_projekt.posts
 CREATE TABLE IF NOT EXISTS `posts` (
   `id_post` int(11) NOT NULL AUTO_INCREMENT,
@@ -209,7 +256,10 @@ CREATE TABLE IF NOT EXISTS `posts` (
   CONSTRAINT `posts_users_fk` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Data exporting was unselected.
+-- Zrzucanie danych dla tabeli pz_projekt.posts: ~0 rows (około)
+/*!40000 ALTER TABLE `posts` DISABLE KEYS */;
+/*!40000 ALTER TABLE `posts` ENABLE KEYS */;
+
 -- Zrzut struktury tabela pz_projekt.reactions
 CREATE TABLE IF NOT EXISTS `reactions` (
   `id_reaction` int(11) NOT NULL AUTO_INCREMENT,
@@ -225,7 +275,10 @@ CREATE TABLE IF NOT EXISTS `reactions` (
   CONSTRAINT `reactions_users_fk` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Data exporting was unselected.
+-- Zrzucanie danych dla tabeli pz_projekt.reactions: ~0 rows (około)
+/*!40000 ALTER TABLE `reactions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reactions` ENABLE KEYS */;
+
 -- Zrzut struktury tabela pz_projekt.reaction_types
 CREATE TABLE IF NOT EXISTS `reaction_types` (
   `id_reaction_type` int(11) NOT NULL AUTO_INCREMENT,
@@ -237,7 +290,10 @@ CREATE TABLE IF NOT EXISTS `reaction_types` (
   CONSTRAINT `reaction_types_events_fk` FOREIGN KEY (`id_event`) REFERENCES `events` (`id_event`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Data exporting was unselected.
+-- Zrzucanie danych dla tabeli pz_projekt.reaction_types: ~0 rows (około)
+/*!40000 ALTER TABLE `reaction_types` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reaction_types` ENABLE KEYS */;
+
 -- Zrzut struktury tabela pz_projekt.rights
 CREATE TABLE IF NOT EXISTS `rights` (
   `id_right` int(11) NOT NULL AUTO_INCREMENT,
@@ -245,7 +301,10 @@ CREATE TABLE IF NOT EXISTS `rights` (
   PRIMARY KEY (`id_right`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Data exporting was unselected.
+-- Zrzucanie danych dla tabeli pz_projekt.rights: ~0 rows (około)
+/*!40000 ALTER TABLE `rights` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rights` ENABLE KEYS */;
+
 -- Zrzut struktury tabela pz_projekt.sessions
 CREATE TABLE IF NOT EXISTS `sessions` (
   `id_s` int(11) NOT NULL AUTO_INCREMENT,
@@ -257,7 +316,10 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   CONSTRAINT `sessions_users_fk` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Data exporting was unselected.
+-- Zrzucanie danych dla tabeli pz_projekt.sessions: ~0 rows (około)
+/*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
+
 -- Zrzut struktury tabela pz_projekt.users
 CREATE TABLE IF NOT EXISTS `users` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
@@ -275,7 +337,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   CONSTRAINT `users_user_state_fk` FOREIGN KEY (`id_state`) REFERENCES `user_state` (`ID_USER_STATE`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Data exporting was unselected.
+-- Zrzucanie danych dla tabeli pz_projekt.users: ~0 rows (około)
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+
 -- Zrzut struktury tabela pz_projekt.user_state
 CREATE TABLE IF NOT EXISTS `user_state` (
   `ID_USER_STATE` int(11) NOT NULL,
@@ -283,7 +348,13 @@ CREATE TABLE IF NOT EXISTS `user_state` (
   PRIMARY KEY (`ID_USER_STATE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Data exporting was unselected.
+-- Zrzucanie danych dla tabeli pz_projekt.user_state: ~2 rows (około)
+/*!40000 ALTER TABLE `user_state` DISABLE KEYS */;
+INSERT INTO `user_state` (`ID_USER_STATE`, `NAME`) VALUES
+	(1, 'banned'),
+	(2, 'normal');
+/*!40000 ALTER TABLE `user_state` ENABLE KEYS */;
+
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

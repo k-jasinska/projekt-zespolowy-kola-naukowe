@@ -266,6 +266,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `name` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `surname` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `id_type` int(11) NOT NULL,
+  `password` varchar(255) COLLATE utf8_polish_ci NOT NULL,
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `users_un` (`email`),
   KEY `users_user_state_fk` (`id_state`),

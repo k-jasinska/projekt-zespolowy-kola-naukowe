@@ -34,12 +34,13 @@ form {
 }
 
 .pinkbtn {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
+  position: relative;
   color: rgb(148, 21, 80);
   border: 2px rgb(148, 21, 80) solid;
   border-radius: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  float: right;
 }
 
 .pinkbtn:hover {
@@ -56,11 +57,43 @@ form {
   box-shadow: 0px 0px 35px -5px rgba(0, 0, 0, 0.75);
   padding: 15px;
   position: absolute;
-  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   box-sizing: border-box;
   overflow: hidden;
+}
+
+@media screen and (min-height: 382px){
+  .form-login{
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.form-register{
+  background-color: rgb(37, 37, 37);
+  box-shadow: black 5px;
+  border-radius: 10px;
+  margin: 20px 20px;
+  color: #656669;
+  box-shadow: 0px 0px 35px -5px rgba(0, 0, 0, 0.75);
+  padding: 15px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+@media screen and (min-height: 596px){
+  .form-register{
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.title{
+  margin: 10px 20px;
 }
 
 @media screen and (min-width: 600px){

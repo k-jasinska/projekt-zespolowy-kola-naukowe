@@ -14,25 +14,32 @@
         type="text/css" media="all">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <link rel="stylesheet" href="../style/loginPage.css">
-    <title>Logowanie</title>
+    <title>Rejestracja</title>
 </head>
-    <div class="form-login">
-        <h1 class="title">Zaloguj się</h1>
+    <div class="form-register">
+        <h1 class="title">Zarejestruj się</h1>
         <form action="/action_page.php">
         <div class="form-group">
             <label for="email">Email:</label>
             <input type="email" class="form-control" id="email">
         </div>
         <div class="form-group">
+            <label for="name">Imię:</label>
+            <input type="text" class="form-control" id="name">
+        </div>
+        <div class="form-group">
+            <label for="surname">Nazwisko:</label>
+            <input type="surname" class="form-control" id="surname">
+        </div>
+        <div class="form-group">
             <label for="pwd">Hasło:</label>
             <input type="password" class="form-control" id="pwd">
         </div>
-        <div class="form-group form-check">
-            <label class="form-check-label">
-            <input class="form-check-input" type="checkbox"> Zapamiętaj mnie
-            </label>
+        <div class="form-group">
+            <label for="cpwd">Potwierdź hasło:</label>
+            <input type="password" class="form-control" id="cpwd">
         </div>
-        <button  type="button" class="btn btn-outline-danger pinkbtn">Zaloguj</button>
+        <button  type="button" class="btn btn-outline-danger pinkbtn">Zarejestruj</button>
         </form>
     </div>
 <body>

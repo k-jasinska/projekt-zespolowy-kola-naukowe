@@ -1,0 +1,130 @@
+body,
+* {
+    margin: 0;
+    padding: 0;
+    color: rgb(212, 211, 211);
+    font-family: "Releway", Helvetica, sans-serif;
+}
+
+body {
+    background-color: rgb(20, 20, 20);
+}
+
+form {
+	padding: 15px;
+}
+
+.form-control {
+	border: none;
+	border-radius: 0px;
+	border-bottom: 1px solid rgb(110, 156, 58);
+	color: #666;
+	background-color: transparent;
+	font-size: 15px;
+	box-sizing: border-box;
+	outline: none;
+}
+
+.form-control:focus {
+	border-bottom: 1px solid rgb(110, 156, 58);
+	background-color: transparent;
+	color: #e6e6e6;
+	outline: none;
+	box-shadow: none;
+}
+
+.pinkbtn {
+	position: relative;
+	color: rgb(148, 21, 80);
+	border: 2px rgb(148, 21, 80) solid;
+	border-radius: 0;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	float: right;
+}
+
+.pinkbtn:hover {
+	background-color: rgb(116, 16, 63);
+	border-color: rgb(116, 16, 63);
+}
+
+.form-login{
+	background-color: rgb(37, 37, 37);
+	box-shadow: black 5px;
+	border-radius: 10px;
+	margin: 20px 20px;
+	color: #656669;
+	box-shadow: 0px 0px 35px -5px rgba(0, 0, 0, 0.75);
+	padding: 15px;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+@media screen and (min-height: 382px){
+	.form-login{
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
+
+.register-form{
+	background-color: rgb(37, 37, 37);
+	box-shadow: black 5px;
+	border-radius: 10px;
+	margin: 20px 20px;
+	color: #656669;
+	box-shadow: 0px 0px 35px -5px rgba(0, 0, 0, 0.75);
+	padding: 15px;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+@media screen and (min-height: 596px){
+	.form-register{
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
+
+.title{
+	margin: 10px 20px;
+}
+
+@media screen and (min-width: 600px){
+	.form-control{
+		width: 500px;
+	}
+}
+
+@media screen and (min-width: 500px) and  (max-width: 599px){
+	.form-control{
+		width: 400px;
+	}
+}
+
+@media screen and (max-width: 500px){
+	.form-control{
+		width: 300px;
+	}
+}
+
+.error{
+	background-color: rgb(37, 37, 37);
+	border-radius: 10px;
+	margin: 20px 20px;
+	color: #656669;
+	padding: 15px;
+	box-sizing: border-box;
+	overflow: hidden;
+	border: solid 1px rgb(155, 155, 155);
+}
+
+.error p{
+	margin: 0;
+}

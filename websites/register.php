@@ -123,7 +123,7 @@
               <label for="cpwd">Potwierdź hasło:</label>
               <input type="password" class="form-control" minlength="8" maxlength="32" id="cpwd" required>
           </div>
-          <button type="submit" class="btn btn-outline-danger pinkbtn">Zarejestruj</button>
+          <button type="submit" class="btn btn-danger btn-rounded btn-block z-depth-0 my-4 waves-effect">Zarejestruj</button>
         </form>
 	</div>
 	<?php

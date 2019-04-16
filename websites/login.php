@@ -32,7 +32,7 @@
             <input class="form-check-input" type="checkbox"> Zapamiętaj mnie
             </label>
         </div>
-        <button  type="button" class="btn btn-outline-danger pinkbtn">Zaloguj</button>
+        <button  type="button" class="btn btn-danger btn-rounded btn-block z-depth-0 my-4 waves-effect">Zaloguj</button>
         </form>
     </div>
 <body>

@@ -1,13 +1,13 @@
 body,
 * {
-    margin: 0;
-    padding: 0;
-    color: rgb(212, 211, 211);
-    font-family: "Releway", Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+	color: rgb(212, 211, 211);
+	font-family: "Releway", Helvetica, sans-serif;
 }
 
 body {
-    background-color: rgb(20, 20, 20);
+	background-color: rgb(20, 20, 20);
 }
 
 form {
@@ -33,26 +33,11 @@ form {
 	box-shadow: none;
 }
 
-.pinkbtn {
-	position: relative;
-	color: rgb(148, 21, 80);
-	border: 2px rgb(148, 21, 80) solid;
-	border-radius: 0;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	float: right;
-}
-
-.pinkbtn:hover {
-	background-color: rgb(116, 16, 63);
-	border-color: rgb(116, 16, 63);
-}
-
-.form-login{
+.form-login {
 	background-color: rgb(37, 37, 37);
 	box-shadow: black 5px;
 	border-radius: 10px;
-	margin: 20px 20px;
+	margin: 0 0;
 	color: #656669;
 	box-shadow: 0px 0px 35px -5px rgba(0, 0, 0, 0.75);
 	padding: 15px;
@@ -63,58 +48,59 @@ form {
 	overflow: hidden;
 }
 
-@media screen and (min-height: 382px){
-	.form-login{
+@media screen and (min-height: 382px) {
+	.form-login {
 		top: 50%;
 		transform: translate(-50%, -50%);
 	}
 }
 
-.register-form{
+.register-form {
 	background-color: rgb(37, 37, 37);
 	box-shadow: black 5px;
 	border-radius: 10px;
-	margin: 20px 20px;
+	margin: 0 0;
 	color: #656669;
 	box-shadow: 0px 0px 35px -5px rgba(0, 0, 0, 0.75);
 	padding: 15px;
 	position: absolute;
 	left: 50%;
-	transform: translateX(-50%);
+	top: 50%;
+	transform: translate(-50%, -50%);
 	box-sizing: border-box;
 	overflow: hidden;
 }
 
-@media screen and (min-height: 596px){
-	.form-register{
+@media screen and (min-height: 596px) {
+	.form-register {
 		top: 50%;
 		transform: translate(-50%, -50%);
 	}
 }
 
-.title{
+.title {
 	margin: 10px 20px;
 }
 
-@media screen and (min-width: 600px){
-	.form-control{
+@media screen and (min-width: 600px) {
+	.form-control {
 		width: 500px;
 	}
 }
 
-@media screen and (min-width: 500px) and  (max-width: 599px){
-	.form-control{
+@media screen and (min-width: 500px) and (max-width: 599px) {
+	.form-control {
 		width: 400px;
 	}
 }
 
-@media screen and (max-width: 500px){
-	.form-control{
+@media screen and (max-width: 500px) {
+	.form-control {
 		width: 300px;
 	}
 }
 
-.error{
+.error {
 	background-color: rgb(37, 37, 37);
 	border-radius: 10px;
 	margin: 20px 20px;
@@ -125,6 +111,18 @@ form {
 	border: solid 1px rgb(155, 155, 155);
 }
 
-.error p{
+.error p {
 	margin: 0;
+}
+
+@-webkit-keyframes autofill {
+	to {
+		color: #666;
+		background: transparent;
+	}
+}
+
+input:-webkit-autofill {
+	-webkit-animation-name: autofill;
+	-webkit-animation-fill-mode: both;
 }

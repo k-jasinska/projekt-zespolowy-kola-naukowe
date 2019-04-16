@@ -1,3 +1,94 @@
+<?php
+	include('../subsites/functions.php');
+	noCache();
+	if(checkIfLogged()){
+		header("location: index.php");
+	}
+	$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt") or die(mysqli_connect_error());
+	mysqli_set_charset($link, "utf8");
+	$error = NULL;
+	if(isset($_POST['email']) && isset($_POST['pwd'])){
+		$email = trim(mysqli_real_escape_string($link, $_POST['email']));
+		$pwd = $_POST['pwd'];
+		try{
+			$result = mysqli_query($link,"SET SESSION TRANSACTION ISOLATION LEVEL SERIALIZABLE");
+			if($result === FALSE){
+				throw new Exception("Błąd serwera!");
+			}
+			$result = mysqli_autocommit($link, false); 
+			if($result === FALSE){
+				throw new Exception("Błąd serwera!");
+			}   
+			$result = mysqli_query($link, "BEGIN");
+			if($result === FALSE){
+				throw new Exception("Błąd serwera!");
+			}
+			if($stmt = mysqli_prepare($link, "SELECT id_s FROM sessions JOIN users ON sessions.id_user = users.id_user WHERE users.email LIKE ?")){
+				if(!mysqli_stmt_bind_param($stmt, "s", $email)){
+					throw new Exception("Błąd serwera!");
+				}
+				if(!mysqli_stmt_execute($stmt)){
+					throw new Exception("Błąd serwera!");
+				}
+				if(!mysqli_stmt_bind_result($stmt, $session)){
+					throw new Exception("Błąd serwera!");
+				}
+				if(mysqli_stmt_fetch($stmt)){
+					$result = mysqli_query($link, "DELETE FROM sessions WHERE id_s = $session LIMIT 1");
+					if($result === FALSE || mysqli_errno($link) || mysqli_affected_rows($link) == 0){
+						throw new Exception("Błąd serwera!");
+					}
+				}
+				mysqli_stmt_close($stmt);
+			} else {
+				throw new Exception("Błąd serwera!");
+			}
+			if($stmt = mysqli_prepare($link, "SELECT id_user, password FROM users WHERE email LIKE ?")){
+				if(!mysqli_stmt_bind_param($stmt, "s", $email)){
+					throw new Exception("Błąd serwera!");
+				}
+				if(!mysqli_stmt_execute($stmt)){
+					throw new Exception("Błąd serwera!");
+				}
+				if(!mysqli_stmt_bind_result($stmt, $id_user, $password_hash)){
+					throw new Exception("Błąd serwera!");
+				}
+				if(!mysqli_stmt_fetch($stmt)){
+					throw new Exception("Błędny email!");
+				}
+				mysqli_stmt_close($stmt);
+			} else {
+				throw new Exception("Błąd serwera!");
+			}
+			if(!password_verify($pwd, $password_hash)){
+				throw new Exception("Błędne hasło!");
+			}
+			$new_session = md5(rand(-10000,10000) . microtime()) . md5(crc32(microtime()) . $_SERVER['REMOTE_ADDR']);
+			$result = mysqli_query($link, "INSERT INTO sessions(id_session, id_user, start_date) VALUES($new_session, $id_user, CURRENT_TIMESTAMP)");
+			if($result === FALSE){
+				throw new Exception("Błędne hasło!");
+			}
+			$result = setcookie(
+				"session",
+				'SESID:'.base64_encode($new_session),
+				time() + 1200,
+				'/~kjanus/',
+				'torus.uck.pk.edu.pl',
+				false,
+				true
+			);
+			if($result === FALSE){
+				throw new Exception("Błędne hasło!");
+			}
+			header("location: index.php");
+		}
+		catch(Exception $e){
+			mysqli_rollback($link);
+			$error = $e->getMessage();
+		}
+	}
+?>
+
 <html lang="en">
 
 <head>
@@ -34,7 +125,18 @@
         </div>
         <button  type="button" class="btn btn-danger btn-rounded btn-block z-depth-0 my-4 waves-effect">Zaloguj</button>
         </form>
-    </div>
+	</div>
+	<?php
+		if($error !== NULL){
+			ob_start();
+			?>
+				<div class="error">
+					<p><?php echo $error; ?></p>
+				</div>
+			<?php
+			modal('errors', 'Nie udało się zalogować!', ob_get_clean());
+		}
+	?>
 <body>
 </body>
 </html>

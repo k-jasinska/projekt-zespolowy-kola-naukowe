@@ -27,3 +27,7 @@
 .close{
 	color: #FFF;
 }
+
+.close:hover{
+	color: #FFF;
+}

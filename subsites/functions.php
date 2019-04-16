@@ -26,12 +26,25 @@
 	function checkIfLogged(){
 		if(isset($_COOKIE['session'])){
       $session_id = base64_decode(explode(':', $_COOKIE['session'])[1]);
-      $link = mysqli_connect("149.156.136.151", "kjanus", "1234567890.", "kjanus") or return false;
+			$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
+			if (mysqli_connect_errno()){
+				return false;
+			}
       mysqli_set_charset($link, "utf8");
-      $result = mysqli_query($link, "SELECT id_s from session where id_session = '$session_id';");
-      if($result->num_rows != 0){
+      $result = mysqli_query($link, "SELECT id_s from sessions where id_session = '$session_id';");
+      if($result !== FALSE && $result->num_rows != 0){
         return true;
-      }     
+      } else {
+				setcookie(
+					"session",
+					'',
+					time() - 4200,
+					'/',
+					'',
+					false,
+					true
+				);
+			}
 		}
     return false;
 	}

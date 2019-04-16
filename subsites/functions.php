@@ -22,4 +22,36 @@
 	</script>
 	<?php
 	}
+
+	function checkIfLogged(){
+		if(isset($_COOKIE['session'])){
+      $session_id = base64_decode(explode(':', $_COOKIE['session'])[1]);
+			$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
+			if (mysqli_connect_errno()){
+				return false;
+			}
+      mysqli_set_charset($link, "utf8");
+      $result = mysqli_query($link, "SELECT id_s from sessions where id_session = '$session_id';");
+      if($result !== FALSE && $result->num_rows != 0){
+        return true;
+      } else {
+				setcookie(
+					"session",
+					'',
+					time() - 4200,
+					'/',
+					'',
+					false,
+					true
+				);
+			}
+		}
+    return false;
+	}
+
+	function noCache(){
+		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+		header("Cache-Control: post-check=0, pre-check=0", false);
+		header("Pragma: no-cache");
+	}
 ?>

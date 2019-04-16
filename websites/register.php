@@ -1,5 +1,9 @@
 <?php
 	include('../subsites/functions.php');
+	noCache();
+	if(checkIfLogged()){
+		header("location: index.php");
+	}
 	$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt") or die(mysqli_connect_error());
 	mysqli_set_charset($link, "utf8");
 	$errors = array();

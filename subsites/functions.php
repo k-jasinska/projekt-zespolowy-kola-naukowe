@@ -24,17 +24,36 @@
 	}
 
 	function checkIfLogged(){
-		if(isset($_COOKIE['session'])){
-      $session_id = base64_decode(explode(':', $_COOKIE['session'])[1]);
+		if(isset($_COOKIE['session'])){      
 			$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
 			if (mysqli_connect_errno()){
 				return false;
 			}
-      mysqli_set_charset($link, "utf8");
-      $result = mysqli_query($link, "SELECT id_s from sessions where id_session = '$session_id';");
-      if($result !== FALSE && $result->num_rows != 0){
-        return true;
-      } else {
+			mysqli_set_charset($link, "utf8");
+			$session_id = mysqli_real_escape_string($link, base64_decode(explode(':', $_COOKIE['session'])[1]));
+			$stmt = mysqli_prepare($link, "SELECT id_s from sessions where id_session = ?;");
+			try{
+				if($stmt){
+					if(!mysqli_stmt_bind_param($stmt, "i", $session_id)){
+						throw new Exception("Błąd serwera!");
+					}
+					if(!mysqli_stmt_execute($stmt)){
+						throw new Exception("Błąd serwera!");
+					}
+					if(!mysqli_stmt_bind_result($stmt, $session)){
+						throw new Exception("Błąd serwera!");
+					}
+					if(mysqli_stmt_fetch($stmt)){
+						mysqli_stmt_close($stmt);
+						return true;
+					}
+					mysqli_stmt_close($stmt);
+				} else {
+					throw new Exception("Błąd serwera!");
+				}		
+			}
+			catch(Exception $e){
+				mysqli_stmt_close($stmt);				
 				setcookie(
 					"session",
 					'',
@@ -53,5 +72,40 @@
 		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 		header("Cache-Control: post-check=0, pre-check=0", false);
 		header("Pragma: no-cache");
+	}
+
+	function keepSession(){
+		if(isset($_COOKIE['session'])){
+			$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
+			if (mysqli_connect_errno()){
+				return false;
+			}
+			mysqli_set_charset($link, "utf8");
+			$session_id = mysqli_real_escape_string($link, base64_decode(explode(':', $_COOKIE['session'])[1]));
+			$stmt = mysqli_prepare($link, "UPDATE sessions SET start_date = CURRENT_TIMESTAMP WHERE id_session = ?;");
+			try{
+				if($stmt){
+					if(!mysqli_stmt_bind_param($stmt, "i", $session_id)){
+						throw new Exception("Błąd serwera!");
+					}
+					if(!mysqli_stmt_execute($stmt)){
+						throw new Exception("Błąd serwera!");
+					}					
+					mysqli_stmt_close($stmt);
+				}
+				setcookie(
+					"session",
+					'SESID:'.base64_encode($session_id),
+					time() + 1200,
+					'/',
+					'',
+					false,
+					true
+				);
+			}
+			catch(Exception $e){
+				mysqli_stmt_close($stmt);
+			}
+		}
 	}
 ?>

@@ -1,3 +1,10 @@
+<?php
+    include('../subsites/functions.php');
+	noCache();
+	if(checkIfLogged()){
+		keepSession();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 

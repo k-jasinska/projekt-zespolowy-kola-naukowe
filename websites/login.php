@@ -85,6 +85,61 @@
 			if(!mysqli_commit($link)){
 				throw new Exception("Błąd serwera!");
 			}
+			if(isset($_POST['remember'])){
+				$counter = 0;
+				foreach($_COOKIE as $key=>$val){
+					$name = explode('_', $key);
+					if(isset($name[0]) && $name[0] == "remember" && isset($name[1]) && is_numeric($name[1])){
+						list($selector, $token) = explode(':', $val);
+						$selector = mysqli_real_escape_string($link, $selector);
+						try{
+							if($stmt = mysqli_prepare($link, "SELECT id_token FROM authorization_tokens WHERE id_user=? AND selector like ?")){
+								if(!mysqli_stmt_bind_param($stmt, "is", $id_user, $selector)){
+									throw new Exception("Błąd serwera!");
+								}
+								if(!mysqli_stmt_execute($stmt)){
+									throw new Exception("Błąd serwera!");
+								}
+								if(!mysqli_stmt_bind_result($stmt, $user)){
+									throw new Exception("Błąd serwera!");
+								}
+								if(mysqli_stmt_fetch($stmt)){
+									mysqli_stmt_close($stmt);
+									throw new Exception("Błąd serwera!");
+								}
+								mysqli_stmt_close($stmt);
+							} else {
+								throw new Exception("Błąd serwera!");
+							}
+							$counter++;
+						}
+						catch(Exception $e){
+							return 0;
+						}
+					}
+				}
+				$result = FALSE;
+				do{
+					$selector = base64_encode(random_bytes(9));
+					$result = mysqli_query($link, "SELECT id_token FROM uthorization_tokens WHERE selector LIKE '$selector'");
+				}while($result !== FALSE || $result->num_rows > 0);
+				if($result !== FALSE){
+					$token = random_bytes(33);
+					$hash = hash('sha256', $token);
+					$date = date('Y-m-d\H:i:s', time() + 86400 * 30);
+					if(mysqli_query($link, "INSERT INTO authorization_tokens(id_user, selector, token, expires) VALUES('$id_user', '$selector', '$hash', '$date')")){
+						setcookie(
+							"remember_$counter",
+							$selector.':'.base64_encode($token),
+							time() + 86400 * 30,
+							'/',
+							'',
+							false,
+							true
+						);
+					}
+				}
+			}
 			header("location: index.php");
 		}
 		catch(Exception $e){
@@ -126,7 +181,7 @@
 			</div>
 			<div class="form-group form-check">
 				<label class="form-check-label">
-				<input class="form-check-input" type="checkbox"> Zapamiętaj mnie
+				<input class="form-check-input" type="checkbox" name="remember"> Zapamiętaj mnie
 				</label>
 			</div>
 			<button  type="submite" class="btn btn-danger btn-rounded btn-block z-depth-0 my-4 waves-effect">Zaloguj</button>

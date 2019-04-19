@@ -48,6 +48,12 @@ form {
 	overflow: hidden;
 }
 
+.lilhomebutton {
+	float:right;
+	margin: 10px 20px;
+	display:inline;
+}
+
 @media screen and (min-height: 382px) {
 	.form-login {
 		top: 50%;
@@ -80,6 +86,7 @@ form {
 
 .title {
 	margin: 10px 20px;
+	display:inline;
 }
 
 @media screen and (min-width: 600px) {

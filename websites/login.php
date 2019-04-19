@@ -115,6 +115,7 @@
 </head>
     <div class="form-login">
         <h1 class="title">Zaloguj się</h1>
+		<a href="index.php"><i class="fas fa-home fa-2x lilhomebutton"></i></a>
         <form method="POST">
 			<div class="form-group">
 				<label for="email">Email:</label>

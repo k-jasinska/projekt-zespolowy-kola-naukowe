@@ -41,9 +41,11 @@
 			} else {
 				throw new Exception("Błąd serwera!");
 			}
-			$result = mysqli_query($link, "DELETE FROM sessions WHERE id_s = $session");
-			if($result === FALSE || mysqli_errno($link) || mysqli_affected_rows($link) == 0){
-				throw new Exception($session);
+			if($delete){
+				$result = mysqli_query($link, "DELETE FROM sessions WHERE id_s = $session");
+				if($result === FALSE || mysqli_errno($link)){
+					throw new Exception("Błąd serwera!");
+				}
 			}
 			if($stmt = mysqli_prepare($link, "SELECT id_user, password FROM users WHERE email LIKE ?")){
 				if(!mysqli_stmt_bind_param($stmt, "s", $email)){

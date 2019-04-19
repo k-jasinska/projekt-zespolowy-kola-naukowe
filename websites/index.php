@@ -3,8 +3,6 @@
     noCache();
     if(isset($_GET['logout']) && checkIfLogged()){
         logout();
-    } else {
-        echo("aaaaaaaaaaaaaaaaaaaa");
     }
 	if(checkIfLogged()){
 		keepSession();

@@ -1,6 +1,11 @@
 <?php
     include('../subsites/functions.php');
-	noCache();
+    noCache();
+    if(isset($_GET['logout']) && checkIfLogged()){
+        logout();
+    } else {
+        echo("aaaaaaaaaaaaaaaaaaaa");
+    }
 	if(checkIfLogged()){
 		keepSession();
     }
@@ -45,9 +50,15 @@
                 <li class="nav-item">
                     <a class="nav-link" id="link4" href="#">Kontakt</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="link5" href="login.php">Logowanie <i class="fas fa-sign-in-alt"></i></a>
-                </li>
+                <?php if(!checkIfLogged()) :?>
+                    <li class="nav-item">
+                        <a class="nav-link" id="link5" href="login.php">Logowanie <i class="fas fa-sign-in-alt"></i></a>
+                    </li>
+                <?php else :?>
+                    <li class="nav-item">
+                        <a class="nav-link" id="link5" href="index.php?logout">Wyloguj <i class="fas fa-sign-in-alt"></i></a>
+                    </li>
+                <?php endif ?>
             </ul>
         </div>
     </nav>

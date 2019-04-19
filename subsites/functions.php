@@ -108,4 +108,27 @@
 			}
 		}
 	}
+
+	function logout(){
+		$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
+		if (!mysqli_connect_errno()){
+			mysqli_set_charset($link, "utf8");
+			$session_id = mysqli_real_escape_string($link, base64_decode(explode(':', $_COOKIE['session'])[1]));
+			if($stmt = mysqli_prepare($link, "DELETE FROM sessions WHERE id_session LIKE ?")){
+				if(mysqli_stmt_bind_param($stmt, "s", $session_id)){
+					mysqli_stmt_execute($stmt);
+					mysqli_stmt_close($stmt);
+				}
+			}
+		}
+		setcookie(
+			"session",
+			'',
+			time() - 4200,
+			'/',
+			'',
+			false,
+			true
+		);
+	}
 ?>

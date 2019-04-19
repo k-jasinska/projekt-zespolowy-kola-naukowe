@@ -80,12 +80,13 @@
 				true
 			);
 			if($result === FALSE){
-				throw new Exception("Błędne hasło!");
+				throw new Exception("Błąd serwera!");
 			}
 			if(!mysqli_commit($link)){
 				throw new Exception("Błąd serwera!");
 			}
-			if(isset($_POST['remember'])){
+			if(isset($_POST['remember']) && $_POST['remember'] == "on"){
+				$result = mysqli_autocommit($link, true); 
 				$counter = 0;
 				foreach($_COOKIE as $key=>$val){
 					$name = explode('_', $key);
@@ -113,7 +114,7 @@
 							}
 							$counter++;
 						}
-						catch(Exception $e){
+						catch(Exception $e){							
 							return 0;
 						}
 					}
@@ -121,12 +122,12 @@
 				$result = FALSE;
 				do{
 					$selector = base64_encode(random_bytes(9));
-					$result = mysqli_query($link, "SELECT id_token FROM uthorization_tokens WHERE selector LIKE '$selector'");
-				}while($result !== FALSE || $result->num_rows > 0);
+					$result = mysqli_query($link, "SELECT id_token FROM authorization_tokens WHERE selector LIKE '$selector'");
+				}while($result !== FALSE && $result->num_rows > 0);
 				if($result !== FALSE){
 					$token = random_bytes(33);
 					$hash = hash('sha256', $token);
-					$date = date('Y-m-d\H:i:s', time() + 86400 * 30);
+					$date = date('Y-m-d H:i:s', time() + 86400 * 30);					
 					if(mysqli_query($link, "INSERT INTO authorization_tokens(id_user, selector, token, expires) VALUES('$id_user', '$selector', '$hash', '$date')")){
 						setcookie(
 							"remember_$counter",

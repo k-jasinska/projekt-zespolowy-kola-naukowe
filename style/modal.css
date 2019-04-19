@@ -1,0 +1,33 @@
+.modal-content{
+	background-color: rgb(37, 37, 37);
+}
+.modal-header{
+	border-color: rgb(155, 155, 155);
+}
+
+.modal-footer{
+	border-color: rgb(155, 155, 155);
+}
+
+.pinkbtn {
+	position: relative;
+	color: rgb(148, 21, 80);
+	border: 2px rgb(148, 21, 80) solid;
+	border-radius: 0;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	float: right;
+}
+
+.pinkbtn:hover {
+	background-color: rgb(116, 16, 63);
+	border-color: rgb(116, 16, 63);
+}
+
+.close{
+	color: #FFF;
+}
+
+.close:hover{
+	color: #FFF;
+}

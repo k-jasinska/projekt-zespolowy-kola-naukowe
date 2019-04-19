@@ -14,7 +14,7 @@
         href="https://fonts.googleapis.com/css?family=Raleway%3A400%2C500%2C600%2C700%2C300%2C100%2C800%2C900%7COpen+Sans%3A400%2C300%2C300italic%2C400italic%2C600%2C600italic%2C700%2C700italic&amp;subset=latin%2Clatin-ext&amp;ver=1.3.6"
         type="text/css" media="all">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-    <link rel="stylesheet" href="style/homePage.css">
+    <link rel="stylesheet" href="../style/homePage.css">
     <title>Koła Naukowe</title>
 </head>
 
@@ -39,7 +39,7 @@
                     <a class="nav-link" id="link4" href="#">Kontakt</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="link5" href="#">Logowanie <i class="fas fa-sign-in-alt"></i></a>
+                    <a class="nav-link" id="link5" href="login.php">Logowanie <i class="fas fa-sign-in-alt"></i></a>
                 </li>
             </ul>
         </div>
@@ -59,9 +59,6 @@
             </slide>
         </slider>
     </div>
-    </div>
-
-    <div>kari</div>
     <!-- BODY -->
     <div class="wrapper">
         <section class="description">
@@ -291,8 +288,8 @@
         2019 &copy; Karolina Jasińska
     </div>
 
-    <script type="text/javascript" src="scripts/scrollTo.js"></script>
-    <script type="text/javascript" src="scripts/toggleSlideDescription.js"></script>
+    <script type="text/javascript" src="../scripts/scrollTo.js"></script>
+    <script type="text/javascript" src="../scripts/toggleSlideDescription.js"></script>
 </body>
 
 </html>

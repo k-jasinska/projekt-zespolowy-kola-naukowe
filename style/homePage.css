@@ -339,6 +339,7 @@ form {
     box-shadow: none;
 }
 
+
 textarea {
     border: none;
     background-color: transparent;
@@ -392,4 +393,16 @@ textarea {
         padding-bottom: 0px;
         min-height: 500px;
     }
+}
+
+@-webkit-keyframes autofill {
+	to {
+		color: #666;
+		background: transparent;
+	}
+}
+
+input:-webkit-autofill {
+	-webkit-animation-name: autofill;
+	-webkit-animation-fill-mode: both;
 }

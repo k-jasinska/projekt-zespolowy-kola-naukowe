@@ -115,6 +115,21 @@ form {
 	margin: 0;
 }
 
+.account {
+	background-color: rgb(37, 37, 37);
+	border-radius: 10px;
+	margin: 20px 20px;
+	color: #656669;
+	padding: 15px;
+	box-sizing: border-box;
+	overflow: hidden;
+	border: solid 2px rgb(155, 155, 155);
+}
+
+.account p {
+	margin: 0;
+}
+
 @-webkit-keyframes autofill {
 	to {
 		color: #666;

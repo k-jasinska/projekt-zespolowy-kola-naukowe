@@ -1,5 +1,5 @@
 <?php
-	function modal($id, $title, $content){
+	function modal($id, $title, $content, $show = true){
 	?>
 	<div class="modal fade" id="<?php echo $id; ?>" role="dialog">
 		<div class="modal-dialog">
@@ -17,9 +17,11 @@
 			</div>	
 		</div>
 	</div>
-	<script>
-		$("#<?php echo $id; ?>").modal('show');
-	</script>
+	<?php if($show): ?>
+		<script>
+			$("#<?php echo $id; ?>").modal('show');
+		</script>
+	<?php endif ?>
 	<?php
 	}
 

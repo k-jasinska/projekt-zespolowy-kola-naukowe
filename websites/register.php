@@ -106,6 +106,7 @@
 </head>
     <div class="register-form">
 		<h1 class="title">Zarejestruj się</h1>
+		<a href="index.php"><i class="fas fa-home fa-2x lilhomebutton"></i></a>
         <form id="register-form" method="POST">
           <div class="form-group">
               <label for="email">Email:</label>

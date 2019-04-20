@@ -122,6 +122,38 @@ form {
 	margin: 0;
 }
 
+.account {
+	background-color: rgb(37, 37, 37);
+	border-radius: 10px;
+	margin: 20px 20px;
+	color: #656669;
+	padding: 15px;
+	box-sizing: border-box;
+	overflow: hidden;
+	border: solid 2px rgb(155, 155, 155);
+}
+
+.account p {
+	margin: 0;
+	max-width: 90%;
+	display: inline-block;
+	overflow: hidden;
+	color: inherit;
+}
+
+.account span{
+	display: inline;
+	width: 100%;
+}
+
+.account:hover{		
+	border: solid 2px rgb(148, 21, 80);;
+}
+
+.account:hover p{
+	color: rgb(148, 21, 80);
+}
+
 @-webkit-keyframes autofill {
 	to {
 		color: #666;
@@ -132,4 +164,20 @@ form {
 input:-webkit-autofill {
 	-webkit-animation-name: autofill;
 	-webkit-animation-fill-mode: both;
+}
+
+.delete-error{
+	margin-bottom: 30px;
+	background: #bd2130;
+	padding: 5px;
+	padding-left: 15px;
+	border: 1px solid #b21f2d;
+	width: 100%;
+}
+
+.close-error{
+	opacity: 0.8!important;
+}
+.close-error:hover{
+	opacity: 1!important;
 }

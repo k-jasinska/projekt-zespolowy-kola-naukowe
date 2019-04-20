@@ -158,3 +158,19 @@ input:-webkit-autofill {
 	-webkit-animation-name: autofill;
 	-webkit-animation-fill-mode: both;
 }
+
+.delete-error{
+	margin-bottom: 30px;
+	background: #bd2130;
+	padding: 5px;
+	padding-left: 15px;
+	border: 1px solid #b21f2d;
+	width: 100%;
+}
+
+.close-error{
+	opacity: 0.8!important;
+}
+.close-error:hover{
+	opacity: 1!important;
+}

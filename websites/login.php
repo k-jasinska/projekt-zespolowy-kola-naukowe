@@ -202,18 +202,22 @@
 					$selector = mysqli_real_escape_string($link, $selector);
 					if($_POST["selector"] == $selector){
 						try{
-							if($stmt = mysqli_prepare($link, "SELECT id_user FROM authorization_tokens WHERE selector like ?")){
+							if($stmt = mysqli_prepare($link, "SELECT token FROM authorization_tokens WHERE selector like ?")){
 								if(!mysqli_stmt_bind_param($stmt, "s", $selector)){
 									throw new Exception("Błąd serwera!");
 								}
 								if(!mysqli_stmt_execute($stmt)){
 									throw new Exception("Błąd serwera!");
 								}
-								if(!mysqli_stmt_bind_result($stmt, $id_user)){
+								if(!mysqli_stmt_bind_result($stmt, $tokenHash)){
 									throw new Exception("Błąd serwera!");
 								}
 								if(!mysqli_stmt_fetch($stmt)){
 									throw new Exception("Błąd serwera!"); 
+								} else {
+									if(!hash_equals($tokenHash, hash('sha256', base64_decode($token)))){
+										throw new Exception("Niepowodzenie autoryzacji!");
+									}
 								}
 								mysqli_stmt_close($stmt);
 							} else {
@@ -312,6 +316,7 @@
 			}
 			catch(Exception $e){
 				echo("0");
+				exit();
 			}
 			echo("1");
 			exit();
@@ -357,7 +362,7 @@
 			</div>
 			<button  type="submite" class="btn btn-danger btn-rounded btn-block z-depth-0 my-4 waves-effect">Zaloguj</button>
 			<?php if($accounts !== NULL && count($accounts) > 0) :?>
-				<button  type="button" class="btn btn-success btn-rounded btn-block z-depth-0 my-4 waves-effect" data-toggle="modal" data-target="#accounts">Konta</button>
+				<button id="btn-remember" type="button" class="btn btn-success btn-rounded btn-block z-depth-0 my-4 waves-effect" data-toggle="modal" data-target="#accounts">Konta</button>
 			<?php endif ?>
         </form>
 	</div>
@@ -374,7 +379,7 @@
 							<form method="POST" style="display: none;">
 								<input type="hidden" value="<?php echo $account['selector']; ?>" name="selector">
 							</form>
-							<button type="button" class="close" data-selector="<?php echo $account['selector']; ?>">&times;</button>
+							<button type="button" class="close delete-account" data-selector="<?php echo $account['selector']; ?>">&times;</button>
 						</span>
 					</div>
 				<?php endforeach ?>

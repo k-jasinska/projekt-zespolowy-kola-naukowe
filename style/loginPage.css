@@ -128,6 +128,23 @@ form {
 
 .account p {
 	margin: 0;
+	max-width: 90%;
+	display: inline-block;
+	overflow: hidden;
+	color: inherit;
+}
+
+.account span{
+	display: inline;
+	width: 100%;
+}
+
+.account:hover{		
+	border: solid 2px rgb(148, 21, 80);;
+}
+
+.account:hover p{
+	color: rgb(148, 21, 80);
 }
 
 @-webkit-keyframes autofill {

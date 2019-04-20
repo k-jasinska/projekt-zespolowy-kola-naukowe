@@ -6,6 +6,7 @@
 	}
 	$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt") or die(mysqli_connect_error());
 	mysqli_set_charset($link, "utf8");
+	delete($link);
 	$error = login($link);
 	$accounts = read_accounts($link);
 
@@ -193,8 +194,128 @@
 				$error = $e->getMessage();
 				return $error;
 			}
+		} else if(isset($_POST["selector"])){
+			foreach($_COOKIE as $key=>$val){
+				$name = explode('_', $key);
+				if(isset($name[0]) && $name[0] == "remember" && isset($name[1]) && is_numeric($name[1])){
+					list($selector, $token) = explode(':', $val);
+					$selector = mysqli_real_escape_string($link, $selector);
+					if($_POST["selector"] == $selector){
+						try{
+							if($stmt = mysqli_prepare($link, "SELECT id_user FROM authorization_tokens WHERE selector like ?")){
+								if(!mysqli_stmt_bind_param($stmt, "s", $selector)){
+									throw new Exception("Błąd serwera!");
+								}
+								if(!mysqli_stmt_execute($stmt)){
+									throw new Exception("Błąd serwera!");
+								}
+								if(!mysqli_stmt_bind_result($stmt, $id_user)){
+									throw new Exception("Błąd serwera!");
+								}
+								if(!mysqli_stmt_fetch($stmt)){
+									throw new Exception("Błąd serwera!"); 
+								}
+								mysqli_stmt_close($stmt);
+							} else {
+								throw new Exception("Błąd serwera!");
+							}
+						}
+						catch(Exception $e){							
+							$error = $e->getMessage();
+							return $error;
+						}
+						try{
+							$result = mysqli_query($link,"SET SESSION TRANSACTION ISOLATION LEVEL SERIALIZABLE");
+							if($result === FALSE){
+								throw new Exception("Błąd serwera!");
+							}
+							$result = mysqli_autocommit($link, false); 
+							if($result === FALSE){
+								throw new Exception("Błąd serwera!");
+							}   
+							$result = mysqli_query($link, "BEGIN");
+							if($result === FALSE){
+								throw new Exception("Błąd serwera!");
+							}
+							$result = mysqli_query($link, "DELETE FROM sessions WHERE id_user = $id_user");
+							if($result === FALSE || mysqli_errno($link)){
+								throw new Exception("Błąd serwera!");
+							}
+							$new_session = md5(rand(-10000,10000) . microtime()) . md5(crc32(microtime()) . $_SERVER['REMOTE_ADDR']);			
+							$result = mysqli_query($link, "INSERT INTO sessions(id_session, id_user, start_date) VALUES('$new_session', $id_user, CURRENT_TIMESTAMP)");
+							if($result === FALSE){
+								throw new Exception("Błąd serwera!");
+							}
+							if(!mysqli_commit($link)){
+								throw new Exception("Błąd serwera!");
+							}
+							mysqli_autocommit($link, true); 
+							$result = setcookie(
+								"session",
+								'SESID:'.base64_encode($new_session),
+								time() + 1200,
+								'/',
+								'',
+								false,
+								true
+							);
+							header("location: index.php");
+						}
+						catch(Exception $e){
+							mysqli_rollback($link);
+							$error = $e->getMessage();
+							return $error;
+						}
+					}
+				}
+			}
 		}
 		return NULL;
+	}
+
+	function delete($link){
+		if(isset($_POST['delete'])){
+			$selector = mysqli_real_escape_string($link, $_POST['delete']);
+			try{
+				$removed = FALSE;
+				foreach($_COOKIE as $key=>$val){
+					$name = explode('_', $key);
+					if(isset($name[0]) && $name[0] == "remember" && isset($name[1]) && is_numeric($name[1])){
+						list($cookieSelector, $token) = explode(':', $val);
+						$cookieSelector = mysqli_real_escape_string($link, $cookieSelector);
+						if($cookieSelector == $selector){
+							$removed = setcookie(
+								$key,
+								"",
+								time() - 4200,
+								'/',
+								'',
+								false,
+								true
+							);
+						}
+					}
+				}
+				if(!$removed){
+					throw new Exception("Błąd serwera!");
+				}
+				if($stmt = mysqli_prepare($link, "DELETE FROM authorization_tokens WHERE selector like ?")){
+					if(!mysqli_stmt_bind_param($stmt, "s", $selector)){
+						throw new Exception("Błąd serwera!");
+					}
+					if(!mysqli_stmt_execute($stmt)){
+						throw new Exception("Błąd serwera!");
+					}
+				} else {
+					throw new Exception("Błąd serwera!");
+				}
+			}
+			catch(Exception $e){
+				echo("0");
+			}
+			echo("1");
+			exit();
+		}
 	}
 ?>
 
@@ -215,6 +336,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 	<link rel="stylesheet" href="../style/loginPage.css">
 	<link rel="stylesheet" href="../style/modal.css">
+	<script type="text/javascript" src="../scripts/accountsList.js"></script>
     <title>Logowanie</title>
 </head>
     <div class="form-login">
@@ -245,7 +367,15 @@
 			?>
 				<?php foreach($accounts as $account) : ?>
 					<div class="account">
-						<p><?php echo $account['email']; ?></p>
+						<span>
+							<p>
+								<?php echo $account['email']; ?>
+							</p>
+							<form method="POST" style="display: none;">
+								<input type="hidden" value="<?php echo $account['selector']; ?>" name="selector">
+							</form>
+							<button type="button" class="close" data-selector="<?php echo $account['selector']; ?>">&times;</button>
+						</span>
 					</div>
 				<?php endforeach ?>
 			<?php

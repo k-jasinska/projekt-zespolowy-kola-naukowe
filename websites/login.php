@@ -202,14 +202,14 @@
 					$selector = mysqli_real_escape_string($link, $selector);
 					if($_POST["selector"] == $selector){
 						try{
-							if($stmt = mysqli_prepare($link, "SELECT token FROM authorization_tokens WHERE selector like ?")){
+							if($stmt = mysqli_prepare($link, "SELECT token, id_user FROM authorization_tokens WHERE selector like ?")){
 								if(!mysqli_stmt_bind_param($stmt, "s", $selector)){
 									throw new Exception("Błąd serwera!");
 								}
 								if(!mysqli_stmt_execute($stmt)){
 									throw new Exception("Błąd serwera!");
 								}
-								if(!mysqli_stmt_bind_result($stmt, $tokenHash)){
+								if(!mysqli_stmt_bind_result($stmt, $tokenHash, $id_user)){
 									throw new Exception("Błąd serwera!");
 								}
 								if(!mysqli_stmt_fetch($stmt)){

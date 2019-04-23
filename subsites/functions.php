@@ -33,10 +33,10 @@
 			}
 			mysqli_set_charset($link, "utf8");
 			$session_id = mysqli_real_escape_string($link, base64_decode(explode(':', $_COOKIE['session'])[1]));
-			$stmt = mysqli_prepare($link, "SELECT id_s from sessions where id_session = ?;");
+			$stmt = mysqli_prepare($link, "SELECT id_s FROM sessions WHERE id_session = ?;");
 			try{
 				if($stmt){
-					if(!mysqli_stmt_bind_param($stmt, "i", $session_id)){
+					if(!mysqli_stmt_bind_param($stmt, "s", $session_id)){
 						throw new Exception("Błąd serwera!");
 					}
 					if(!mysqli_stmt_execute($stmt)){
@@ -55,16 +55,7 @@
 				}		
 			}
 			catch(Exception $e){
-				mysqli_stmt_close($stmt);				
-				setcookie(
-					"session",
-					'',
-					time() - 4200,
-					'/',
-					'',
-					false,
-					true
-				);
+				return false;
 			}
 		}
     return false;
@@ -87,7 +78,7 @@
 			$stmt = mysqli_prepare($link, "UPDATE sessions SET start_date = CURRENT_TIMESTAMP WHERE id_session = ?;");
 			try{
 				if($stmt){
-					if(!mysqli_stmt_bind_param($stmt, "i", $session_id)){
+					if(!mysqli_stmt_bind_param($stmt, "s", $session_id)){
 						throw new Exception("Błąd serwera!");
 					}
 					if(!mysqli_stmt_execute($stmt)){
@@ -132,5 +123,128 @@
 			false,
 			true
 		);
+	}
+
+	function getEmailOfUser(){
+		if(isset($_COOKIE['session'])){      
+			$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
+			if (mysqli_connect_errno()){
+				return false;
+			}
+			mysqli_set_charset($link, "utf8");
+			$session_id = mysqli_real_escape_string($link, base64_decode(explode(':', $_COOKIE['session'])[1]));
+			$stmt = mysqli_prepare($link, "SELECT u.email FROM sessions s JOIN users u ON s.id_user = u.id_user WHERE s.id_session = ?;");
+			try{
+				if($stmt){
+					if(!mysqli_stmt_bind_param($stmt, "s", $session_id)){
+						throw new Exception("Błąd serwera!");
+					}
+					if(!mysqli_stmt_execute($stmt)){
+						throw new Exception("Błąd serwera!");
+					}
+					if(!mysqli_stmt_bind_result($stmt, $email)){
+						throw new Exception("Błąd serwera!");
+					}
+					if(mysqli_stmt_fetch($stmt)){
+						mysqli_stmt_close($stmt);
+						return $email;
+					}
+					mysqli_stmt_close($stmt);
+				} else {
+					throw new Exception("Błąd serwera!");
+				}		
+			}
+			catch(Exception $e){
+				return false;
+			}
+		}
+		return false;
+	}
+
+	function getIdOfUser(){
+		if(isset($_COOKIE['session'])){      
+			$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
+			if (mysqli_connect_errno()){
+				return false;
+			}
+			mysqli_set_charset($link, "utf8");
+			$session_id = mysqli_real_escape_string($link, base64_decode(explode(':', $_COOKIE['session'])[1]));
+			$stmt = mysqli_prepare($link, "SELECT id_user FROM sessions WHERE id_session = ?;");
+			try{
+				if($stmt){
+					if(!mysqli_stmt_bind_param($stmt, "s", $session_id)){
+						throw new Exception("Błąd serwera!");
+					}
+					if(!mysqli_stmt_execute($stmt)){
+						throw new Exception("Błąd serwera!");
+					}
+					if(!mysqli_stmt_bind_result($stmt, $id)){
+						throw new Exception("Błąd serwera!");
+					}
+					if(mysqli_stmt_fetch($stmt)){
+						mysqli_stmt_close($stmt);
+						return $id;
+					}
+					mysqli_stmt_close($stmt);
+				} else {
+					throw new Exception("Błąd serwera!");
+				}		
+			}
+			catch(Exception $e){
+				return false;
+			}
+		}
+		return false;
+	}
+
+	//typy uzytkownikow
+	abstract class AccountType{
+		public const Admin = 1;
+		public const Uzytkownik = 2;
+		public const Uczelnia = 3;
+		public const Opiekun = 4;
+	}
+
+	//argumentem jest talbica typów AccountType, funkcja sprawdza czy uzytkownik nalezy
+	//do jednego z dozwolonych typow uzytkownikow
+	function checkIfUserHasAccess($allowedTypes){
+		if(isset($_COOKIE['session'])){      
+			$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
+			if (mysqli_connect_errno()){
+				return false;
+			}
+			mysqli_set_charset($link, "utf8");
+			$session_id = mysqli_real_escape_string($link, base64_decode(explode(':', $_COOKIE['session'])[1]));
+			$stmt = mysqli_prepare($link, "SELECT u.id_type FROM sessions s JOIN users u ON s.id_user = u.id_user WHERE s.id_session = ?;");
+			try{
+				if($stmt){
+					if(!mysqli_stmt_bind_param($stmt, "s", $session_id)){
+						throw new Exception("Błąd serwera!");
+					}
+					if(!mysqli_stmt_execute($stmt)){
+						throw new Exception("Błąd serwera!");
+					}
+					if(!mysqli_stmt_bind_result($stmt, $id_type)){
+						throw new Exception("Błąd serwera!");
+					}					
+					if(mysqli_stmt_fetch($stmt)){
+						mysqli_stmt_close($stmt);
+						foreach($allowedTypes as $type){
+							echo($type);
+							if($type == $id_type){
+								return true;
+							}
+						}					
+					}
+					mysqli_stmt_close($stmt);
+				} else {
+					throw new Exception("Błąd serwera!");
+				}		
+			}
+			catch(Exception $e){
+				return false;
+			}
+		}
+		return false;
 	}
 ?>

@@ -1,10 +1,11 @@
 <?php
     include('../subsites/functions.php');
     noCache();
-    if(isset($_GET['logout']) && checkIfLogged()){
+    $logged = checkIfLogged();
+    if(isset($_GET['logout']) && $logged){
         logout();
     }
-	if(checkIfLogged()){
+	if($logged){
 		keepSession();
     }
 ?>
@@ -31,36 +32,9 @@
 <body>
 
     <!--NAVBAR-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <a class="navbar-brand" href="#"><i class="fas fa-user-graduate"></i> LOGO</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" id="link2" href="#">Działalność</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="link3" href="#">Spis kół</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="link4" href="#">Kontakt</a>
-                </li>
-                <?php if(!checkIfLogged()) :?>
-                    <li class="nav-item">
-                        <a class="nav-link" id="link5" href="login.php">Logowanie <i class="fas fa-sign-in-alt"></i></a>
-                    </li>
-                <?php else :?>
-                    <li class="nav-item">
-                        <a class="nav-link" id="link5" href="index.php?logout">Wyloguj <i class="fas fa-sign-in-alt"></i></a>
-                    </li>
-                <?php endif ?>
-            </ul>
-        </div>
-    </nav>
-
+    <?php
+        menu($logged);
+    ?>
     <!-- SLIDER -->
     <div id="slideshow">
         <h2 class="logo">Wspaniali ludzie</h2>

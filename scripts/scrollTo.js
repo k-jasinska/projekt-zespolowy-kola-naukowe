@@ -1,28 +1,41 @@
 (function () {
     $(document).ready(function () {
+        
+        function getQueryParams(qs) {
+            qs = qs.split("+").join(" ");
+            var params = {},
+                tokens,
+                re = /[?&]?([^=]+)=([^&]*)/g;
+        
+            while (tokens = re.exec(qs)) {
+                params[decodeURIComponent(tokens[1])]
+                    = decodeURIComponent(tokens[2]);
+            }
+        
+            return params;
+        }
+        
+        var $_GET = getQueryParams(document.location.search);
+        sctrollTo($_GET["focus"].replace(/HASH/g, "#"), -40);
+
         $(".navbar-brand").click(function (e) {
-            event.preventDefault();
-            $('html, body').animate({
-                scrollTop: $("html").offset().top
-            }, 500);
+            sctrollTo("html", 0);
         });
         $("#link2").click(function (e) {
-            event.preventDefault();
-            $('html, body').animate({
-                scrollTop: $(".dzialalnosc").offset().top - 40
-            }, 500);
+            sctrollTo(".dzialalnosc", -40);
         });
         $("#link3").click(function (e) {
-            event.preventDefault();
-            $('html, body').animate({
-                scrollTop: $(".group").offset().top - 40
-            }, 500);
+            sctrollTo(".group", -40);
         });
         $("#link4").click(function (e) {
+            sctrollTo(".contactHeader", -40);
+        });
+
+        function sctrollTo(element, offset){
             event.preventDefault();
             $('html, body').animate({
-                scrollTop: $(".contactHeader").offset().top - 40
+                scrollTop: $(element).offset().top + offset
             }, 500);
-        });
+        }
     });
 })();

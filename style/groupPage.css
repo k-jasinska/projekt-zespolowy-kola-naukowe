@@ -7,6 +7,18 @@ body {
 	font-family: "Releway", Helvetica, sans-serif;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-transform: uppercase;
+	font-weight: 400;
+	margin: 0;
+	letter-spacing: 2px;
+}
+
 .wrapper1 {
 	position: relative;
 	margin: 57px 70px 0 70px;
@@ -52,8 +64,14 @@ body {
 	border: 1px solid rgb(109, 16, 59);
 }
 
-.choose a:hover {
+.choose a:hover,
+.choose a:focus,
+.choose a:active {
 	background-color: rgb(109, 16, 59);
+	border: 1px solid rgb(109, 16, 59);
+	outline: none;
+	outline-style: none;
+	box-shadow: none;
 }
 
 /* sidenav */

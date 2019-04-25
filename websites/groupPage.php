@@ -46,8 +46,8 @@
         <aside class="active">
             <nav class="menu">
                 <h4>Lista kół</h4>
-                <input type=" text" class="form-control fas" placeholder="&#xf002"/>
-                <ul class="menu__level">
+                <input type="text" id="searchInput" class="form-control fas" placeholder="&#xf002"/>
+                <ul class="menu__level" id="groupList">
 					<?php
 						$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
 						mysqli_set_charset ($link , "utf8" );
@@ -57,9 +57,8 @@
 						$tabl['id_group']=htmlspecialchars($tabl['id_group']);
 						$tabl['name']=htmlspecialchars($tabl['name']);
 						$tabl['id_coordinator']=htmlspecialchars($tabl['id_coordinator']);
-						$tabl['description']=htmlspecialchars($tabl['description']);
 
-						echo"<li><a href=''>$tabl[name]</a></li>";
+						 echo"<li><a href='#' id='$tabl[id_group]' class='view_data'>$tabl[name]</a></li>";
 						}
 					?>
                 </ul>
@@ -70,89 +69,46 @@
     <div class="wrapper1 active">
         <div class="container ">
             <div class="btn-group btn-group-justified choose">
-                <a href="#" class="btn btn-primary">Opis</a>    
-                <a href="#" class="btn btn-primary">Posty</a>
-                <a href="#" class="btn btn-primary">Wydarzenia</a>
-                <a href="#" class="btn btn-primary">Osiągnięcia</a>
+                <a href="description" class="btn btn-primary">Opis</a>    
+                <a href="posts" class="btn btn-primary">Posty</a>
+                <a href="events" class="btn btn-primary">Wydarzenia</a>
+                <a href="archievements" class="btn btn-primary">Osiągnięcia</a>
             </div>
-        </div>
+        </div> 
+		 <div class="container" id="employee_detail"></div> 
+	</div>
 
-        <div class="container">
-            <div class="bg-dark mt-3 p-3 comment rounded section_divider row sectionTitle">
-                <h5 class="title col-6">Posty</h5>
-                <div class="col-6 text-right"><i class="fas fa-plus"></i></div>
-            </div>
+<script>
+$(document).ready(function(){
+	$('#employee_detail').load('groupContent/description.php');
+	$('.choose a').click(function(){
+		var page=$(this).attr('href');
+		$('#employee_detail').load('groupContent/'+page+'.php');
+		return false;
+	});
+});
+</script>
 
-            <div class="event mt-3 p-3 article rounded">
-                <div class="row mb-2">
-                    <div class="col-md-6">
-                        <h5>title </h5>
-                    </div>
-                    <div class="col-md-6 text-md-right about-article">
-                        <div class="float-md-right float-left mx-1"><i class="far fa-trash-alt"></i></div>
-                        <div class="float-md-right float-left mx-1"><i class="fas fa-pencil-alt"></i></div>
-                        <div class="float-md-right float-left mx-1"><i class="far fa-calendar-alt"></i> date </div>
-                        <div class="float-md-right float-left mx-1"><i class="far fa-user"></i> autor</div>
-                        <div class="float-md-none"></div>
-                    </div>
-                </div>
-                <div class="content">
-                    <p>text</p>
-                </div>
-            </div>
-        </div>
 
-        <div class="container">
-            <div class="bg-dark mt-3 p-3 comment rounded section_divider row">
-                <h5 class="title col-6">Wydarzenia</h5>
-                <div class="col-6 text-right"><i class="fas fa-plus"></i></div>
-            </div>
 
-            <div class=" event mt-3 p-3 article rounded">
-                <div class="row mb-2">
-                    <div class="col-md-6">
-                        <h5>title </h5>
-                    </div>
-                    <div class="col-md-6 text-md-right about-article">
-                        <div class="float-md-right float-left mx-1"><i class="far fa-trash-alt"></i></div>
-                        <div class="float-md-right float-left mx-1"><i class="fas fa-pencil-alt"></i></div>
-                        <div class="float-md-right float-left mx-1"><i class="far fa-calendar-alt"></i> date </div>
-                        <div class="float-md-right float-left mx-1"><i class="far fa-user"></i> autor</div>
-                        <div class="float-md-none"></div>
-                    </div>
-                </div>
-                <div class="content">
-                    <p>text</p>
-                </div>
-                <div class="reaction text-right"><i class="far fa-thumbs-up"></i> <i class="far fa-thumbs-down"></i>
-                </div>
-            </div>
-        </div>
+	<!-- <script>
+ $(document).on('click', '.view_data', function(){
+  var id_group = $(this).attr("id");
 
-        <div class="container">
-            <div class="bg-dark mt-3 p-3 comment rounded section_divider row">
-                <h5 class="title col-6">Osiągnięcia</h5>
-                <div class="col-6 text-right"><i class="fas fa-plus"></i></div>
-            </div>
+  $.ajax({
+   url:"showGroupsContent.php",
+   method:"POST",
+   data:{id_group:id_group},
+   success:function(data){
+    $('#employee_detail').html(data);
+   },
+   error : function() {
+    throw "Nie udało się wysłać danych!";
+    }
+  });
 
-            <div class="event mt-3 p-3 article rounded">
-                <div class="row mb-2">
-                    <div class="col-md-6">
-                        <h5>name</h5>
-                    </div>
-                    <div class="col-md-6 text-md-right about-article">
-                        <div class="float-md-right float-left mx-1"><i class="far fa-trash-alt"></i></div>
-                        <div class="float-md-right float-left mx-1"><i class="fas fa-pencil-alt"></i></div>
-                        <div class="float-md-none"></div>
-                    </div>
-                </div>
-                <div class="content">
-					<p>desctiptions</p>
-					<p>image</p>
-                </div>
-            </div>
-        </div>
-    </div>
+ });
+ </script> -->
 
     <script src="../scripts/filterGroups.js"></script>
     <script src="../scripts/hideNavbar.js"></script>

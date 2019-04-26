@@ -12,7 +12,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,6 +25,7 @@
         href="https://fonts.googleapis.com/css?family=Raleway%3A400%2C500%2C600%2C700%2C300%2C100%2C800%2C900%7COpen+Sans%3A400%2C300%2C300italic%2C400italic%2C600%2C600italic%2C700%2C700italic&amp;subset=latin%2Clatin-ext&amp;ver=1.3.6"
         type="text/css" media="all">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="../style/modal.css">
     <link rel="stylesheet" href="../style/groupPage.css">
     <title>Koła naukowe</title>
 </head>
@@ -77,35 +77,40 @@
 		  <div class="container" id="showContent"></div>
 	</div>
 
-    
-<script>
-$(document).ready(function(){
-	$('.choose a').click(function(){
-		var page=$(this).attr('href');
-		$('#showContent').load('groupContent/'+page+'.php');
-		return false;
-	});
-});
-</script>
 
-<script>
-function fillDescription(id)
-{
-   $.ajax({
-     method: "POST",
-     url: '../subsites/showGroupDescription.php',
-     data:{id:id},
-     success: function(data) {
-          $('#showContent').html(data);
-     },
-   error : function() {
-    throw "Nie udało się wysłać danych!";
-    }
-   });
-}
-</script> 
+<!-- modal add post-->
+<div class="modal fade" id="postModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h4 class="modal-title">Dodaj post</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+        <form role="form" method="post" id="insert_form" >
+        <div class="form-group">
+                <label for="name">Tytuł:</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Wpisz tytuł" >
+                </div>
+                <div class="form-group">
+                    <label for="surname">Zawartość:</label>
+                    <textarea class="form-control" rows = 5 id="opis_postu" name="opis_postu" placeholder="Napisz post"></textarea>
+                </div>
+                <div id="err"></div>
+              <input type="submit" name="insert" id="insert" value="Dodaj" class="btn btn-success" />
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script src="../scripts/filterGroups.js"></script>
+
+<script src="../scripts/groupPage/addPostModal.js"></script>
+	<script src="../scripts/groupPage/fillContent.js"></script>
+    <script src="../scripts/groupPage/filterGroups.js"></script>
     <script src="../scripts/hideNavbar.js"></script>
 </body>
 </html>

@@ -12,7 +12,7 @@
     <div class="bg-dark mt-3 p-3 rounded section_divider">
     <div class="row">
          <h5 class="col-6">Osiągnięcia</h5>
-         <div class="col-6 text-right"><i class="fas fa-plus" style="color:rgb(110, 156, 58); font-size:24px; cursor:pointer;"></i></div>
+         <div class="col-6 text-right"><i class="fas fa-plus" style="color:rgb(110, 156, 58); font-size:24px; cursor:pointer;" data-toggle="modal" data-target="#modalAchievements"></i></div>
          </div>
      </div>';
 
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="content">
-            <p>'.$row["descryption"].'</p>
+            <p>'.$row["description"].'</p>
             <p>image</p>
         </div>
     </div>

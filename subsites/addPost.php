@@ -6,7 +6,6 @@ session_start();
 
 if(!empty($_POST))
 {
-    $output = $_POST['title'];
     $title = $_POST['title'];
     $opis_postu =$_POST['opis_postu'];
 

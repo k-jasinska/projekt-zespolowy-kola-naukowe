@@ -71,7 +71,7 @@
             <div class="btn-group btn-group-justified choose">
                 <a href="posts" class="btn btn-primary">Posty</a>
                 <a href="events" class="btn btn-primary">Wydarzenia</a>
-                <a href="archievements" class="btn btn-primary">Osiągnięcia</a>
+                <a href="achievements" class="btn btn-primary">Osiągnięcia</a>
             </div>
         </div> 
 		  <div class="container" id="showContent"></div>
@@ -82,7 +82,6 @@
 <div class="modal fade" id="postModal">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <!-- Modal Header -->
         <div class="modal-header">
         <h4 class="modal-title">Dodaj post</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -99,7 +98,7 @@
                     <textarea class="form-control" rows = 5 id="opis_postu" name="opis_postu" placeholder="Napisz post"></textarea>
                 </div>
                 <div id="err"></div>
-              <input type="submit" name="insert" id="insert" value="Dodaj" class="btn btn-success" />
+              <input type="submit" name="insert" value="Dodaj" class="btn btn-success" />
           <button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
         </form>
         </div>
@@ -107,8 +106,40 @@
     </div>
   </div>
 
+  <!-- modal add osiagniecie-->
+<div class="modal fade" id="modalAchievements">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+        <h4 class="modal-title">Dodaj osiągnięcie</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+        <form role="form" method="post" id="insert_ach" enctype="multipart/form-data">
+        <div class="form-group">
+                <label for="titleAch">Tytuł:</label>
+                <input type="text" class="form-control" id="titleAch" name="titleAch" placeholder="Wpisz tytuł" >
+                </div>
+                <div class="form-group">
+                    <label for="opis_osiagniecia">Zawartość:</label>
+                    <textarea class="form-control" rows = 3 id="opis_osiagniecia" name="opis_osiagniecia" placeholder="Napisz jakie to osiągnięcie"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="uploadfileA">Dodaj zdjęcie</label>
+                    <input type="file" class="form-control-file" name="uploadfileA" id="uploadfileA">
+                </div>
+                <div id="errA"></div>
+              <input type="submit" name="insert" value="Dodaj" class="btn btn-success" />
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<script src="../scripts/groupPage/addPostModal.js"></script>
+    <script src="../scripts/groupPage/addAchievementsModal.js"></script>
+    <script src="../scripts/groupPage/addPostModal.js"></script>
 	<script src="../scripts/groupPage/fillContent.js"></script>
     <script src="../scripts/groupPage/filterGroups.js"></script>
     <script src="../scripts/hideNavbar.js"></script>

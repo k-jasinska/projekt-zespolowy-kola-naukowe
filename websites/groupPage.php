@@ -58,7 +58,7 @@
 						$tabl['name']=htmlspecialchars($tabl['name']);
 						$tabl['id_coordinator']=htmlspecialchars($tabl['id_coordinator']);
 
-						 echo"<li><a href='#' id='$tabl[id_group]' class='view_data'>$tabl[name]</a></li>";
+						 echo"<li><a href='#' onClick='fillDescription(".$tabl['id_group'].")' id='$tabl[id_group]' class='view_data'>$tabl[name]</a></li>";
 						}
 					?>
                 </ul>
@@ -69,46 +69,41 @@
     <div class="wrapper1 active">
         <div class="container ">
             <div class="btn-group btn-group-justified choose">
-                <a href="description" class="btn btn-primary">Opis</a>    
                 <a href="posts" class="btn btn-primary">Posty</a>
                 <a href="events" class="btn btn-primary">Wydarzenia</a>
                 <a href="archievements" class="btn btn-primary">Osiągnięcia</a>
             </div>
         </div> 
-		 <div class="container" id="employee_detail"></div> 
+		  <div class="container" id="showContent"></div>
 	</div>
 
+    
 <script>
 $(document).ready(function(){
-	$('#employee_detail').load('groupContent/description.php');
 	$('.choose a').click(function(){
 		var page=$(this).attr('href');
-		$('#employee_detail').load('groupContent/'+page+'.php');
+		$('#showContent').load('groupContent/'+page+'.php');
 		return false;
 	});
 });
 </script>
 
-
-
-	<!-- <script>
- $(document).on('click', '.view_data', function(){
-  var id_group = $(this).attr("id");
-
-  $.ajax({
-   url:"showGroupsContent.php",
-   method:"POST",
-   data:{id_group:id_group},
-   success:function(data){
-    $('#employee_detail').html(data);
-   },
+<script>
+function fillDescription(id)
+{
+   $.ajax({
+     method: "POST",
+     url: '../subsites/showGroupDescription.php',
+     data:{id:id},
+     success: function(data) {
+          $('#showContent').html(data);
+     },
    error : function() {
     throw "Nie udało się wysłać danych!";
     }
-  });
-
- });
- </script> -->
+   });
+}
+</script> 
 
     <script src="../scripts/filterGroups.js"></script>
     <script src="../scripts/hideNavbar.js"></script>

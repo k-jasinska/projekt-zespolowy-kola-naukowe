@@ -1,6 +1,7 @@
 <?php
 if(isset($_POST["id"]))
 {
+    session_start();
     $link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
     mysqli_set_charset ($link , "utf8" );
     $_SESSION['id_grupy']=htmlspecialchars($_POST['id']);

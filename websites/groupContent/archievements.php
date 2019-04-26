@@ -1,10 +1,11 @@
 <?php
-// if(isset($_SESSION['id_grupy'])){
+   session_start();
+ if(isset($_SESSION['id_grupy'])){
+
     $link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
     mysqli_set_charset ($link , "utf8" );
 
-    $query = "SELECT * FROM group_achievements WHERE id_group =1";
-    // $query = "SELECT * FROM group_achievements WHERE id_group = '".$_SESSION["id_grupy"]."'";
+     $query = "SELECT * FROM group_achievements WHERE id_group = '".$_SESSION["id_grupy"]."'";
     $output ='';
     $result = mysqli_query($link, $query);
     $output .='
@@ -38,9 +39,9 @@
     }
   echo $output;
 
-// }
-// else{
-//     echo "nie działa";
-// }
+ }
+ else{
+     echo "nie działa";
+ }
 ?> 
  

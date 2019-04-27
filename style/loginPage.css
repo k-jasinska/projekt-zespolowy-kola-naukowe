@@ -49,9 +49,9 @@ form {
 }
 
 .lilhomebutton {
-	float:right;
+	float: right;
 	margin: 10px 20px;
-	display:inline;
+	display: inline;
 }
 
 @media screen and (min-height: 382px) {

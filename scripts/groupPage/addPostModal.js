@@ -2,7 +2,7 @@ $(document).ready(function () {
 	$('#insert_form').on("submit", function (event) {
 		event.preventDefault();
 		$.ajax({
-			url: "../subsites/groupPage/addPost/php",
+			url: "../subsites/groupPage/addPost.php",
 			method: "POST",
 			data: $('#insert_form').serialize(),
 			success: function (data) {

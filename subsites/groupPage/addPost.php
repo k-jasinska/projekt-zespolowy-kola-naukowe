@@ -1,5 +1,4 @@
 <?php
-session_start();
     $link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
     mysqli_set_charset ($link , "utf8" );
     include('functions.php');
@@ -20,7 +19,7 @@ if(!empty($_POST))
     }
 
     $date = date('Y-m-d H:i:s');
-    $id_group=$_SESSION['id_grupy'];
+    $id_group=$_COOKIE['id_grupy'];
     $user_id=getIdOfUser();
     if($user_id){
         mysqli_query($link, "insert into posts(id_user, id_group, title, text, date) values('$user_id', '$id_group', '$title','$opis_postu', '$date');");

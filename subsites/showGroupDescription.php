@@ -1,10 +1,12 @@
 <?php
 if(isset($_POST["id"]))
 {
-    session_start();
     $link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
     mysqli_set_charset ($link , "utf8" );
-    $_SESSION['id_grupy']=htmlspecialchars($_POST['id']);
+    $cookie_name = "id_grupy";
+    $cookie_value = $_POST['id'];
+    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+
     $output ='';
   $query = "SELECT * FROM groups WHERE id_group = '".$_POST["id"]."'";
   $result = mysqli_query($link, $query);

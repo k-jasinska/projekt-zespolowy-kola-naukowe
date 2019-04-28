@@ -1,10 +1,9 @@
 <?php
-session_start();
- if(isset($_SESSION['id_grupy'])){
+ if(isset($_COOKIE['id_grupy'])){
     $link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
     mysqli_set_charset ($link , "utf8" );
 
-    $query = "SELECT * FROM posts WHERE id_group = '".$_SESSION["id_grupy"]."' order by posts.date desc";
+    $query = "SELECT * FROM posts WHERE id_group = '".$_COOKIE["id_grupy"]."' order by posts.date desc";
     $output ='';
     $result = mysqli_query($link, $query);
     $output .='
@@ -24,7 +23,7 @@ session_start();
                 <h6>'.$row["title"].' </h6>
             </div>
             <div class="col-md-6 text-md-right about-article">
-                <div class="float-md-right float-left mx-1"><i class="far fa-trash-alt"></i></div>
+                <div class="float-md-right float-left mx-1" onClick=deletePost('.$row["id_post"].')><i class="far fa-trash-alt "></i></div>
                 <div class="float-md-right float-left mx-1"><i class="fas fa-pencil-alt"></i></div>
                 <div class="float-md-right float-left mx-1"><i class="far fa-calendar-alt"></i> ' .$row["date"].'</div>
                 <div class="float-md-right float-left mx-1"><i class="far fa-user"></i> autor</div>
@@ -36,10 +35,11 @@ session_start();
         </div>
         </div>';
     }
+
   echo $output;
 
  }
  else{
-     echo "nie działa";
+     echo "<br>Wybierz koło z listy";
  }
 ?>

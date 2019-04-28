@@ -1,11 +1,9 @@
 <?php
-   session_start();
- if(isset($_SESSION['id_grupy'])){
-
+ if(isset($_COOKIE['id_grupy'])){
     $link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
     mysqli_set_charset ($link , "utf8" );
 
-     $query = "SELECT * FROM group_achievements WHERE id_group = '".$_SESSION["id_grupy"]."'";
+     $query = "SELECT * FROM group_achievements WHERE id_group = '".$_COOKIE["id_grupy"]."' order by id_group_achievement desc;";
     $output ='';
     $result = mysqli_query($link, $query);
     $output .='
@@ -20,20 +18,29 @@
     {
         $output .= '
         <div class="event mt-3 p-3 article rounded">
-        <div class="row mb-2">
-            <div class="col-md-6">
-                <h6>'.$row["name"].'</h6>
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <h6>'.$row["name"].'</h6>
+                </div>
+                <div class="col-md-6 text-md-right about-article">
+                    <div class="float-md-right float-left mx-1" onClick=deleteAchievement('.$row['id_group_achievement'].',"'. $row['image'].'")><i class="far fa-trash-alt"></i></div>
+                    <div class="float-md-right float-left mx-1"><i class="fas fa-pencil-alt"></i></div>
+                    <div class="float-md-none"></div>
+                </div>
             </div>
-            <div class="col-md-6 text-md-right about-article">
-                <div class="float-md-right float-left mx-1"><i class="far fa-trash-alt"></i></div>
-                <div class="float-md-right float-left mx-1"><i class="fas fa-pencil-alt"></i></div>
-                <div class="float-md-none"></div>
+
+            <div class="row mb-2">
+                <div class="col-lg-6">
+                    <div>'. $row["description"].'</div>
+                </div>
+                <div class="col-lg-6 text-center">
+                <img style="max-width:100%; height:auto;" src="../imagesuploaded/'.$row['image'].'">
+                    <div class="float-md-none"></div>
+                </div>
             </div>
-        </div>
-        <div class="content">
-            <p>'.$row["description"].'</p>
-            <p>image</p>
-        </div>
+
+
+
     </div>
       ';
     }
@@ -41,7 +48,7 @@
 
  }
  else{
-     echo "nie działa";
+     echo "<br>Wybierz koło z listy";
  }
 ?> 
  

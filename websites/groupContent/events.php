@@ -1,10 +1,9 @@
 <?php
-session_start();
- if(isset($_SESSION['id_grupy'])){
+ if(isset($_COOKIE['id_grupy'])){
     $link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
     mysqli_set_charset ($link , "utf8" );
 
-     $query = "SELECT * FROM events join group_events on(group_events.id_event=events.id_event) WHERE id_group = '".$_SESSION["id_grupy"]."'";
+     $query = "SELECT * FROM events join group_events on(group_events.id_event=events.id_event) WHERE id_group = '".$_COOKIE["id_grupy"]."'";
     $output ='';
     $result = mysqli_query($link, $query);
     $output .='
@@ -40,9 +39,8 @@ session_start();
       ';
     }
   echo $output;
-
  }
  else{
-     echo "nie działa";
+     echo "<br>Wybierz koło z listy";
  }
 ?>

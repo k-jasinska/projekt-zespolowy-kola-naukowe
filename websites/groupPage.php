@@ -49,6 +49,7 @@
                 <input type="text" id="searchInput" class="form-control fas" placeholder="&#xf002"/>
                 <ul class="menu__level" id="groupList">
 					<?php
+
 						$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
 						mysqli_set_charset ($link , "utf8" );
 
@@ -116,7 +117,7 @@
         </div>
         <!-- Modal body -->
         <div class="modal-body">
-        <form role="form" method="post" id="insert_ach" enctype="multipart/form-data">
+        <form role="form" method="post" id="insert_ach" enctype='multipart/form-data'>
         <div class="form-group">
                 <label for="titleAch">Tytuł:</label>
                 <input type="text" class="form-control" id="titleAch" name="titleAch" placeholder="Wpisz tytuł" >
@@ -126,8 +127,8 @@
                     <textarea class="form-control" rows = 3 id="opis_osiagniecia" name="opis_osiagniecia" placeholder="Napisz jakie to osiągnięcie"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="uploadfileA">Dodaj zdjęcie</label>
-                    <input type="file" class="form-control-file" name="uploadfileA" id="uploadfileA">
+                    <label for="file">Dodaj zdjęcie</label>
+                    <input type="file" class="form-control-file" name="file" id="file">
                 </div>
                 <div id="errA"></div>
               <input type="submit" name="insert" value="Dodaj" class="btn btn-success" />
@@ -138,6 +139,7 @@
     </div>
   </div>
 
+  <script src="../scripts/groupPage/deleteElement.js"></script>
     <script src="../scripts/groupPage/addAchievementsModal.js"></script>
     <script src="../scripts/groupPage/addPostModal.js"></script>
 	<script src="../scripts/groupPage/fillContent.js"></script>

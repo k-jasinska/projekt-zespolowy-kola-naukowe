@@ -1,4 +1,25 @@
 $(document).ready(function () {
+    $('#insert_form').on("submit", function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: "../subsites/groupPage/addPost.php",
+            method: "POST",
+            data: $('#insert_form').serialize(),
+            success: function (data) {
+                var cos = data.substring(0, 4);
+                if (cos == "Błąd") {
+                    $('#err').html(data);
+                } else {
+                    $('#insert_form')[0].reset();
+                    $('#postModal').modal('hide');
+                    $('#showContent').load('groupContent/posts.php');
+                }
+            }
+        });
+    });
+});
+
+$(document).ready(function () {
     $('#insert_ach').on("submit", function (event) {
         event.preventDefault();
         var form = $(this);

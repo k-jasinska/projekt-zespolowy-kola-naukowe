@@ -1,7 +1,7 @@
 <?php
     $link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
     mysqli_set_charset ($link , "utf8" );
-    include('functions.php');
+    include('../functions.php');
 
 if(!empty($_POST))
 {

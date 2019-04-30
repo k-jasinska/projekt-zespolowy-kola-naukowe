@@ -1,7 +1,6 @@
 <?php
     $link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
     mysqli_set_charset ($link , "utf8" );
-    include('functions.php');
 
 if(!empty($_POST))
 {
@@ -16,7 +15,7 @@ if(!empty($_POST))
          exit("Błąd: Musisz wypełnić wszystkie pola");
     }
      if((strlen($titleAch)<3) || (strlen($titleAch)>100)){
-       	exit("Błąd: Tytuł musi mieć max 100 znaków");
+       	exit("Błąd: Tytuł musi mieć max 30 znaków");
     }
     if((strlen($opis_osiagniecia)<3) || (strlen($opis_osiagniecia)>100)){
 		exit("Błąd: Opis musi mieć max 100 znaków");

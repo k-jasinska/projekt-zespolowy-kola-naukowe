@@ -37,13 +37,13 @@
 	?>
 	
     <!-- sidenav -->
-    <div class="wrapper1 active">
+    <div class="wrapper1 active show">
         <div class="burger">
-            <i class="fas fa-arrow-right visible show active"></i>
-            <i class="fas fa-arrow-left visible active"></i>
+            <i class="fas fa-arrow-right visible  active"></i>
+            <i class="fas fa-arrow-left visible show active"></i>
         </div>
 
-        <aside class="active">
+        <aside class="active show">
             <nav class="menu">
                 <h4>Lista kół</h4>
                 <input type="text" id="searchInput" class="form-control fas" placeholder="&#xf002"/>
@@ -67,7 +67,7 @@
         </aside>
     </div>
 
-    <div class="wrapper1 active">
+    <div class="wrapper1 active show">
         <div class="container ">
             <div class="btn-group btn-group-justified choose">
                 <a href="posts" class="btn btn-primary">Posty</a>
@@ -139,11 +139,13 @@
     </div>
   </div>
 
-  <script src="../scripts/groupPage/deleteElement.js"></script>
-    <script src="../scripts/groupPage/addAchievementsModal.js"></script>
-    <script src="../scripts/groupPage/addPostModal.js"></script>
+    <script src="../scripts/groupPage/deleteElement.js"></script>
+    <script src="../scripts/groupPage/addElement.js"></script>
+    <script src="../scripts/groupPage/addReaction.js"></script>
 	<script src="../scripts/groupPage/fillContent.js"></script>
     <script src="../scripts/groupPage/filterGroups.js"></script>
     <script src="../scripts/hideNavbar.js"></script>
+
+    <link rel="stylesheet" href="../style/endstyle.css">
 </body>
 </html>

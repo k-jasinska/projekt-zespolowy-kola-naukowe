@@ -59,14 +59,10 @@
 						<input class="form-control" id="searchInput" type="text" placeholder="Szukaj...">
 						<div class="checkbox form-group form-check">
 							<label class="form-check-label">
-								<input class="form-check-input" type="checkbox" checked> Tylko moje koła
+								<input id="check-users" class="form-check-input" type="checkbox" checked> Tylko moje koła
 							</label>
 						</div>
 						<ul class="list-group" id="peopleList">
-							<li class="list-group-item">First item</li>
-							<li class="list-group-item">Second item</li>
-							<li class="list-group-item">Third item</li>
-							<li class="list-group-item">Fourth</li>
 						</ul> 
 					</div>
 				</div>

@@ -128,6 +128,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 	<link rel="stylesheet" href="../style/loginPage.css">
 	<link rel="stylesheet" href="../style/modal.css">
+	<link rel="stylesheet" href="../style/scrollBar.css">
     <title>Rejestracja</title>
     <script type="text/javascript" src="../scripts/RegistrationValidation.js"></script>
 </head>

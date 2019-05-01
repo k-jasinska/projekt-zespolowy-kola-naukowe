@@ -26,6 +26,7 @@
         type="text/css" media="all">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <link rel="stylesheet" href="../style/homePage.css">
+    <link rel="stylesheet" href="../style/scrollBar.css">
     <title>Koła Naukowe</title>
 </head>
 

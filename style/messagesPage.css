@@ -1,0 +1,161 @@
+body,
+* {
+	margin: 0;
+	padding: 0;
+	color: rgb(212, 211, 211);
+	font-family: "Releway", Helvetica, sans-serif;
+}
+
+body {
+	background-color: rgb(20, 20, 20);
+}
+
+/* NAVBAR */
+.navbar {
+	background-color: rgb(14, 10, 10);
+	font-weight: 400;
+	letter-spacing: 2px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 13px;
+	border-bottom: 1px solid rgb(148, 21, 80);
+}
+
+.msg-menu{
+	padding: 1rem;
+	font-weight: 400;
+	letter-spacing: 2px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 13px;
+}
+
+.msg-menu-item{
+	border: none!important;
+	padding: 5px 12px;	
+}
+
+.msg-menu-item .nav-link{
+	color: rgb(180, 180, 180);
+}
+
+.msg-menu-item .nav-link:hover{
+	color: rgb(255, 255, 255);
+}
+
+.active-msg-menu-item{
+	color: rgb(255, 255, 255)!important;
+}
+
+.content{
+	position: relative;
+	top: 70px;
+}
+
+.background{
+	background-color: rgb(37, 37, 37);
+	border-radius: 10px;
+}
+
+.search-div{
+	padding: 1rem;
+}
+
+.list-group-item{
+	border-bottom: 1px solid rgb(110, 156, 58);
+	color: rgb(180, 180, 180);
+	background-color: transparent;
+	font-size: 15px;
+	box-sizing: border-box;
+	outline: none;
+}
+
+@-webkit-keyframes autofill {
+	to {
+		color: #666;
+		background: transparent;
+	}
+}
+
+input:-webkit-autofill {
+	-webkit-animation-name: autofill;
+	-webkit-animation-fill-mode: both;
+}
+
+.form-control {
+	border: none;
+	border-radius: 0px;
+	border-bottom: 1px solid rgb(110, 156, 58);
+	color: #666;
+	background-color: transparent;
+	font-size: 15px;
+	box-sizing: border-box;
+	outline: none;
+}
+
+.form-control:focus {
+	border-bottom: 1px solid rgb(110, 156, 58);
+	background-color: transparent;
+	color: #e6e6e6;
+	outline: none;
+	box-shadow: none;
+}
+
+.left-part{
+	max-width: 475px;
+}
+
+.right-part{
+	max-width: 1010px;;
+	height: 100%;
+}
+
+.msg-form{
+	margin-top: 1rem;
+}
+
+#msg-form{
+	padding: 20px 30px;
+}
+
+#nick{
+	max-width: 500px;
+}
+
+.checkbox{
+	margin-top: 1rem;
+}
+
+.checkbox label{
+	color: rgb(180, 180, 180);
+}
+
+.list-group-item:hover{
+	color: rgb(255, 255, 255);
+	cursor: pointer;
+	border-bottom: 1px solid rgb(148, 21, 80);
+}
+
+.msg-menu-item > .nav-link{
+	border-bottom: 1px solid rgb(110, 156, 58);
+}
+
+.msg-menu-item > .nav-link{
+	border-bottom: 1px solid rgb(110, 156, 58);
+}
+
+.msg-menu-item > .nav-link:hover{
+	border-bottom: 1px solid rgb(148, 21, 80);
+}
+
+@media screen and (max-width: 767px){
+	.left-part{
+		margin-left: auto!important;
+		margin-right: auto!important;
+	}
+}
+
+#peopleList{
+	max-height: 470px;
+	overflow: auto;
+}

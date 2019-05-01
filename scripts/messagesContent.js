@@ -12,7 +12,7 @@ $(document).ready(function(){
 	$("#msg-form").submit(function(){
 		var modalContent = $("#msg-response > .modal-dialog > .modal-content > .modal-body");
 		$("#msg-response").modal("show");
-		modalContent.text("Wysyłanie wiadomości...");
+		modalContent.html("<p>Wysyłanie wiadomości...</p>");
 		$.ajax({
 			method: "POST",
 			url: "../subsites/sendMessage.php",
@@ -23,7 +23,7 @@ $(document).ready(function(){
 			}
 		}).done(function(data){	
 			var received_data = data.split(":");		
-			modalContent.text(received_data[1]);
+			modalContent.html("<p>" + received_data[1] + "</p>");
 			if(received_data[0] * 1 == 0){
 				$("#nick").val("");
 				$("#title").val("");

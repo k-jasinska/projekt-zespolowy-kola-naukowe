@@ -43,6 +43,10 @@ body {
 	color: rgb(255, 255, 255);
 }
 
+.active-msg-menu-item{
+	color: rgb(255, 255, 255)!important;
+}
+
 .content{
 	position: relative;
 	top: 70px;
@@ -58,7 +62,7 @@ body {
 }
 
 .list-group-item{
-	border: 1px solid rgb(180, 180, 180);
+	border-bottom: 1px solid rgb(110, 156, 58);
 	color: rgb(180, 180, 180);
 	background-color: transparent;
 	font-size: 15px;
@@ -118,29 +122,40 @@ input:-webkit-autofill {
 	max-width: 500px;
 }
 
-@-webkit-keyframes autofillform {
-	to {
-		color: #666;
-		background-color: rgb(49, 49, 49);
-	}
-}
-
-input:-webkit-autofill {
-	-webkit-animation-name: autofillform;
-	-webkit-animation-fill-mode: both;
-}
-
-.form-input{
-	background-color: rgb(49, 49, 49);
-}
-
-.form-input:focus{
-	background-color: rgb(49, 49, 49);
-}
-
 .checkbox{
 	margin-top: 1rem;
 }
+
 .checkbox label{
 	color: rgb(180, 180, 180);
+}
+
+.list-group-item:hover{
+	color: rgb(148, 21, 80);
+	cursor: pointer;
+	border-bottom: 1px solid rgb(148, 21, 80);
+}
+
+.msg-menu-item > .nav-link{
+	border-bottom: 1px solid rgb(110, 156, 58);
+}
+
+.msg-menu-item > .nav-link{
+	border-bottom: 1px solid rgb(110, 156, 58);
+}
+
+.msg-menu-item > .nav-link:hover{
+	border-bottom: 1px solid rgb(148, 21, 80);
+}
+
+@media screen and (max-width: 767px){
+	.left-part{
+		margin-left: auto!important;
+		margin-right: auto!important;
+	}
+}
+
+#peopleList{
+	max-height: 470px;
+	overflow: auto;
 }

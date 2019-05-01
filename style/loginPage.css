@@ -175,7 +175,8 @@ form {
 }
 
 .account:hover{		
-	border: solid 2px rgb(148, 21, 80);;
+	border: solid 2px rgb(148, 21, 80);
+	cursor: pointer;
 }
 
 .account:hover p{
@@ -206,6 +207,7 @@ input:-webkit-autofill {
 .close-error{
 	opacity: 0.8!important;
 }
+
 .close-error:hover{
 	opacity: 1!important;
 }

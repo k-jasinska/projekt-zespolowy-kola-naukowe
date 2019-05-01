@@ -22,7 +22,7 @@
 				(SELECT me.id_group FROM users us JOIN member me ON us.id_user = me.id_user 
 				WHERE m.id_group = me.id_group AND us.id_user = $id) IS NOT NULL");
 			}
-			while($result !== NULL && $result !== "" && $result !== FALSE && $row = mysqli_fetch_assoc($result)){
+			while($result !== NULL && $result !== FALSE && $row = mysqli_fetch_assoc($result)){
 			?>
 				<li class="list-group-item"><?php echo $row["nick"]; ?></li>
 			<?php

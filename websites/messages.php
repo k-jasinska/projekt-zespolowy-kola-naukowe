@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 	<link rel="stylesheet" href="../style/messagesPage.css">
 	<link rel="stylesheet" href="../style/scrollBar.css">
+	<link rel="stylesheet" href="../style/modal.css">
     <title>Koła Naukowe</title>
 </head>
 
@@ -73,13 +74,13 @@
 						<form method="POST" id="msg-form">
 						<h2>Utwórz wiadomość</h2>
 							<div class="form-group">							
-								<input type="text" class="form-control form-input" id="nick" name="nick" placeholder="Nick adresata" required>
+								<input type="text" class="form-control form-input" id="nick" placeholder="Nick adresata" required>
 							</div>
 							<div class="form-group">
-								<input type="text" class="form-control form-input" maxlength="100" id="title" name="title" placeholder="Temat" required>
+								<input type="text" class="form-control form-input" maxlength="100" id="title" placeholder="Temat" required>
 							</div>
 							<div class="form-group">
-								<textarea class="form-control form-input" rows="5" maxlength="2000" name="text" placeholder="Wiadomość..." required></textarea>
+								<textarea class="form-control form-input" rows="5" maxlength="2000" id="message" placeholder="Wiadomość..." required></textarea>
 							</div>
 							<button type="submit" class="btn btn-danger btn-rounded btn-block z-depth-0 my-4 waves-effect">Wyślij</button>
 						</form>
@@ -92,6 +93,8 @@
 	<script type="text/javascript" src="../scripts/openWebsite.js"></script>
 	<script type="text/javascript" src="../scripts/searchList.js"></script>
 	<script type="text/javascript" src="../scripts/messagesContent.js"></script>
+	<?php
+		modal("msg-response", "", "", false);
+	?>
 </body>
-
 </html>

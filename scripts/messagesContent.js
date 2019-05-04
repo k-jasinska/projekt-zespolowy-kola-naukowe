@@ -10,9 +10,8 @@ $(document).ready(function(){
 	$("#check-users").change(getPeopleList);
 
 	$("#msg-form").submit(function(){
-		var modalContent = $("#msg-response > .modal-dialog > .modal-content > .modal-body");
-		$("#msg-response").modal("show");
-		modalContent.html("<p>Wysyłanie wiadomości...</p>");
+		$("#send-msg").hide();
+		$("#loader").show();		
 		$.ajax({
 			method: "POST",
 			url: "../subsites/sendMessage.php",
@@ -23,7 +22,10 @@ $(document).ready(function(){
 			}
 		}).done(function(data){	
 			var received_data = data.split(":");		
-			modalContent.html("<p>" + received_data[1] + "</p>");
+			var info = "<div class='" + (received_data[0] * 1 == 0 ? "sent-success" : "sent-error") + "'>"+ received_data[1] +"<button type='button' class='close close-info'>&times;</button></div>"			
+			$(".msg-info").html($(".msg-info").html() + info);
+			$("#loader").hide();
+			$("#send-msg").show();
 			if(received_data[0] * 1 == 0){
 				$("#nick").val("");
 				$("#title").val("");
@@ -57,3 +59,7 @@ function chooseNick(event){
 	var nick = $(event.data.element).text();
 	$("#nick").val(nick);
 }
+
+function removeInfoMsg(){
+    $(this).parent().remove();
+  }

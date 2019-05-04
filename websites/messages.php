@@ -73,6 +73,7 @@
 					<div class="msg-form background">
 						<form method="POST" id="msg-form">
 						<h2>Utwórz wiadomość</h2>
+							<div class="msg-info"></div>
 							<div class="form-group">							
 								<input type="text" class="form-control form-input" id="nick" placeholder="Nick adresata" required>
 							</div>
@@ -82,7 +83,10 @@
 							<div class="form-group">
 								<textarea class="form-control form-input" rows="5" maxlength="2000" id="message" placeholder="Wiadomość..." required></textarea>
 							</div>
-							<button type="submit" class="btn btn-danger btn-rounded btn-block z-depth-0 my-4 waves-effect">Wyślij</button>
+							<button id="send-msg" type="submit" class="btn btn-danger btn-rounded btn-block z-depth-0 my-4 waves-effect">Wyślij</button>
+							<div id="loader" class="btn btn-danger btn-rounded btn-block z-depth-0 waves-effect" style="display: none">
+								<div class="loader mx-auto"></div>
+							</div>
 						</form>
 					</div>
 				</div>
@@ -93,8 +97,5 @@
 	<script type="text/javascript" src="../scripts/openWebsite.js"></script>
 	<script type="text/javascript" src="../scripts/searchList.js"></script>
 	<script type="text/javascript" src="../scripts/messagesContent.js"></script>
-	<?php
-		modal("msg-response", "", "", false);
-	?>
 </body>
 </html>

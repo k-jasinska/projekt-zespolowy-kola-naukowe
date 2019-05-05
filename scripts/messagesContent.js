@@ -120,7 +120,6 @@ function removeInfoMsg(){
 
 function initTable(table){
 	$(table).DataTable({
-		/*"scrollX": true,*/
 		"language":{
 			"lengthMenu": "_MENU_ na stronę",
 			"zeroRecords": "Brak danych",
@@ -133,12 +132,6 @@ function initTable(table){
 				"previous": "<i class='fa fa-chevron-left' aria-hidden='true'></i>",
 				"next": "<i class='fa fa-chevron-right' aria-hidden='true'></i>"
 			}
-		}/*,
-		columnDefs: [ {
-			targets: 0,
-			render: function ( data, type, row ) {
-				return data.length > 17 ? data.substr( 0, 17 ) + '…' : data;
-			}
-		} ]*/
+		}
 	});
 }

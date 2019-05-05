@@ -235,24 +235,20 @@ thead th{
 .th-1{
 	width: 152px!important;
 	max-width: 152px!important;
-	min-width: 152px!important;
-}
-
-tr{
-	width: 100%;
 }
 
 .th-2{
-	width: -webkit-calc('100% - 152px - 85px')!important;
-	max-width: -webkit-calc('100% - 152px - 85px')!important;
-	/*width: 50%!important;
-	max-width: 50%!important;*/
+	width: calc(100% - 152px - 85px)!important;
+	max-width: calc(100% - 152px - 85px)!important;
 }
 
 .th-3{
 	width: 85px!important;
 	max-width: 85px!important;
-	min-width: 85px!important;
+}
+
+tr{
+	width: 100%;
 }
 
 .msg-contener{
@@ -267,6 +263,7 @@ tr{
 table{
 	width: 100%!important;
 	border: none!important;
+	table-layout: fixed;
 }
 
 .page-link{

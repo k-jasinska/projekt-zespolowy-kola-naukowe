@@ -28,6 +28,12 @@
 	<link rel="stylesheet" href="../style/messagesPage.css">
 	<link rel="stylesheet" href="../style/scrollBar.css">
 	<link rel="stylesheet" href="../style/modal.css">
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
     <title>Koła Naukowe</title>
 </head>
 
@@ -45,13 +51,13 @@
 					<div class="container mt-3 background msg-menu">
 						<ul class="list-group navbar-nav">
 							<li class="list-group-item msg-menu-item">
-								<a class="nav-link active-msg-menu-item" href="#">Napisz</a>
+								<a id="write-msg" class="nav-link active-msg-menu-item" href="#">Napisz</a>
 							</li>
 							<li class="list-group-item msg-menu-item">
-								<a class="nav-link" href="#">Otrzymane</a>
+								<a id="received-msg" class="nav-link" href="#">Otrzymane</a>
 							</li>
 							<li class="list-group-item msg-menu-item">
-								<a class="nav-link" href="#">Wysłane</a>
+								<a id="sent-msg" class="nav-link" href="#">Wysłane</a>
 							</li>
 						</ul> 
 					</div>
@@ -70,7 +76,7 @@
 			</div>
 			<div class="col-lg-8 col-md-8 col-sm-12">
 				<div class="right-part mx-auto">
-					<div class="msg-form background">
+					<div class="msg-content background" id="new-msg">
 						<form method="POST" id="msg-form">
 						<h2>Utwórz wiadomość</h2>
 							<div class="msg-info"></div>
@@ -88,6 +94,16 @@
 								<div class="loader mx-auto"></div>
 							</div>
 						</form>
+					</div>
+					<div class="msg-content background" style="display: none;" id="received-msg-list">
+						<div class="msg-contener">
+							<h2>Otrzymane wiadomość</h2>
+							<div class="table-contener-received">
+								 
+							</div>
+						</div>
+					</div>
+					<div class="msg-content background" style="display: none;" id="sent-msg-list">
 					</div>
 				</div>
 			</div>

@@ -1,3 +1,6 @@
+var table_received = '<table id="received-messages" class="display nowrap table"><thead><tr><th class="th-1">Nadawca</th><th class="th-3">Data</th><th class="th-2">Tytuł</th></tr></thead><tbody class="tbody-received"></tbody></table>';
+var table_sent = '<table id="sent-messages" class="display nowrap table"><thead><tr><th class="th-1">Nadawca</th><th class="th-3">Data</th><th class="th-2">Tytuł</th></tr></thead><tbody class="tbody-sent"></tbody></table>';
+
 $(document).ready(function(){
 
 	$(".msg-menu-item .nav-link").click(function(){
@@ -22,8 +25,12 @@ $(document).ready(function(){
 			}
 		}).done(function(data){	
 			var received_data = data.split(":");		
-			var info = "<div class='" + (received_data[0] * 1 == 0 ? "sent-success" : "sent-error") + "'>"+ received_data[1] +"<button type='button' class='close close-info'>&times;</button></div>"			
+			var info = "<div class='" + (received_data[0] * 1 == 0 ? "sent-success" : "sent-error") 
+			+ "'>"+ received_data[1] +"<button type='button' class='close close-info'>&times;</button></div>";		
 			$(".msg-info").html($(".msg-info").html() + info);
+			$(".close-info").each(function(){
+				$(this).click(removeInfoMsg);
+			});
 			$("#loader").hide();
 			$("#send-msg").show();
 			if(received_data[0] * 1 == 0){
@@ -35,6 +42,53 @@ $(document).ready(function(){
 		return false;
 	})
 
+	$("#write-msg").click(function(){
+		$("#received-msg-list").hide();
+		$("#sent-msg-list").hide();
+		$("#new-msg").show();
+		$(".msg-menu-item .nav-link").click(function(){
+			$(".msg-menu-item .nav-link").each(function(){
+				$(this).removeClass("active-msg-menu-item");
+			});
+			$(this).addClass("active-msg-menu-item");
+		});
+	});
+
+	$("#received-msg").click(function(){
+		$("#new-msg").hide();
+		$("#sent-msg-list").hide();
+		$("#received-msg-list").show();
+		$(".msg-menu-item .nav-link").click(function(){
+			$(".msg-menu-item .nav-link").each(function(){
+				$(this).removeClass("active-msg-menu-item");
+			});
+			$(this).addClass("active-msg-menu-item");
+		});
+		$.ajax({
+			method: "POST",
+			url: "../subsites/getMessages.php",
+			dataType: 'json'
+		}).done(function(data){	
+			$(".table-contener-received").empty();
+			$(".table-contener-received").html(table_received);
+			data.forEach(element => {
+				$(".tbody-received").html($(".tbody-received").html() + element.table);
+			});
+			initTable("#received-messages");			
+		});
+	});
+
+	$("#sent-msg").click(function(){
+		$("#new-msg").hide();
+		$("#received-msg-list").hide();
+		$("#sent-msg-list").show();
+		$(".msg-menu-item .nav-link").click(function(){
+			$(".msg-menu-item .nav-link").each(function(){
+				$(this).removeClass("active-msg-menu-item");
+			});
+			$(this).addClass("active-msg-menu-item");
+		});
+	});
 });
 
 function getPeopleList(){
@@ -61,5 +115,30 @@ function chooseNick(event){
 }
 
 function removeInfoMsg(){
-    $(this).parent().remove();
-  }
+	$(this).parent().remove();
+}
+
+function initTable(table){
+	$(table).DataTable({
+		/*"scrollX": true,*/
+		"language":{
+			"lengthMenu": "_MENU_ na stronę",
+			"zeroRecords": "Brak danych",
+			"info": "Strona _PAGE_ z _PAGES_",
+			"infoEmpty": "Brak wiadomości",
+			"infoFiltered": "(odfiltrowano z _MAX_ wszystkich rekordów)",
+			"search": "",
+			"searchPlaceholder": "Szukaj",
+			"paginate": {
+				"previous": "<i class='fa fa-chevron-left' aria-hidden='true'></i>",
+				"next": "<i class='fa fa-chevron-right' aria-hidden='true'></i>"
+			}
+		}/*,
+		columnDefs: [ {
+			targets: 0,
+			render: function ( data, type, row ) {
+				return data.length > 17 ? data.substr( 0, 17 ) + '…' : data;
+			}
+		} ]*/
+	});
+}

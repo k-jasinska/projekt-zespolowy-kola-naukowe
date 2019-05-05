@@ -7,7 +7,7 @@ if(!empty($_POST))
     $achievement_id = $_POST['id'];
     $image = $_POST['image'];
     unlink("../../imagesuploaded/".$image);
-    $res=mysqli_query($link, "delete from group_achievements where id_group_achievement='$achievement_id';");
+    mysqli_query($link, "delete from group_achievements where id_group_achievement='$achievement_id';");
 }
 else{
     header("Location: index.php");

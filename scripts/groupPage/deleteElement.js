@@ -24,3 +24,16 @@ function deletePost(id) {
         }
     });
 }
+
+function deleteEvent(id) {
+    $.ajax({
+        url: "../subsites/groupPage/deleteEvent.php",
+        method: "POST",
+        data: {
+            id: id
+        },
+        success: function () {
+            $('#showContent').load('groupContent/events.php');
+        }
+    });
+}

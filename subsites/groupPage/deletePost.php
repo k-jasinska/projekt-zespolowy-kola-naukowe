@@ -5,7 +5,7 @@
 if(!empty($_POST))
 {
     $post_id = $_POST['id'];
-    $res=mysqli_query($link, "delete from posts where id_post='$post_id';");
+    mysqli_query($link, "delete from posts where id_post='$post_id';");
 }
 else{
     header("Location: index.php");

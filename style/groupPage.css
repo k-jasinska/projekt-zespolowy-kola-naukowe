@@ -132,6 +132,12 @@ aside li:hover {
 	border-left: 3px solid #e6e6e6;
 }
 
+
+.selectedGroup {
+	background: #444;
+	border-left: 3px solid #e6e6e6;
+}
+
 aside a {
 	display: block;
 	padding: 10px;
@@ -185,6 +191,7 @@ i.show {
 aside.show {
 	left: 0;
 }
+
 
 
 @media(max-width: 786px) {

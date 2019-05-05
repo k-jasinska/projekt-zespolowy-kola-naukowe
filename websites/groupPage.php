@@ -75,7 +75,17 @@
                 <a href="achievements" class="btn btn-primary">Osiągnięcia</a>
             </div>
         </div> 
-		  <div class="container" id="showContent"></div>
+	<script src="../scripts/groupPage/fillContent.js"></script>
+		  <div class="container" id="showContent">
+      <?php
+        if(isset($_COOKIE["id_grupy"])){
+			echo '
+			<script>
+			fillDescription('.$_COOKIE["id_grupy"].');</script>
+			';
+		}
+      ?>
+      </div>
 	</div>
 
 
@@ -139,10 +149,42 @@
     </div>
   </div>
 
+    <!-- modal add osiagniecie-->
+<div class="modal fade" id="modalEvent">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+        <h4 class="modal-title">Dodaj wydarzenie</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+        <form role="form" method="post" id="insert_event">
+        <div class="form-group">
+                <label for="titleEvent">Tytuł:</label>
+                <input type="text" class="form-control" id="titleEvent" name="titleEvent" placeholder="Wpisz tytuł" >
+                </div>
+                <div class="form-group">
+                    <label for="opis_wydarzenia">Zawartość:</label>
+                    <textarea class="form-control" rows = 5 id="opis_wydarzenia" name="opis_wydarzenia" placeholder="Napisz jakie to osiągnięcie"></textarea>
+                </div>
+                 <div class="form-group">
+                    <label for="event_dates">Wybierz datę wydarzenia</label>
+                    <input type="date" name="event_date" id="event_date">
+                </div> 
+                <div id="errE"></div>
+              <input type="submit" name="insert" value="Dodaj" class="btn btn-success" />
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <script src="../scripts/groupPage/deleteElement.js"></script>
+	<!-- <script src="../scripts/groupPage/fillContent.js"></script> -->
     <script src="../scripts/groupPage/addElement.js"></script>
     <script src="../scripts/groupPage/addReaction.js"></script>
-	<script src="../scripts/groupPage/fillContent.js"></script>
     <script src="../scripts/groupPage/filterGroups.js"></script>
     <script src="../scripts/hideNavbar.js"></script>
 

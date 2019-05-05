@@ -1,0 +1,23 @@
+ i:hover {
+     cursor: pointer;
+ }
+
+ i.fa-thumbs-up:hover,
+ i.upClicked {
+     color: green;
+ }
+
+ i.fa-thumbs-down:hover,
+ i.downClicked {
+     color: brown;
+ }
+
+ i.fa-trash-alt:hover {
+     color: brown;
+ }
+
+ i.fa-plus {
+     color: rgb(110, 156, 58);
+     font-size: 24px;
+     cursor: pointer;
+ }

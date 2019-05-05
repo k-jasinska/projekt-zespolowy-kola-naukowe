@@ -7,13 +7,18 @@
 	$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt") or die(mysqli_connect_error());
 	mysqli_set_charset($link, "utf8");
 	$errors = array();
+	$message = NULL;
 	if(isset($_POST['email']) && isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['pwd'])){
 		$email = trim(mysqli_real_escape_string($link, $_POST['email']));
+		$nick = trim(mysqli_real_escape_string($link, $_POST['nick']));
 		$name = trim(mysqli_real_escape_string($link, $_POST['name']));
 		$surname = trim(mysqli_real_escape_string($link, $_POST['surname']));
 		$pwd = $_POST['pwd'];		
 		if(!(filter_var($email, FILTER_VALIDATE_EMAIL) && strlen($email) <= 40)){
 			array_push($errors, "Błędny format adresu email!");
+		}
+		if(!(strlen($nick) >= 8 && strlen($nick) <= 40)){
+			array_push($errors, "Nick ma niedozwoloną długość!");
 		}
 		if(!(strlen($name) > 0 && strlen($name) <= 50)){
 			array_push($errors, "Imię ma niedozwoloną długość!");
@@ -23,6 +28,9 @@
 		}
 		if(!(strlen($pwd) >= 8 && (strlen($pwd) <= 32))){
 			array_push($errors, "Hasło ma niedozwoloną długość!");
+		}
+		if(!(strlen($nick) >= 8 && strlen($nick) <= 40)){
+			array_push($errors, "Nick ma niedozwoloną długość!");
 		}
 		if(count($errors) == 0){
 			try{
@@ -60,10 +68,28 @@
 				} else {
 					throw new Exception("Błąd serwera!");
 				}
-				if($stmt = mysqli_prepare($link, "INSERT INTO users(id_state, email, name, surname, id_type, password) VALUES(?, ?, ?, ?, ?, ?)")){
+				if($stmt = mysqli_prepare($link, "SELECT id_user FROM users WHERE nick LIKE ?")){
+					if(!mysqli_stmt_bind_param($stmt, "s", $nick)){
+						throw new Exception("Błąd serwera!");
+					}
+					if(!mysqli_stmt_execute($stmt)){
+						throw new Exception("Błąd serwera!");
+					}
+					if(!mysqli_stmt_bind_result($stmt, $user)){
+						throw new Exception("Błąd serwera!");
+					}
+					if(mysqli_stmt_fetch($stmt)){
+						mysqli_stmt_close($stmt);
+						throw new Exception("Nick jest już zajęty!");
+					}
+					mysqli_stmt_close($stmt);
+				} else {
+					throw new Exception("Błąd serwera!");
+				}
+				if($stmt = mysqli_prepare($link, "INSERT INTO users(id_state, email, nick, name, surname, id_type, password) VALUES(?, ?, ?, ?, ?, ?, ?)")){
 					$state = 2;
 					$type = 2;
-					if(!mysqli_stmt_bind_param($stmt, "isssis", $state, $email, $name, $surname, $type, $pwd)){
+					if(!mysqli_stmt_bind_param($stmt, "issssis", $state, $email, $nick, $name, $surname, $type, $pwd)){
 						throw new Exception("Błąd serwera!");
 					}
 					if(!mysqli_stmt_execute($stmt)){
@@ -73,6 +99,7 @@
 					if(!mysqli_commit($link)){
 						throw new Exception("Błąd serwera!");
 					}
+					$message = "Przejdź do logowania";
 				} else {
 					throw new Exception("Błąd serwera!");
 				}
@@ -101,6 +128,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 	<link rel="stylesheet" href="../style/loginPage.css">
 	<link rel="stylesheet" href="../style/modal.css">
+	<link rel="stylesheet" href="../style/scrollBar.css">
     <title>Rejestracja</title>
     <script type="text/javascript" src="../scripts/RegistrationValidation.js"></script>
 </head>
@@ -110,7 +138,11 @@
         <form id="register-form" method="POST">
           <div class="form-group">
               <label for="email">Email:</label>
-              <input id="email" type="email" class="form-control" id="email" maxlength="40" name="email" required>
+              <input id="email" type="email" class="form-control" maxlength="40" name="email" required>
+          </div>
+		  <div class="form-group">
+              <label for="nick">Nick:</label>
+              <input id="nick" type="text" class="form-control" minlength="8" maxlength="40" name="nick" required>
           </div>
           <div class="form-group">
               <label for="name">Imię:</label>
@@ -142,6 +174,17 @@
 				<?php endforeach ?>
 			<?php
 			modal('errors', 'Nie udało się utworzyć konta!', ob_get_clean());
+		}
+	?>
+	<?php
+		if($message !== NULL){
+			ob_start();
+			?>
+				<div class="message">
+					<a href="login.php"><?php echo $message; ?></a>
+				</div>
+			<?php
+			modal('message', 'Utworzono konto!', ob_get_clean());
 		}
 	?>
 <body>

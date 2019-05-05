@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $("#cpwd").keyup(function(){
+	$("#cpwd").keyup(function(){
 		confirmPassword();
 	});
 	
@@ -26,6 +26,16 @@ $(document).ready(function(){
 	}
 	
 	$("#email").blur(function(){
+		checkEmail();
+	});
+
+	$("#email").keyup(function(){
+		if(!$("#email")[0].checkValidity()){
+			checkEmail();
+		}
+	});
+
+	function checkEmail(){
 		var emailValue = $("#email").val();
 		$.ajax({
 			method: "POST",
@@ -38,5 +48,30 @@ $(document).ready(function(){
 				$("#email")[0].setCustomValidity("Email jest zajęty!");				
 			}
 		})
+	}
+
+	$("#nick").blur(function(){
+		checkNick();
 	});
+
+	$("#nick").keyup(function(){
+		if(!$("#nick")[0].checkValidity()){
+			checkNick();
+		}
+	});
+	
+	function checkNick(){
+		var nickValue = $("#nick").val();
+		$.ajax({
+			method: "POST",
+			url: "../subsites/checkNick.php",
+			data: {nick: nickValue}
+		}).done(function(msg){
+			if(msg * 1 == 0){
+				$("#nick")[0].setCustomValidity("");				
+			} else {
+				$("#nick")[0].setCustomValidity("Nick jest zajęty!");				
+			}
+		})
+	}
 });

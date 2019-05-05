@@ -49,9 +49,9 @@ form {
 }
 
 .lilhomebutton {
-	float:right;
+	float: right;
 	margin: 10px 20px;
-	display:inline;
+	display: inline;
 }
 
 @media screen and (min-height: 382px) {
@@ -71,14 +71,13 @@ form {
 	padding: 15px;
 	position: absolute;
 	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
+	transform: translateX(-50%);
 	box-sizing: border-box;
 	overflow: hidden;
 }
 
-@media screen and (min-height: 596px) {
-	.form-register {
+@media screen and (min-height: 700px) {
+	.register-form {
 		top: 50%;
 		transform: translate(-50%, -50%);
 	}
@@ -122,6 +121,35 @@ form {
 	margin: 0;
 }
 
+.message {
+	background-color: rgb(37, 37, 37);
+	border-radius: 10px;
+	margin: 20px 20px;
+	color: #656669;
+	padding: 15px;
+	box-sizing: border-box;
+	overflow: hidden;
+	border: solid 2px rgb(155, 155, 155);
+}
+
+.message a {
+	margin: 0;
+	color: inherit;
+	text-decoration: none;
+	transition: all 0.5s;
+}
+
+.message a:hover:after {
+    content: '\00bb';
+}
+
+.message a:hover {
+	margin: 0;
+	color: rgb(235, 235, 235);
+	text-decoration: none;
+	margin-left: 20px;
+}
+
 .account {
 	background-color: rgb(37, 37, 37);
 	border-radius: 10px;
@@ -147,7 +175,8 @@ form {
 }
 
 .account:hover{		
-	border: solid 2px rgb(148, 21, 80);;
+	border: solid 2px rgb(148, 21, 80);
+	cursor: pointer;
 }
 
 .account:hover p{
@@ -178,6 +207,7 @@ input:-webkit-autofill {
 .close-error{
 	opacity: 0.8!important;
 }
+
 .close-error:hover{
 	opacity: 1!important;
 }

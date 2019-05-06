@@ -17,6 +17,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+	<!-- TOOLTIP -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -90,9 +93,9 @@
 								<textarea class="form-control form-input" rows="5" maxlength="2000" id="message" placeholder="Wiadomość..." required></textarea>
 							</div>
 							<button id="send-msg" type="submit" class="btn btn-danger btn-rounded btn-block z-depth-0 my-4 waves-effect">Wyślij</button>
-							<div id="loader" class="btn btn-danger btn-rounded btn-block z-depth-0 waves-effect" style="display: none">
+							<!--<div id="loader" class="btn btn-danger btn-rounded btn-block z-depth-0 waves-effect" style="display: none">
 								<div class="loader mx-auto"></div>
-							</div>
+							</div>-->
 						</form>
 					</div>
 					<div class="msg-content background" style="display: none;" id="received-msg-list">

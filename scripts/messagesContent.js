@@ -13,8 +13,8 @@ $(document).ready(function(){
 	$("#check-users").change(getPeopleList);
 
 	$("#msg-form").submit(function(){
-		$("#send-msg").hide();
-		$("#loader").show();		
+		$("#send-msg").attr("disabled", true);
+		$("#send-msg").html('<span class="spinner-border spinner-border-sm text-light"></span>');
 		$.ajax({
 			method: "POST",
 			url: "../subsites/sendMessage.php",
@@ -31,8 +31,8 @@ $(document).ready(function(){
 			$(".close-info").each(function(){
 				$(this).click(removeInfoMsg);
 			});
-			$("#loader").hide();
-			$("#send-msg").show();
+			$("#send-msg").attr("disabled", false);
+			$("#send-msg").html("Wyślij");
 			if(received_data[0] * 1 == 0){
 				$("#nick").val("");
 				$("#title").val("");
@@ -74,7 +74,20 @@ $(document).ready(function(){
 			data.forEach(element => {
 				$(".tbody-received").html($(".tbody-received").html() + element.table);
 			});
-			initTable("#received-messages");			
+			initTable("#received-messages");
+			initTooltip();
+			$(".page-item").click(function(){
+        initTooltip();
+      });
+      $("select").change(function(){
+        initTooltip();
+      });
+      $(".form-control-sm").keydown(function(){
+        initTooltip();
+			});
+			$("th").click(function(){
+				initTooltip();
+			});
 		});
 	});
 
@@ -134,4 +147,8 @@ function initTable(table){
 			}
 		}
 	});
+}
+
+function initTooltip(){
+	$('[data-toggle="tooltip"]').tooltip(); 
 }

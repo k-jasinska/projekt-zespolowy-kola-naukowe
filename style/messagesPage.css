@@ -237,17 +237,20 @@ thead th{
 	max-width: 152px!important;
 }
 
-.th-2{
-	width: calc(100% - 152px - 85px)!important;
-	max-width: calc(100% - 152px - 85px)!important;
-}
-
 .th-3{
 	width: 85px!important;
 	max-width: 85px!important;
 }
 
 tr{
+	width: 100%;
+}
+
+/*tbody, thead{
+	width:	100%;
+}*/
+
+.table-contener-received{
 	width: 100%;
 }
 

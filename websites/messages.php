@@ -93,16 +93,23 @@
 								<textarea class="form-control form-input" rows="5" maxlength="2000" id="message" placeholder="Wiadomość..." required></textarea>
 							</div>
 							<button id="send-msg" type="submit" class="btn btn-danger btn-rounded btn-block z-depth-0 my-4 waves-effect">Wyślij</button>
-							<!--<div id="loader" class="btn btn-danger btn-rounded btn-block z-depth-0 waves-effect" style="display: none">
-								<div class="loader mx-auto"></div>
-							</div>-->
 						</form>
 					</div>
 					<div class="msg-content background" style="display: none;" id="received-msg-list">
 						<div class="msg-contener">
-							<h2>Otrzymane wiadomość</h2>
+							<h2 class="msg-header">Otrzymane wiadomość</h2>
+							<h2 class="arrow-received" style="display: none;"><i class="fas fa-arrow-left"></i></h2>
 							<div class="table-contener-received">
 								 
+							</div>
+							<div class="msg-show" style="display: none;">
+								<div class="media border p-3">								
+									<div class="media-body">
+										<h4><small class="msg-name"></small> <small class="msg-surname"></small> <small class="date-small"><i class="msg-date"></i></small></h4>
+										<h4><small class="msg-title"></small></h4>
+										<p class="msg-message"></p>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

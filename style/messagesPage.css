@@ -222,6 +222,7 @@ td{
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
+	cursor: context-menu;
 }
 
 tbody td{
@@ -245,10 +246,6 @@ thead th{
 tr{
 	width: 100%;
 }
-
-/*tbody, thead{
-	width:	100%;
-}*/
 
 .table-contener-received{
 	width: 100%;
@@ -304,4 +301,35 @@ select{
 option{
 	color: rgb(212, 211, 211)!important;
 	background-color: rgb(37, 37, 37)!important;
+}
+
+.date-small{
+	float: right;
+}
+
+.msg-title{
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.msg-message{
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.msg-show{
+	padding-bottom: 20px;
+}
+
+.msg-show div{
+	border: none!important;
+}
+
+.date-small{
+	font-size: 70%!important;
+}
+
+.arrow-received{
+	padding-top: 20px;
+	padding-left: 16px;
 }

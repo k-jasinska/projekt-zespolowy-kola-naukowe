@@ -64,31 +64,49 @@ $(document).ready(function(){
 			});
 			$(this).addClass("active-msg-menu-item");
 		});
-		$.ajax({
-			method: "POST",
-			url: "../subsites/getMessages.php",
-			dataType: 'json'
-		}).done(function(data){	
-			$(".table-contener-received").empty();
-			$(".table-contener-received").html(table_received);
-			data.forEach(element => {
-				$(".tbody-received").html($(".tbody-received").html() + element.table);
-			});
-			initTable("#received-messages");
-			initTooltip();
-			$(".page-item").click(function(){
-        initTooltip();
-      });
-      $("select").change(function(){
-        initTooltip();
-      });
-      $(".form-control-sm").keydown(function(){
-        initTooltip();
-			});
-			$("th").click(function(){
+		if($(".table-contener-received").css("display") !== "none"){
+			$.ajax({
+				method: "POST",
+				url: "../subsites/getMessages.php",
+				dataType: 'json'
+			}).done(function(data){	
+				$(".table-contener-received").empty();
+				$(".table-contener-received").html(table_received);
+				data.forEach(element => {
+					$(".tbody-received").html($(".tbody-received").html() + element.table);
+				});
+				initTable("#received-messages");
 				initTooltip();
+				$(".page-item").click(function(){
+					initTooltip();
+				});
+				$("select").change(function(){
+					initTooltip();
+				});
+				$(".form-control-sm").keydown(function(){
+					initTooltip();
+				});
+				$("th").click(function(){
+					initTooltip();
+				});
+				$("tbody tr").click(function(){
+					var idMessage = $(this).attr("id").split("-")[1];
+					var msg = $.grep(data, function(obj) {
+						return obj.data.id_message == idMessage;
+					});
+					msg = msg[0].data;
+					$(".msg-name").text(msg.name);
+					$(".msg-surname").text(msg.surname);
+					$(".msg-date").text(msg.date);
+					$(".msg-title").text(msg.title);
+					$(".msg-message").text(msg.message);
+					$(".msg-header").hide();
+					$(".table-contener-received").hide();
+					$(".msg-show").show();
+					$(".arrow-received").show();
+				});
 			});
-		});
+		}
 	});
 
 	$("#sent-msg").click(function(){
@@ -152,3 +170,10 @@ function initTable(table){
 function initTooltip(){
 	$('[data-toggle="tooltip"]').tooltip(); 
 }
+
+$(".arrow-received").click(function(){
+	$(".msg-header").show();
+	$(".table-contener-received").show();
+	$(".msg-show").hide();
+	$(".arrow-received").hide();
+});

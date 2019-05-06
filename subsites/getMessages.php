@@ -13,7 +13,7 @@
 		mysqli_set_charset($link, "utf8");
 		$id = getIdOfUser();
 		if($id !== NULL){
-			$result = mysqli_query($link, "SELECT u.nick, u.name, u.surname, m.title, m.message, m.date FROM
+			$result = mysqli_query($link, "SELECT u.nick, u.name, u.surname, m.id_message, m.title, m.message, m.date FROM
 			users u RIGHT JOIN messages m ON u.id_user = m.id_user_from WHERE m.id_user_to = $id
 			ORDER BY m.date");
 			$messages = array();
@@ -21,7 +21,7 @@
 				$data = new stdClass();
 				$date = explode("-", $row['date']);
 				$day = explode(" ", $date[2])[0];
-				$data->table = "<tr><td class='th-1' data-toggle='tooltip' title='$row[nick]'>$row[nick]</td><td class='th-3'>
+				$data->table = "<tr id='msg-$row[id_message]'><td class='th-1' data-toggle='tooltip' title='$row[nick]'>$row[nick]</td><td class='th-3'>
 				$day.$date[1].$date[0]</td><td class='th-2' data-toggle='tooltip' title='$row[title]'>$row[title]</td></tr>";
 				foreach($row as $key=>$val)
 					$data->data[$key] = $val;

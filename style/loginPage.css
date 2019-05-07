@@ -10,6 +10,20 @@ body {
 	background-color: rgb(20, 20, 20);
 }
 
+[type="date"] {
+	background-image: url(../img/calendar.svg);
+	background-size: 5%;
+	background-position: 97% 50%;
+	background-repeat: no-repeat;
+  }
+  [type="date"]::-webkit-inner-spin-button {
+	display: none;
+  }
+  [type="date"]::-webkit-calendar-picker-indicator {
+	opacity: 0;
+	width: 5%;
+  }
+
 form {
 	padding: 15px;
 }
@@ -74,6 +88,20 @@ form {
 	transform: translateX(-50%);
 	box-sizing: border-box;
 	overflow: hidden;
+}
+
+.register-form2 {
+	margin-top: 5%;
+}
+
+@media screen and (max-width: 500px) {
+	.register-form2 {
+		margin-top: 15%;
+	}
+}
+
+option {
+	background-color: rgb(37, 37, 37);
 }
 
 @media screen and (min-height: 700px) {

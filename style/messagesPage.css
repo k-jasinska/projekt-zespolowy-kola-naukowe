@@ -118,8 +118,16 @@ input:-webkit-autofill {
 	padding: 20px 30px;
 }
 
-#nick{
-	max-width: 500px;
+@media screen and (max-width: 925px){
+	#nick{
+		max-width: 500px;
+	}
+}
+
+@media screen and (min-width: 925px){
+	#nick{
+		max-width: 50%;
+	}
 }
 
 .checkbox{
@@ -283,7 +291,7 @@ option{
 }
 
 .date-small{
-	font-size: 70%!important;
+	font-size: 50%!important;
 }
 
 .arrow-received{

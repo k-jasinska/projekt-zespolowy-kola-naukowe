@@ -103,14 +103,14 @@
 					<div class="msg-content background" style="display: none;" id="received-msg-list">
 						<div class="msg-contener">
 							<h2 class="msg-header">Otrzymane wiadomość</h2>
-							<h2 class="arrow-received" style="display: none;"><i class="fas fa-arrow-left"></i></h2>
+							<h2 class="arrow-received" style="display: none;"><i class="fas fa-arrow-left"></i><small class="date-small"><i class="msg-date"></i></small></h2>
 							<div class="table-contener-received">
 								 
 							</div>
 							<div class="msg-show" style="display: none;">
 								<div class="media border p-3">								
 									<div class="media-body">
-										<h4><small class="msg-name"></small> <small class="msg-surname"></small> <small class="date-small"><i class="msg-date"></i></small></h4>
+										<h4><small class="msg-name"></small> <small class="msg-surname"></small></h4>
 										<h4><small class="msg-title"></small></h4>
 										<p class="msg-message"></p>
 									</div>

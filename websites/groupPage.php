@@ -39,7 +39,7 @@
     <!-- sidenav -->
     <div class="wrapper1 active show">
         <div class="burger">
-            <i class="fas fa-arrow-right visible  active"></i>
+            <i class="fas fa-arrow-right visible active"></i>
             <i class="fas fa-arrow-left visible show active"></i>
         </div>
 
@@ -70,9 +70,6 @@
     <div class="wrapper1 active show">
         <div class="container ">
             <div class="btn-group btn-group-justified choose">
-                <a href="posts" class="btn btn-primary">Posty</a>
-                <a href="events" class="btn btn-primary">Wydarzenia</a>
-                <a href="achievements" class="btn btn-primary">Osiągnięcia</a>
             </div>
         </div> 
 	<script src="../scripts/groupPage/fillContent.js"></script>
@@ -181,10 +178,17 @@
     </div>
   </div>
 
+  <script>
+	function clickEl(href) {
+		$('#showContent').load('groupContent/' + href + '.php');
+		return false;
+	}
+</script>
+    <script src="../scripts/openWebsite.js"></script>
     <script src="../scripts/groupPage/deleteElement.js"></script>
-	<!-- <script src="../scripts/groupPage/fillContent.js"></script> -->
     <script src="../scripts/groupPage/addElement.js"></script>
     <script src="../scripts/groupPage/addReaction.js"></script>
+    <script src="../scripts/groupPage/joinToGroup.js"></script>
     <script src="../scripts/groupPage/filterGroups.js"></script>
     <script src="../scripts/hideNavbar.js"></script>
 

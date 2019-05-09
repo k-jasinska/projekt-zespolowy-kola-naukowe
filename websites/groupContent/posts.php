@@ -9,7 +9,7 @@
         $output ='';
         $result = mysqli_query($link, $query);
         $output .='
-        <div class="bg-dark mt-3 p-3 rounded section_divider">
+        <div class="mt-3 p-3 rounded section_divider">
         <div class="row">
             <h5 class="col-md-6">Posty</h5>
             <div class="col-md-6 text-right"><i class="fas fa-plus" name="add" id="add" data-toggle="modal" data-target="#postModal"></i></div>
@@ -22,7 +22,7 @@
             $result1 = mysqli_query($link, $query1);
             $row1 = mysqli_fetch_array($result1);
     
-            $query2 = "SELECT id_reaction_type FROM reactions WHERE id_user = '".$row["id_user"]."' and id_post= '".$row["id_post"]."';";
+            $query2 = "SELECT id_reaction_type FROM reactions WHERE id_user = '".$user_id."' and id_post= '".$row["id_post"]."';";
             $result2 = mysqli_query($link, $query2);
             $row2 = mysqli_fetch_array($result2);
                 $reaction=$row2["id_reaction_type"];

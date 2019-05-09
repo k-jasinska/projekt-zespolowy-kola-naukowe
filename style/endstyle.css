@@ -4,7 +4,7 @@
 
  i.fa-thumbs-up:hover,
  i.upClicked {
-     color: green;
+     color: rgb(110, 156, 58);
  }
 
  i.fa-thumbs-down:hover,

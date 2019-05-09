@@ -12,7 +12,7 @@ if(isset($_POST["id"]))
   $result = mysqli_query($link, $query);
   $row = mysqli_fetch_array($result);
   $output .='
-    <div class="bg-dark mt-3 p-3 comment rounded section_divider sectionTitle">
+    <div class="mt-3 p-3 comment rounded section_divider sectionTitle">
         <h5 class="title">Opis</h5>
     </div>
     <div class="event mt-3 p-3 article rounded">

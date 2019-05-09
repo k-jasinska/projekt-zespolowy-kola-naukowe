@@ -3,7 +3,7 @@ body {
 	width: 100%;
 	height: 100%;
 	color: #e6e6e6;
-	background-color: rgb(37, 37, 37);
+	background-color: rgb(20, 20, 20);
 	font-family: "Releway", Helvetica, sans-serif;
 }
 
@@ -67,11 +67,11 @@ h6 {
 .choose a:hover,
 .choose a:focus,
 .choose a:active {
-	background-color: rgb(109, 16, 59);
-	border: 1px solid rgb(109, 16, 59);
+	background-color: rgb(109, 16, 59) !important;
+	border: 1px solid rgb(109, 16, 59) !important;
 	outline: none;
 	outline-style: none;
-	box-shadow: none;
+	box-shadow: none !important;
 }
 
 /* sidenav */
@@ -106,7 +106,7 @@ aside ul {
 	padding: 0;
 	overflow-y: scroll;
 	overflow: hidden;
-	background-color: rgb(37, 37, 37);
+	background-color: rgb(20, 20, 20);
 }
 
 .menu__level {
@@ -123,18 +123,21 @@ aside ul {
 
 
 aside li {
-	outline: 1px solid rgb(20, 20, 20);
+	outline: 1px solid rgb(37, 37, 37);
 	transition: all .1s;
 }
 
 aside li:hover {
-	background: #444;
+	background: rgb(37, 37, 37);
 	border-left: 3px solid #e6e6e6;
 }
 
+.section_divider {
+	background-color: rgb(37, 37, 37);
+}
 
 .selectedGroup {
-	background: #444;
+	background: rgb(37, 37, 37);
 	border-left: 3px solid #e6e6e6;
 }
 
@@ -155,8 +158,7 @@ aside a:hover {
 	border: none;
 	border-radius: 0px;
 	margin: 5px 0 5px 0;
-	border-radius: 20px;
-	border: 1px solid rgb(110, 156, 58);
+	border-bottom: 1px solid rgb(110, 156, 58);
 	color: #666;
 	padding: 20px;
 	background-color: transparent;
@@ -175,7 +177,7 @@ aside a:hover {
 
 .event {
 	margin-bottom: 16px;
-	background-color: rgb(70, 70, 70);
+	background-color: rgb(37, 37, 37);
 	color: rgb(212, 211, 211);
 	box-shadow: 0px 0px 35px -5px rgba(0, 0, 0, 0.75);
 }
@@ -192,8 +194,6 @@ aside.show {
 	left: 0;
 }
 
-
-
 @media(max-width: 786px) {
 	.wrapper1 {
 		margin: 57px 0 0 0;
@@ -204,3 +204,14 @@ aside.show {
 		margin-left: 0;
 	}
 }
+
+@-webkit-keyframes autofill {
+	to {
+		color: #666;
+		background: transparent;
+	}
+}
+
+input:-webkit-autofill {
+	-webkit-animation-name: autofill;
+	-webkit-animation-fill-mode: both;

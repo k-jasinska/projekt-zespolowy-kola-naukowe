@@ -6,6 +6,7 @@ function fillDescription(id) {
 			id: id
 		},
 		success: function (data) {
+			$('.choose').load('groupContent/buttons.php');
 			$('#showContent').html(data);
 		},
 		error: function () {
@@ -13,12 +14,3 @@ function fillDescription(id) {
 		}
 	});
 }
-
-
-$(document).ready(function () {
-	$('.choose a').click(function () {
-		var page = $(this).attr('href');
-		$('#showContent').load('groupContent/' + page + '.php');
-		return false;
-	});
-});

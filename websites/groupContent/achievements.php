@@ -8,7 +8,7 @@
     $output ='';
     $result = mysqli_query($link, $query);
     $output .='
-    <div class="bg-dark mt-3 p-3 rounded section_divider">
+    <div class="mt-3 p-3 rounded section_divider">
     <div class="row">
          <h5 class="col-6">Osiągnięcia</h5>
          <div class="col-6 text-right"><i class="fas fa-plus" data-toggle="modal" data-target="#modalAchievements"></i></div>

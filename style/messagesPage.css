@@ -110,7 +110,7 @@ input:-webkit-autofill {
 	height: 100%;
 }
 
-.msg-form{
+.msg-content{
 	margin-top: 1rem;
 }
 
@@ -118,8 +118,16 @@ input:-webkit-autofill {
 	padding: 20px 30px;
 }
 
-#nick{
-	max-width: 500px;
+@media screen and (max-width: 925px){
+	#nick{
+		max-width: 500px;
+	}
+}
+
+@media screen and (min-width: 925px){
+	#nick{
+		max-width: 50%;
+	}
 }
 
 .checkbox{
@@ -158,4 +166,152 @@ input:-webkit-autofill {
 #peopleList{
 	max-height: 470px;
 	overflow: auto;
+}
+
+.sent-error{
+	margin-bottom: 30px;
+	background: #bd2130;
+	padding: 5px;
+	padding-left: 15px;
+	border: 1px solid #b21f2d;
+	width: 100%;
+	color: white;
+}
+
+.sent-success{
+	margin-bottom: 10px;
+	background: #5cb85c;
+	padding: 5px;
+	padding-left: 15px;
+	border: 1px solid #4cae4c;
+	width: 100%;
+	color: white;
+}
+
+.close-info{
+	opacity: 0.8!important;
+}
+
+.close-info:hover{
+	opacity: 1!important;
+}
+
+div.dataTables_wrapper {
+	margin: 0 auto;
+}
+
+th, td { 
+	background-color: rgb(37, 37, 37);
+	border: none!important;
+}
+
+td{
+	cursor: context-menu;
+}
+
+tbody td{
+	border-bottom: solid 1px rgb(110, 156, 58)!important;
+}
+
+thead th{
+	border-bottom: solid 1px rgb(110, 156, 58)!important;
+}
+
+.table-contener-received{
+	width: 100%;
+}
+
+.msg-contener{
+	padding-top: 1rem;
+	margin: 20px 30px;
+}
+
+table{
+	width: 100%!important;
+	border: none!important;
+}
+
+.page-link{
+	background-color: rgb(37, 37, 37)!important;
+	color: white!important;
+	border: 2px rgb(148, 21, 80) solid!important;
+	border-radius: 0!important;
+}
+
+.sorting_1{
+	background-color: rgb(37, 37, 37)!important;
+	color: rgb(148, 21, 80);
+}
+
+.sorting_desc{
+	color: rgb(148, 21, 80);
+}
+
+.sorting_asc{
+	color: rgb(148, 21, 80);
+}
+
+.paginate_button:hover{
+	background: rgb(116, 16, 63)!important;
+}
+
+.paginate_button:hover .page-link{
+	border-color: rgb(116, 16, 63)!important;
+}
+
+select{
+	color: rgb(212, 211, 211)!important;
+}
+
+option{
+	color: rgb(212, 211, 211)!important;
+	background-color: rgb(37, 37, 37)!important;
+}
+
+.date-small{
+	float: right;
+}
+
+.msg-title{
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.msg-message{
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.msg-show{
+	padding-bottom: 20px;
+}
+
+.msg-show div{
+	border: none!important;
+}
+
+.date-small{
+	font-size: 50%!important;
+}
+
+.arrow-received{
+	padding-top: 20px;
+	padding-left: 16px;
+}
+
+.arrow-received i{
+	cursor: pointer;
+}
+
+/*fragment jquery data table*/
+#received-messages_info{
+	color: rgb(212, 211, 211)!important;
+}
+
+.show-col{
+	cursor: pointer;
+}
+
+.no-max-width{
+	max-width: none!important;
 }

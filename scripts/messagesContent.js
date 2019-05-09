@@ -53,6 +53,10 @@ $(document).ready(function(){
 			});
 			$(this).addClass("active-msg-menu-item");
 		});
+		$(".list-group-item").unbind("click", searchReceived);
+		$("#peopleList > .list-group-item").each(function(){
+			$(this).click({element: this}, chooseNick);
+		});
 	});
 
 	$("#received-msg").click(function(){
@@ -110,6 +114,10 @@ $(document).ready(function(){
 				});
 			});
 		}
+		$(".list-group-item").unbind("click", chooseNick);
+		$("#peopleList > .list-group-item").each(function(){
+			$(this).click({element: this}, searchReceived);
+		});
 	});
 
 	$("#sent-msg").click(function(){
@@ -123,6 +131,13 @@ $(document).ready(function(){
 			});
 			$(this).addClass("active-msg-menu-item");
 		});
+	});
+
+	$(".arrow-received").click(function(){
+		$(".msg-header").show();
+		$(".table-contener-received").show();
+		$(".msg-show").hide();
+		$(".arrow-received").hide();
 	});
 });
 
@@ -194,9 +209,9 @@ function initTooltip(){
 	$('[data-toggle="tooltip"]').tooltip(); 
 }
 
-$(".arrow-received").click(function(){
-	$(".msg-header").show();
-	$(".table-contener-received").show();
-	$(".msg-show").hide();
-	$(".arrow-received").hide();
-});
+function searchReceived(event){
+	var table = $('#received-messages').DataTable();
+	var filtr = $(event.data.element).text();
+	table.search(filtr).draw();
+}
+

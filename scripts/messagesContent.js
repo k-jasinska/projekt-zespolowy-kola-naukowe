@@ -1,5 +1,5 @@
-var table_received = '<table id="received-messages" class="display nowrap table"><thead><tr><th class="th-1">Nadawca</th><th class="th-3">Data</th><th class="th-2">Tytuł</th></tr></thead><tbody class="tbody-received"></tbody></table>';
-var table_sent = '<table id="sent-messages" class="display nowrap table"><thead><tr><th class="th-1">Nadawca</th><th class="th-3">Data</th><th class="th-2">Tytuł</th></tr></thead><tbody class="tbody-sent"></tbody></table>';
+var table_received = '<table id="received-messages" class="display nowrap table"><thead><tr><th class="td-sender">Nadawca</th><th>Data</th><th>Tytuł</th><th></th></tr></thead><tbody class="tbody-received"></tbody></table>';
+var table_sent = '<table id="sent-messages" class="display nowrap table"><thead><tr><th>Nadawca</th><th>Data</th><th>Tytuł</th></tr></thead><tbody class="tbody-sent"></tbody></table>';
 
 $(document).ready(function(){
 
@@ -43,6 +43,7 @@ $(document).ready(function(){
 	})
 
 	$("#write-msg").click(function(){
+		$(".right-part").removeClass("no-max-width");
 		$("#received-msg-list").hide();
 		$("#sent-msg-list").hide();
 		$("#new-msg").show();
@@ -55,6 +56,7 @@ $(document).ready(function(){
 	});
 
 	$("#received-msg").click(function(){
+		$(".right-part").addClass("no-max-width");
 		$("#new-msg").hide();
 		$("#sent-msg-list").hide();
 		$("#received-msg-list").show();
@@ -89,8 +91,8 @@ $(document).ready(function(){
 				$("th").click(function(){
 					initTooltip();
 				});
-				$("tbody tr").click(function(){
-					var idMessage = $(this).attr("id").split("-")[1];
+				$("tbody tr .show-col").click(function(e){
+					var idMessage = $(this).parent().attr("id").split("-")[1];
 					var msg = $.grep(data, function(obj) {
 						return obj.data.id_message == idMessage;
 					});
@@ -104,12 +106,14 @@ $(document).ready(function(){
 					$(".table-contener-received").hide();
 					$(".msg-show").show();
 					$(".arrow-received").show();
+					e.stopPropagation();
 				});
 			});
 		}
 	});
 
 	$("#sent-msg").click(function(){
+		$(".right-part").addClass("no-max-width");
 		$("#new-msg").hide();
 		$("#received-msg-list").hide();
 		$("#sent-msg-list").show();
@@ -151,7 +155,7 @@ function removeInfoMsg(){
 
 function initTable(table){
 	$(table).DataTable({
-		"language":{
+		language:{
 			"lengthMenu": "_MENU_ na stronę",
 			"zeroRecords": "Brak danych",
 			"info": "Strona _PAGE_ z _PAGES_",
@@ -163,8 +167,27 @@ function initTable(table){
 				"previous": "<i class='fa fa-chevron-left' aria-hidden='true'></i>",
 				"next": "<i class='fa fa-chevron-right' aria-hidden='true'></i>"
 			}
-		}
+		},
+		responsive: true,
+		columnDefs: [ {
+			targets: -1,		
+			orderable: false,
+			responsivePriority: 0
+		 },
+		{
+			targets: 0,
+			responsivePriority: 1
+		},
+		{
+			targets: 1,
+			responsivePriority: 2
+		},
+		{
+			targets: 2,
+			responsivePriority: 3
+		}]		
 	});
+	new $.fn.dataTable.FixedHeader( table );
 }
 
 function initTooltip(){

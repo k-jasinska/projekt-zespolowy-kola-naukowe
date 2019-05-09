@@ -188,27 +188,6 @@ input:-webkit-autofill {
 	opacity: 1!important;
 }
 
-.loader {
-	border: 5px solid #f3f3f3;
-	border-radius: 50%;
-	border-top: 5px solid #3498db;
-	width: 30px;
-	height: 30px;
-	-webkit-animation: spin 2s linear infinite; /* Safari */
-	animation: spin 2s linear infinite;
- }
-
- /* Safari */
-@-webkit-keyframes spin {
-	0% { -webkit-transform: rotate(0deg); }
-	100% { -webkit-transform: rotate(360deg); }
- }
- 
- @keyframes spin {
-	0% { transform: rotate(0deg); }
-	100% { transform: rotate(360deg); }
- }
-
 div.dataTables_wrapper {
 	margin: 0 auto;
 }
@@ -219,9 +198,6 @@ th, td {
 }
 
 td{
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
 	cursor: context-menu;
 }
 
@@ -233,20 +209,6 @@ thead th{
 	border-bottom: solid 1px rgb(110, 156, 58)!important;
 }
 
-.th-1{
-	width: 152px!important;
-	max-width: 152px!important;
-}
-
-.th-3{
-	width: 85px!important;
-	max-width: 85px!important;
-}
-
-tr{
-	width: 100%;
-}
-
 .table-contener-received{
 	width: 100%;
 }
@@ -256,14 +218,9 @@ tr{
 	margin: 20px 30px;
 }
 
-#received-messages_info{
-	color: rgb(212, 211, 211);
-}
-
 table{
 	width: 100%!important;
 	border: none!important;
-	table-layout: fixed;
 }
 
 .page-link{
@@ -332,4 +289,21 @@ option{
 .arrow-received{
 	padding-top: 20px;
 	padding-left: 16px;
+}
+
+.arrow-received i{
+	cursor: pointer;
+}
+
+/*fragment jquery data table*/
+#received-messages_info{
+	color: rgb(212, 211, 211)!important;
+}
+
+.show-col{
+	cursor: pointer;
+}
+
+.no-max-width{
+	max-width: none!important;
 }

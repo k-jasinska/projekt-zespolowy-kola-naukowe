@@ -21,8 +21,8 @@
 				$data = new stdClass();
 				$date = explode("-", $row['date']);
 				$day = explode(" ", $date[2])[0];
-				$data->table = "<tr id='msg-$row[id_message]'><td class='th-1' data-toggle='tooltip' title='$row[nick]'>$row[nick]</td><td class='th-3'>
-				$day.$date[1].$date[0]</td><td class='th-2' data-toggle='tooltip' title='$row[title]'>$row[title]</td></tr>";
+				$data->table = "<tr id='msg-$row[id_message]'><td class='td-sender'>$row[nick]</td><td>$day.$date[1].$date[0]
+				</td><td data-toggle='tooltip' title='$row[title]'>$row[title]</td><td class='show-col'><i class='fas fa-arrow-circle-right'></i></td></tr>";
 				foreach($row as $key=>$val)
 					$data->data[$key] = $val;
 				array_push($messages, $data);

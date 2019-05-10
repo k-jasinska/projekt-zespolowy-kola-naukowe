@@ -11,17 +11,21 @@
         $output .='
         <div class="mt-3 p-3 rounded section_divider">
             <h5 class="col-md-12">Członkowie</h5>
-         </div>';
+         </div>
+         <div class="event mt-3 p-3 article rounded">';
     
         while($row = mysqli_fetch_array($result))
         {
             $output .= '
-            <div class="event mt-3 p-3 article rounded">
-                <div>
-                    <h6>'.$row["name"].' '.$row["surname"].'</h6>
+            <div class="row members">
+                 <div class="col-md-6">
+                 <div>'.$row["name"].' '.$row["surname"].' </div>
                 </div>
+                <div class="col-md-3">'.$row["email"].' </div>
+                <div class="col-md-3"> '.$row["nick"].'</div>
             </div>';
         }
+        $output .= '</div>';
       echo $output;
     
     }

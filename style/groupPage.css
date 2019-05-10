@@ -56,17 +56,17 @@ h6 {
 
 /* opcje */
 .choose {
-	margin-top: 20px;
+	margin-top: 90px;
 }
 
-.choose a {
+.choose>* {
 	background-color: rgb(148, 21, 80);
 	border: 1px solid rgb(109, 16, 59);
 }
 
-.choose a:hover,
-.choose a:focus,
-.choose a:active {
+.choose>:hover,
+.choose>:focus,
+.choose>:active {
 	background-color: rgb(109, 16, 59) !important;
 	border: 1px solid rgb(109, 16, 59) !important;
 	outline: none;
@@ -194,6 +194,36 @@ aside.show {
 	left: 0;
 }
 
+.members {
+	line-height: 50px;
+	text-align: center;
+	border-bottom: solid 1px rgb(110, 156, 58);
+}
+
+.members>div:first-child {
+	text-transform: uppercase;
+}
+
+.members:nth-of-type(even) {
+	background-color: rgb(31, 31, 31);
+}
+
+[type="date"] {
+	background-image: url(../img/calendar.svg);
+	background-size: 5%;
+	background-position: 97% 50%;
+	background-repeat: no-repeat;
+}
+
+[type="date"]::-webkit-inner-spin-button {
+	display: none;
+}
+
+[type="date"]::-webkit-calendar-picker-indicator {
+	opacity: 0;
+	width: 5%;
+}
+
 @media(max-width: 786px) {
 	.wrapper1 {
 		margin: 57px 0 0 0;
@@ -202,6 +232,11 @@ aside.show {
 
 	.wrapper1.show {
 		margin-left: 0;
+	}
+
+	.eve {
+		display: block;
+		width: 100%;
 	}
 }
 

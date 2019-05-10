@@ -10,10 +10,10 @@
                 $reaction=$row2["id_member"];
                 if($reaction){
                   echo '
-                  <a  href="#" onClick=clickEl("posts") class="btn btn-primary eve ">Posty</a>
-                  <a  href="#" onClick=clickEl("events") class="btn btn-primary eve">Wydarzenia</a>
-                  <a  href="#" onClick=clickEl("achievements") class="btn btn-primary eve">Osiągnięcia</a>
-                  <a  href="#" onClick=clickEl("members") class="btn btn-primary eve">Członkowie</a>
+                  <a href="#" onClick=clickEl("posts") class="btn btn-primary eve">Posty</a>
+                  <a href="#" onClick=clickEl("events") class="btn btn-primary eve">Wydarzenia</a>
+                  <a href="#" onClick=clickEl("achievements") class="btn btn-primary eve">Osiągnięcia</a>
+                  <a href="#" onClick=clickEl("members") class="btn btn-primary eve">Członkowie</a>
                   ';
                 }
                 else{

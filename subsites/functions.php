@@ -339,7 +339,7 @@
 							<a class="nav-link" id="link3" href="#">Spis kół</a>
 						</li>
 										<li class="nav-item">
-							<a class="nav-link" href="#">Moje Koła</a>
+							<a class="nav-link" href="groupPage.php">Moje Koła</a>
 						</li>
 										<li class="nav-item">
 							<a class="nav-link" href="messages.php">Wiadomości</a>

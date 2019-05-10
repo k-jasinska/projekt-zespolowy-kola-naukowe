@@ -13,17 +13,3 @@ function joinToGroup(id_group, id_user) {
         }
     });
 }
-
-$(document).ready(function () {
-    $('.eve').click(function () {
-        var page = $(this).attr('href');
-        $('#showContent').load('groupContent/' + page + '.php');
-        return false;
-    });
-});
-
-// function clickEl() {
-//     $('#showContent').load('groupContent/posts.php');
-//     // $('#showContent').load('groupContent/' + href + '.php');
-//     return false;
-// }

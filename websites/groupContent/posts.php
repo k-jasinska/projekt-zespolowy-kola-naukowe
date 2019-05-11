@@ -5,14 +5,19 @@
     mysqli_set_charset ($link , "utf8" );
     if(checkIfLogged()){
         $user_id=getIdOfUser();
+
+        $query5 ="SELECT id_coordinator FROM groups WHERE id_group = '".$_COOKIE["id_grupy"]."';";
+        $result5 = mysqli_query($link, $query5);
+        $id_coordinator = mysqli_fetch_array($result5);
+
         $query = "SELECT * FROM posts WHERE id_group = '".$_COOKIE["id_grupy"]."' order by posts.date desc";
         $output ='';
         $result = mysqli_query($link, $query);
         $output .='
-        <div class="bg-dark mt-3 p-3 rounded section_divider">
+        <div class="mt-3 p-3 rounded section_divider">
         <div class="row">
-            <h5 class="col-md-6">Posty</h5>
-            <div class="col-md-6 text-right"><i class="fas fa-plus" name="add" id="add" data-toggle="modal" data-target="#postModal"></i></div>
+            <h5 class="col-6">Posty</h5>
+            <div class="col-6 text-right"><i class="fas fa-plus" name="add" id="add" data-toggle="modal" data-target="#postModal"></i></div>
             </div>
          </div>';
     
@@ -22,7 +27,7 @@
             $result1 = mysqli_query($link, $query1);
             $row1 = mysqli_fetch_array($result1);
     
-            $query2 = "SELECT id_reaction_type FROM reactions WHERE id_user = '".$row["id_user"]."' and id_post= '".$row["id_post"]."';";
+            $query2 = "SELECT id_reaction_type FROM reactions WHERE id_user = '".$user_id."' and id_post= '".$row["id_post"]."';";
             $result2 = mysqli_query($link, $query2);
             $row2 = mysqli_fetch_array($result2);
                 $reaction=$row2["id_reaction_type"];
@@ -32,9 +37,14 @@
                 <div class="col-md-6">
                     <h6>'.$row["title"].' </h6>
                 </div>
-                <div class="col-md-6 text-md-right about-article">
-                    <div class="float-md-right float-left mx-1" onClick=deletePost('.$row["id_post"].')><i class="far fa-trash-alt "></i></div>
-                    <div class="float-md-right float-left mx-1"><i class="fas fa-pencil-alt"></i></div>
+                <div class="col-md-6 text-md-right about-article">';
+
+                if($user_id==$row["id_user"] || $user_id==$id_coordinator["id_coordinator"]){
+                    $output .= '<div class="float-md-right float-left mx-1" onClick=deletePost('.$row["id_post"].')><i class="far fa-trash-alt "></i></div>
+                    <div class="float-md-right float-left mx-1"><i class="fas fa-pencil-alt"></i></div>';
+                }
+                
+                $output .= '
                     <div class="float-md-right float-left mx-1"><i class="far fa-calendar-alt"></i> ' .$row["date"].'</div>
                     <div class="float-md-right float-left mx-1"><i class="far fa-user"></i> ' .$row1["nick"].'</div>
                     <div class="float-md-none"></div>

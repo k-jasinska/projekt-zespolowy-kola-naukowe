@@ -5,11 +5,16 @@
     mysqli_set_charset ($link , "utf8" );
     if(checkIfLogged()){
         $user_id=getIdOfUser();
-        $query = "SELECT * FROM events join group_events on(group_events.id_event=events.id_event) WHERE id_group = '".$_COOKIE["id_grupy"]."'";
+
+        $query5 ="SELECT id_coordinator FROM groups WHERE id_group = '".$_COOKIE["id_grupy"]."';";
+        $result5 = mysqli_query($link, $query5);
+        $id_coordinator = mysqli_fetch_array($result5);
+
+        $query = "SELECT * FROM events join group_events on(group_events.id_event=events.id_event) WHERE id_group = '".$_COOKIE["id_grupy"]."' order by date desc;";
         $output ='';
         $result = mysqli_query($link, $query);
         $output .='
-        <div class="bg-dark mt-3 p-3 rounded section_divider">
+        <div class=" mt-3 p-3 rounded section_divider">
         <div class="row">
             <h5 class="col-6">Wydarzenia</h5>
             <div class="col-6 text-right"><i class="fas fa-plus" data-toggle="modal" data-target="#modalEvent"></i></div>
@@ -22,7 +27,7 @@
         $result1 = mysqli_query($link, $query1);
         $row1 = mysqli_fetch_array($result1);
 
-        $query2 = "SELECT id_reaction_type FROM reactions WHERE id_user = '".$row["id_owner"]."' and id_event= '".$row["id_event"]."';";
+        $query2 = "SELECT id_reaction_type FROM reactions WHERE id_user = '".$user_id."' and id_event= '".$row["id_event"]."';";
         $result2 = mysqli_query($link, $query2);
         $row2 = mysqli_fetch_array($result2);
             $reaction=$row2["id_reaction_type"];
@@ -32,9 +37,14 @@
             <div class="col-md-6">
                 <h6>'.$row["title"].'</h6>
             </div>
-            <div class="col-md-6 text-md-right about-article">
-                <div class="float-md-right float-left mx-1" onClick=deleteEvent('.$row["id_event"].')><i class="far fa-trash-alt"></i></div>
-                <div class="float-md-right float-left mx-1"><i class="fas fa-pencil-alt"></i></div>
+            <div class="col-md-6 text-md-right about-article">';
+
+            if($user_id==$row["id_owner"] || $user_id==$id_coordinator["id_coordinator"]){
+                $output .= '<div class="float-md-right float-left mx-1" onClick=deleteEvent('.$row["id_event"].')><i class="far fa-trash-alt"></i></div>
+                <div class="float-md-right float-left mx-1"><i class="fas fa-pencil-alt"></i></div>';
+            }
+            
+            $output .= '
                 <div class="float-md-right float-left mx-1"><i class="far fa-calendar-alt"></i>  ' .$row["date"].' </div>
                 <div class="float-md-right float-left mx-1"><i class="far fa-user"></i>  ' .$row1["nick"].'</div>
                 <div class="float-md-none"></div>
@@ -60,7 +70,7 @@
   echo $output;
     }
     else{
-        echo "<br>Musisz być zalogowany, aby widzieć posty!";
+        echo "<br>Musisz być zalogowany, aby widzieć wydarzenia!";
     }
  }
  else{

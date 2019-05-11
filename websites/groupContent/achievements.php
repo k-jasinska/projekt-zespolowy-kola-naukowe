@@ -4,15 +4,23 @@
     $link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
     mysqli_set_charset ($link , "utf8" );
     if(checkIfLogged()){
-        $query = "SELECT * FROM group_achievements WHERE id_group = '".$_COOKIE["id_grupy"]."' order by id_group_achievement desc;";
+        $user_id=getIdOfUser();
+
+        $query5 ="SELECT id_coordinator FROM groups WHERE id_group = '".$_COOKIE["id_grupy"]."';";
+        $result5 = mysqli_query($link, $query5);
+        $id_coordinator = mysqli_fetch_array($result5);
+
+    $query = "SELECT * FROM group_achievements WHERE id_group = '".$_COOKIE["id_grupy"]."' order by id_group_achievement desc;";
     $output ='';
     $result = mysqli_query($link, $query);
     $output .='
-    <div class="bg-dark mt-3 p-3 rounded section_divider">
+    <div class="mt-3 p-3 rounded section_divider">
     <div class="row">
-         <h5 class="col-6">Osiągnięcia</h5>
-         <div class="col-6 text-right"><i class="fas fa-plus" data-toggle="modal" data-target="#modalAchievements"></i></div>
-         </div>
+         <h5 class="col-6">Osiągnięcia</h5>';
+            if($user_id==$id_coordinator["id_coordinator"]){
+                $output .= '<div class="col-6 text-right"><i class="fas fa-plus" data-toggle="modal" data-target="#modalAchievements"></i></div>';
+            }
+            $output .= '</div>
      </div>';
 
     while($row = mysqli_fetch_array($result))
@@ -23,10 +31,15 @@
                 <div class="col-sm-10">
                     <h6>'.$row["name"].'</h6>
                 </div>
-                <div class="col-sm-2 text-sm-right about-article">
-                    <div class="float-md-right float-left mx-1" onClick=deleteAchievement('.$row['id_group_achievement'].',"'. $row['image'].'")><i class="far fa-trash-alt"></i></div>
-                    <div class="float-md-right float-left mx-1"><i class="fas fa-pencil-alt"></i></div>
-                    <div class="float-md-none"></div>
+                <div class="col-sm-2 text-sm-right about-article">';
+
+            if($user_id==$id_coordinator["id_coordinator"]){
+                $output .= '<div class="float-md-right float-left mx-1" onClick=deleteAchievement('.$row['id_group_achievement'].',"'. $row['image'].'")><i class="far fa-trash-alt"></i></div>
+                <div class="float-md-right float-left mx-1"><i class="fas fa-pencil-alt"></i></div>
+                <div class="float-md-none"></div>';
+            }
+            
+            $output .= '
                 </div>
             </div>
 

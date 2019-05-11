@@ -1,13 +1,14 @@
 <?php
     include('../subsites/functions.php');
     noCache();
-    $logged = checkIfLogged();
-    if(isset($_GET['logout']) && $logged){
-        logout();
+	$logged = checkIfLogged();
+    if(!$logged){
+        header("location: index.php");
     }
 	if($logged){
 		keepSession();
-    }
+	}
+	setcookie("id_grupy",'',time() - 4200,'/');
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +27,8 @@
         type="text/css" media="all">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <link rel="stylesheet" href="../style/modal.css">
-    <link rel="stylesheet" href="../style/groupPage.css">
+	<link rel="stylesheet" href="../style/groupPage.css">
+	<link rel="stylesheet" href="../style/scrollBar.css">
     <title>Koła naukowe</title>
 </head>
 
@@ -39,7 +41,7 @@
     <!-- sidenav -->
     <div class="wrapper1 active show">
         <div class="burger">
-            <i class="fas fa-arrow-right visible  active"></i>
+            <i class="fas fa-arrow-right visible active"></i>
             <i class="fas fa-arrow-left visible show active"></i>
         </div>
 
@@ -52,9 +54,23 @@
 
 						$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
 						mysqli_set_charset ($link , "utf8" );
-
-						$q=mysqli_query($link, "Select * from groups");
+						$accountType=getUserType();
+						$user_id=getIdOfUser();
+						
+						if($accountType == AccountTypes::AccountTypes["Opiekun"]){
+							$q=mysqli_query($link, "Select * from groups where id_coordinator='".$user_id."';");
+						}
+						else if($accountType == AccountTypes::AccountTypes["Uzytkownik"]){
+							$q=mysqli_query($link, "Select * from groups");
+						}
+						
+						$i=1;
 						while($tabl=mysqli_fetch_assoc($q)){
+							if($i==1){
+								setcookie("id_grupy", $tabl['id_group'], time() + (86400 * 30), "/");
+								$firstGroup=$tabl['id_group'];
+								$i=2;
+							}
 						$tabl['id_group']=htmlspecialchars($tabl['id_group']);
 						$tabl['name']=htmlspecialchars($tabl['name']);
 						$tabl['id_coordinator']=htmlspecialchars($tabl['id_coordinator']);
@@ -69,21 +85,20 @@
 
     <div class="wrapper1 active show">
         <div class="container ">
-            <div class="btn-group btn-group-justified choose">
-                <a href="posts" class="btn btn-primary">Posty</a>
-                <a href="events" class="btn btn-primary">Wydarzenia</a>
-                <a href="achievements" class="btn btn-primary">Osiągnięcia</a>
+            <div class="choose">
             </div>
         </div> 
 	<script src="../scripts/groupPage/fillContent.js"></script>
 		  <div class="container" id="showContent">
+			  
       <?php
-        if(isset($_COOKIE["id_grupy"])){
+         if(isset($_COOKIE["id_grupy"]) && $firstGroup==$_COOKIE["id_grupy"]){
 			echo '
 			<script>
-			fillDescription('.$_COOKIE["id_grupy"].');</script>
+			fillDescription('.$_COOKIE["id_grupy"].');
+			</script>
 			';
-		}
+		 }
       ?>
       </div>
 	</div>
@@ -181,10 +196,17 @@
     </div>
   </div>
 
+ <script>
+	function clickEl(href) {
+		$('#showContent').load('groupContent/' + href + '.php');
+		return false;
+	}
+</script> 
+    <script src="../scripts/openWebsite.js"></script>
     <script src="../scripts/groupPage/deleteElement.js"></script>
-	<!-- <script src="../scripts/groupPage/fillContent.js"></script> -->
     <script src="../scripts/groupPage/addElement.js"></script>
     <script src="../scripts/groupPage/addReaction.js"></script>
+    <script src="../scripts/groupPage/joinToGroup.js"></script>
     <script src="../scripts/groupPage/filterGroups.js"></script>
     <script src="../scripts/hideNavbar.js"></script>
 

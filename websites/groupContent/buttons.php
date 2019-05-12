@@ -4,11 +4,12 @@
                 $link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
                 mysqli_set_charset ($link , "utf8" );
 
+                $accountType = getUserType();
                 $user_id=getIdOfUser();
                 $q=mysqli_query($link, "Select * from member where id_user='".$user_id."' and id_group='".$_COOKIE["id_grupy"]."';");
                 $row2 = mysqli_fetch_array($q);
                 $reaction=$row2["id_member"];
-                if($reaction){
+                if($reaction || $accountType == AccountTypes::AccountTypes["Opiekun"]){
                   echo '
                   <a href="#" onClick=clickEl("posts") class="btn btn-primary eve">Posty</a>
                   <a href="#" onClick=clickEl("events") class="btn btn-primary eve">Wydarzenia</a>

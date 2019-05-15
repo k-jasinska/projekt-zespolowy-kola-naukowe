@@ -5,7 +5,7 @@
 if(!empty($_POST['id_member_right']))
 {
     $id_member_right = $_POST['id_member_right'];
-    mysqli_query($link, "update member_rights set id_right=2 where id_member_right='.$id_member_right.';");
+    mysqli_query($link, "update member_rights set id_right=2 where id_member_right=".$id_member_right.";");
 }
 else{
     header("Location: index.php");

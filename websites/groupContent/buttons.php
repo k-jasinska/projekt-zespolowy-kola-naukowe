@@ -6,7 +6,7 @@
 
                 $accountType = getUserType();
                 $user_id=getIdOfUser();
-                $q=mysqli_query($link, "Select * from member where id_user='".$user_id."' and id_group='".$_COOKIE["id_grupy"]."';");
+                $q=mysqli_query($link, "Select * from member join member_rights on(member.id_member=member_rights.id_member) where id_user='".$user_id."' and id_group='".$_COOKIE["id_grupy"]."';");
                 $row2 = mysqli_fetch_array($q);
                 $reaction=$row2["id_member"];
                 if($reaction || $accountType == AccountTypes::AccountTypes["Opiekun"]){
@@ -15,6 +15,7 @@
                   <a href="#" onClick=clickEl("events") class="btn btn-primary eve">Wydarzenia</a>
                   <a href="#" onClick=clickEl("achievements") class="btn btn-primary eve">Osiągnięcia</a>
                   <a href="#" onClick=clickEl("members") class="btn btn-primary eve">Członkowie</a>
+                  <a href="#" onClick=deletePerson('.$reaction.','.$row2["id_member_right"].') class="btn btn-primary eve" style="float:right;">Opuść grupe</a>
                   ';
                 }
                 else{

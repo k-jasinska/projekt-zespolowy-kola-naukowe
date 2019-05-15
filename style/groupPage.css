@@ -258,6 +258,32 @@ table {
 	border: none !important;
 }
 
+.page-link {
+	background-color: rgb(37, 37, 37) !important;
+	color: white !important;
+	border: 2px rgb(148, 21, 80) solid !important;
+	border-radius: 0 !important;
+}
+
+.paginate_button:hover {
+	background: none !important;
+}
+
+.paginate_button:hover .page-link {
+	background-color: rgb(116, 16, 63) !important;
+	border-color: rgb(116, 16, 63) !important;
+
+}
+
+select {
+	color: rgb(212, 211, 211) !important;
+}
+
+option {
+	color: rgb(212, 211, 211) !important;
+	background-color: rgb(37, 37, 37) !important;
+}
+
 @media(max-width: 786px) {
 	.wrapper1 {
 		margin: 57px 0 0 0;

@@ -46,7 +46,7 @@
                 $output .= '<td></td> <td><i class="fas fa-user-check"  onClick=acceptPerson('.$row["id_member_right"].')></i>  <i class="fas fa-user-times delet" onClick=deletePerson('.$row["id_member"].','.$row["id_member_right"].')></i></td></tr>';
             }
             if($row["id_right"]==2){
-                $output .= '<td><input type="button" name="log" id="$row[id_user]" value=" Dodaj " class="btn btn-primary addAchievement"/></td> <td><i class="fas fa-trash-alt delet" onClick=deletePerson('.$row["id_member"].','.$row["id_member_right"].')></i></td></tr>';
+                $output .= '<td><input type="button" name="log" value=" Dodaj " onClick=addUserAchiev('.$row["id_member"].') class="btn btn-primary addAchievement"/></td> <td><i class="fas fa-trash-alt delet" onClick=deletePerson('.$row["id_member"].','.$row["id_member_right"].')></i></td></tr>';
             }
         }
       }
@@ -54,7 +54,17 @@
       $output .= '
       </tbody>
       </table>';
-        $output .= '</div>';
+        $output .= '</div>
+        
+        
+        
+        <script>
+        $(document).ready(function() {
+            $("#table").DataTable( {
+                responsive: true,
+        });
+        });
+        </script>';
       echo $output;
     
     }

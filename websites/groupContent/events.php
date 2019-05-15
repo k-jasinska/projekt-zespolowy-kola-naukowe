@@ -6,11 +6,11 @@
     if(checkIfLogged()){
         $accountType = getUserType();
         $user_id=getIdOfUser();
-        $q ="SELECT id_right FROM member_rights join member on member_rights.id_member=member.id_member WHERE member.id_user = '".$user_id."' and member.id_group='".$_COOKIE["id_grupy"]."';";
+        $q ="SELECT id_right FROM member_rights join member on member_rights.id_member=member.id_member WHERE member.id_user = $user_id and member.id_group=".$_COOKIE['id_grupy'].";";
         $res = mysqli_query($link, $q);
         $id_right = mysqli_fetch_array($res);
 
-        if($id_right==2 || $accountType == AccountTypes::AccountTypes["Opiekun"]){
+        if(($id_right['id_right']==2) || ($accountType == AccountTypes::AccountTypes["Opiekun"])){
             $query5 ="SELECT id_coordinator FROM groups WHERE id_group = '".$_COOKIE["id_grupy"]."';";
             $result5 = mysqli_query($link, $query5);
             $id_coordinator = mysqli_fetch_array($result5);

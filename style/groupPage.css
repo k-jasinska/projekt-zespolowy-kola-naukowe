@@ -59,14 +59,18 @@ h6 {
 	margin-top: 90px;
 }
 
-.choose>* {
+.choose>*,
+.addAchievement {
 	background-color: rgb(148, 21, 80);
 	border: 1px solid rgb(109, 16, 59);
 }
 
 .choose>:hover,
+.addAchievement:hover,
 .choose>:focus,
-.choose>:active {
+.addAchievement:focus,
+.choose>:active,
+.addAchievement:active {
 	background-color: rgb(109, 16, 59) !important;
 	border: 1px solid rgb(109, 16, 59) !important;
 	outline: none;
@@ -222,6 +226,62 @@ aside.show {
 [type="date"]::-webkit-calendar-picker-indicator {
 	opacity: 0;
 	width: 5%;
+}
+
+/* lista osob */
+th,
+td {
+	background-color: rgb(37, 37, 37);
+	color: #e6e6e6;
+	border: none !important;
+}
+
+td {
+	cursor: context-menu;
+}
+
+tbody td {
+	border-bottom: solid 1px rgb(110, 156, 58) !important;
+}
+
+thead th {
+	border-bottom: solid 1px rgb(110, 156, 58) !important;
+}
+
+.msg-contener {
+	padding-top: 1rem;
+	margin: 20px 30px;
+}
+
+table {
+	width: 100% !important;
+	border: none !important;
+}
+
+.page-link {
+	background-color: rgb(37, 37, 37) !important;
+	color: white !important;
+	border: 2px rgb(148, 21, 80) solid !important;
+	border-radius: 0 !important;
+}
+
+.paginate_button:hover {
+	background: none !important;
+}
+
+.paginate_button:hover .page-link {
+	background-color: rgb(116, 16, 63) !important;
+	border-color: rgb(116, 16, 63) !important;
+
+}
+
+select {
+	color: rgb(212, 211, 211) !important;
+}
+
+option {
+	color: rgb(212, 211, 211) !important;
+	background-color: rgb(37, 37, 37) !important;
 }
 
 @media(max-width: 786px) {

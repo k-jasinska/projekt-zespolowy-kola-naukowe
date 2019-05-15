@@ -2,6 +2,10 @@
      cursor: pointer;
  }
 
+ i {
+     display: inline-block;
+ }
+
  i.fa-thumbs-up:hover,
  i.upClicked {
      color: rgb(110, 156, 58);
@@ -19,5 +23,12 @@
  i.fa-plus {
      color: rgb(110, 156, 58);
      font-size: 24px;
-     cursor: pointer;
+ }
+
+ i.fa-user-check {
+     color: rgb(110, 156, 58);
+ }
+
+ i.fa-user-times {
+     color: brown;
  }

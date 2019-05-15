@@ -8,7 +8,8 @@
 	if($logged){
 		keepSession();
 	}
-	setcookie("id_grupy",'',time() - 4200,'/');
+	$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
+	mysqli_set_charset ($link , "utf8" );
 ?>
 
 <!DOCTYPE html>
@@ -29,15 +30,25 @@
     <link rel="stylesheet" href="../style/modal.css">
 	<link rel="stylesheet" href="../style/groupPage.css">
 	<link rel="stylesheet" href="../style/scrollBar.css">
+
+	 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.5/css/fixedHeader.bootstrap.min.css">
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
+	<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+
     <title>Koła naukowe</title>
 </head>
 
 <body>
 	<!-- navbar -->
-    <?php
-        menu($logged);
-	?>
-	
+<?php
+menu($logged);
+?>
     <!-- sidenav -->
     <div class="wrapper1 active show">
         <div class="burger">
@@ -51,9 +62,6 @@
                 <input type="text" id="searchInput" class="form-control fas" placeholder="&#xf002"/>
                 <ul class="menu__level" id="groupList">
 					<?php
-
-						$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
-						mysqli_set_charset ($link , "utf8" );
 						$accountType=getUserType();
 						$user_id=getIdOfUser();
 						
@@ -64,13 +72,7 @@
 							$q=mysqli_query($link, "Select * from groups");
 						}
 						
-						$i=1;
 						while($tabl=mysqli_fetch_assoc($q)){
-							if($i==1){
-								setcookie("id_grupy", $tabl['id_group'], time() + (86400 * 30), "/");
-								$firstGroup=$tabl['id_group'];
-								$i=2;
-							}
 						$tabl['id_group']=htmlspecialchars($tabl['id_group']);
 						$tabl['name']=htmlspecialchars($tabl['name']);
 						$tabl['id_coordinator']=htmlspecialchars($tabl['id_coordinator']);
@@ -92,7 +94,7 @@
 		  <div class="container" id="showContent">
 			  
       <?php
-         if(isset($_COOKIE["id_grupy"]) && $firstGroup==$_COOKIE["id_grupy"]){
+		if(isset($_COOKIE["id_grupy"])){
 			echo '
 			<script>
 			fillDescription('.$_COOKIE["id_grupy"].');
@@ -164,7 +166,7 @@
     </div>
   </div>
 
-    <!-- modal add osiagniecie-->
+    <!-- modal add wydarzenie-->
 <div class="modal fade" id="modalEvent">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -185,7 +187,7 @@
                 </div>
                  <div class="form-group">
                     <label for="event_dates">Wybierz datę wydarzenia</label>
-                    <input type="date" name="event_date" id="event_date">
+                    <input class="form-control" type="date" name="event_date" id="event_date">
                 </div> 
                 <div id="errE"></div>
               <input type="submit" name="insert" value="Dodaj" class="btn btn-success" />
@@ -196,12 +198,62 @@
     </div>
   </div>
 
+    <!-- modal add achievement to user-->
+    <div class="modal fade" id="modalUserAchievement">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+        <h4 class="modal-title">Dodaj osiągnięcie</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body" id="details">
+
+        </div>
+        <div id="errUA"></div>
+        <div class="modal-footer">
+                <input type="submit" name="insert" value="Dodaj" class="btn btn-success" />
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!-- view details -->
+<script>
+
+  function addUserAchiev(id_member) {
+  $.ajax({
+   url:"../subsites/groupPage/userAchievements.php",
+   method:"POST",
+   data:{id_member:id_member},
+   success:function(data){
+    $('#details').html(data);
+    $('#modalUserAchievement').modal('show');
+   },
+   error : function() {
+    throw "Nie udało się wysłać danych!";
+    }
+  });
+ };
+ </script>
+
+
+
  <script>
 	function clickEl(href) {
 		$('#showContent').load('groupContent/' + href + '.php');
 		return false;
 	}
 </script> 
+	<script>
+$(document).ready(function() {
+    $('#table').DataTable( {
+        responsive: true,
+});
+});
+</script>
     <script src="../scripts/openWebsite.js"></script>
     <script src="../scripts/groupPage/deleteElement.js"></script>
     <script src="../scripts/groupPage/addElement.js"></script>

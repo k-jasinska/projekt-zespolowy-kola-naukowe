@@ -123,6 +123,7 @@
 			false,
 			true
 		);
+		setcookie("id_grupy",'',time() - 4200,'/');
 	}
 
 	function getEmailOfUser(){

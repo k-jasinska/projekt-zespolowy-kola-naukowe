@@ -217,13 +217,13 @@ thead th{
 	border-bottom: solid 1px rgb(110, 156, 58)!important;
 }
 
-.table-contener-received{
+.table-container-received{
 	width: 100%;
 }
 
-.msg-contener{
+.msg-container{
 	padding-top: 1rem;
-	margin: 20px 30px;
+	margin: 0px 30px;
 }
 
 table{
@@ -272,21 +272,29 @@ option{
 	float: right;
 }
 
-.msg-title{
+.msg-title,
+.sent-title
+{
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
-.msg-message{
+.msg-message,
+.sent-message
+{
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
-.msg-show{
+.msg-show,
+.sent-show
+{
 	padding-bottom: 20px;
 }
 
-.msg-show div{
+.msg-show div,
+.sent-show div
+{
 	border: none!important;
 }
 
@@ -294,17 +302,20 @@ option{
 	font-size: 50%!important;
 }
 
-.arrow-received{
+.arrow-received,
+.arrow-sent{
 	padding-top: 20px;
 	padding-left: 16px;
 }
 
-.arrow-received i{
+.arrow-received i,
+.arrow-sent i
+{
 	cursor: pointer;
 }
 
 /*fragment jquery data table*/
-#received-messages_info{
+.dataTables_info{
 	color: rgb(212, 211, 211)!important;
 }
 

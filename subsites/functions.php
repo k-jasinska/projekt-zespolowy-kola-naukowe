@@ -229,11 +229,10 @@
 					if(mysqli_stmt_fetch($stmt)){
 						mysqli_stmt_close($stmt);
 						foreach($allowedTypes as $type){
-							echo($type);
 							if($type == $id_type){
 								return true;
 							}
-						}					
+						}
 					}
 					mysqli_stmt_close($stmt);
 				} else {
@@ -304,13 +303,13 @@
 						<li class="nav-item">
 							<a class="nav-link" id="link3" href="#">Spis kół</a>
 						</li>
-										<li class="nav-item">
+						<li class="nav-item">
 							<a class="nav-link" href="groupPage.php">Moje Koła</a>
 						</li>
-										<li class="nav-item">
+						<li class="nav-item">
 							<a class="nav-link" href="messages.php">Wiadomości</a>
 						</li>
-										<li class="nav-item">
+						<li class="nav-item">
 							<a class="nav-link" href="#">Moje konto</a>
 						</li>
 						<li class="nav-item">
@@ -339,17 +338,52 @@
 						<li class="nav-item">
 							<a class="nav-link" id="link3" href="#">Spis kół</a>
 						</li>
-										<li class="nav-item">
+						<li class="nav-item">
 							<a class="nav-link" href="groupPage.php">Moje Koła</a>
 						</li>
-										<li class="nav-item">
+						<li class="nav-item">
 							<a class="nav-link" href="messages.php">Wiadomości</a>
 						</li>
-										<li class="nav-item">
+						<li class="nav-item">
 							<a class="nav-link" href="#">Moje konto</a>
 						</li>
-										<li class="nav-item">
+						<li class="nav-item">
 							<a class="nav-link" href="#">Utwórz koło</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="link4" href="#">Kontakt</a>
+						</li>
+						<li class="nav-item">
+								<a class="nav-link" href="index.php?logout">Wyloguj <i class="fas fa-sign-in-alt"></i></a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		<?php
+		} else if($accountType == AccountTypes::AccountTypes["Uczelnia"]){
+			?>
+			<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+				<a class="navbar-brand" href="#"><i class="fas fa-user-graduate"></i> LOGO</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+					aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavDropdown">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+							<a class="nav-link" id="link2" href="#">Działalność</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="link3" href="#">Spis kół</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="groupsStatistics.php">Statystyki</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="messages.php">Wiadomości</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Moje konto</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" id="link4" href="#">Kontakt</a>

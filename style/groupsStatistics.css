@@ -1,0 +1,152 @@
+body,
+* {
+	margin: 0;
+	padding: 0;
+	color: rgb(212, 211, 211);
+	font-family: "Releway", Helvetica, sans-serif;
+}
+
+body {
+	background-color: rgb(20, 20, 20);
+}
+
+.row {
+	margin: 0 0;
+}
+
+p {
+	padding-bottom: 10px;
+}
+
+/* NAVBAR */
+.navbar {
+	background-color: rgb(14, 10, 10);
+	font-weight: 400;
+	letter-spacing: 2px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 13px;
+	border-bottom: 1px solid rgb(148, 21, 80);
+}
+
+.dropdown-menu>a:hover {
+	color: rgba(255, 255, 255, 1) !important;
+}
+
+form {
+	padding: 15px;
+}
+
+.form-control {
+	border: none;
+	border-radius: 0px;
+	border-bottom: 1px solid rgb(110, 156, 58);
+	color: #666;
+	background-color: transparent;
+	font-size: 15px;
+	box-sizing: border-box;
+	outline: none;
+}
+
+.form-control:focus {
+	border-bottom: 1px solid rgb(110, 156, 58);
+	background-color: transparent;
+	color: #e6e6e6;
+	outline: none;
+	box-shadow: none;
+}
+
+
+textarea {
+	border: none;
+	background-color: transparent;
+	border-bottom: 1px solid rgb(110, 156, 58);
+}
+
+@-webkit-keyframes autofill {
+	to {
+		color: #666;
+		background: transparent;
+	}
+}
+
+input:-webkit-autofill {
+	-webkit-animation-name: autofill;
+	-webkit-animation-fill-mode: both;
+}
+
+th, td { 
+	background-color: rgb(37, 37, 37);
+	border: none!important;
+}
+
+td{
+	cursor: context-menu;
+}
+
+tbody td{
+	border-bottom: solid 1px rgb(110, 156, 58)!important;
+}
+
+thead th{
+	border-bottom: solid 1px rgb(110, 156, 58)!important;
+}
+
+.table-container{
+  width: 100%;
+	position: relative;
+  top: 70px;
+  margin-top: 30px;
+  padding: 20px 30px;
+}
+
+table{
+	width: 100%!important;
+	border: none!important;
+}
+
+.page-link{
+	background-color: rgb(37, 37, 37)!important;
+	color: white!important;
+	border: 2px rgb(148, 21, 80) solid!important;
+	border-radius: 0!important;
+}
+
+.sorting_1{
+	background-color: rgb(37, 37, 37)!important;
+	color: rgb(148, 21, 80);
+}
+
+.sorting_desc{
+	color: rgb(148, 21, 80);
+}
+
+.sorting_asc{
+	color: rgb(148, 21, 80);
+}
+
+.paginate_button:hover{
+	background: rgb(116, 16, 63)!important;
+}
+
+.paginate_button:hover .page-link{
+	border-color: rgb(116, 16, 63)!important;
+}
+
+select{
+	color: rgb(212, 211, 211)!important;
+}
+
+option{
+	color: rgb(212, 211, 211)!important;
+	background-color: rgb(37, 37, 37)!important;
+}
+
+.dataTables_info{
+	color: rgb(212, 211, 211)!important;
+}
+
+.background{
+	background-color: rgb(37, 37, 37);
+	border-radius: 10px;
+}

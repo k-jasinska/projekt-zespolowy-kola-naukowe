@@ -21,7 +21,7 @@ body {
 	border-bottom: 1px solid rgb(148, 21, 80);
 }
 
-.msg-menu{
+.msg-menu {
 	padding: 1rem;
 	font-weight: 400;
 	letter-spacing: 2px;
@@ -30,38 +30,38 @@ body {
 	font-size: 13px;
 }
 
-.msg-menu-item{
-	border: none!important;
-	padding: 5px 12px;	
+.msg-menu-item {
+	border: none !important;
+	padding: 5px 12px;
 }
 
-.msg-menu-item .nav-link{
+.msg-menu-item .nav-link {
 	color: rgb(180, 180, 180);
 }
 
-.msg-menu-item .nav-link:hover{
+.msg-menu-item .nav-link:hover {
 	color: rgb(255, 255, 255);
 }
 
-.active-msg-menu-item{
-	color: rgb(255, 255, 255)!important;
+.active-msg-menu-item {
+	color: rgb(255, 255, 255) !important;
 }
 
-.content{
+.content {
 	position: relative;
 	top: 70px;
 }
 
-.background{
+.background {
 	background-color: rgb(37, 37, 37);
 	border-radius: 10px;
 }
 
-.search-div{
+.search-div {
 	padding: 1rem;
 }
 
-.list-group-item{
+.list-group-item {
 	border-bottom: 1px solid rgb(110, 156, 58);
 	color: rgb(180, 180, 180);
 	background-color: transparent;
@@ -101,74 +101,75 @@ input:-webkit-autofill {
 	box-shadow: none;
 }
 
-.left-part{
+.left-part {
 	max-width: 475px;
 }
 
-.right-part{
-	max-width: 1010px;;
+.right-part {
+	max-width: 1010px;
+	;
 	height: 100%;
 }
 
-.msg-content{
+.msg-content {
 	margin-top: 1rem;
 }
 
-#msg-form{
+#msg-form {
 	padding: 20px 30px;
 }
 
-@media screen and (max-width: 925px){
-	#nick{
+@media screen and (max-width: 925px) {
+	#nick {
 		max-width: 500px;
 	}
 }
 
-@media screen and (min-width: 925px){
-	#nick{
+@media screen and (min-width: 925px) {
+	#nick {
 		max-width: 50%;
 	}
 }
 
-.checkbox{
+.checkbox {
 	margin-top: 1rem;
 }
 
-.checkbox label{
+.checkbox label {
 	color: rgb(180, 180, 180);
 }
 
-.list-group-item:hover{
+.list-group-item:hover {
 	color: rgb(255, 255, 255);
 	cursor: pointer;
 	border-bottom: 1px solid rgb(148, 21, 80);
 }
 
-.msg-menu-item > .nav-link{
+.msg-menu-item>.nav-link {
 	border-bottom: 1px solid rgb(110, 156, 58);
 }
 
-.msg-menu-item > .nav-link{
+.msg-menu-item>.nav-link {
 	border-bottom: 1px solid rgb(110, 156, 58);
 }
 
-.msg-menu-item > .nav-link:hover{
+.msg-menu-item>.nav-link:hover {
 	border-bottom: 1px solid rgb(148, 21, 80);
 }
 
-@media screen and (max-width: 767px){
-	.left-part{
-		margin-left: auto!important;
-		margin-right: auto!important;
+@media screen and (max-width: 767px) {
+	.left-part {
+		margin-left: auto !important;
+		margin-right: auto !important;
 	}
 }
 
-#peopleList{
+#peopleList {
 	max-height: 470px;
 	overflow: auto;
 }
 
-.sent-error{
+.sent-error {
 	margin-bottom: 30px;
 	background: #bd2130;
 	padding: 5px;
@@ -178,7 +179,7 @@ input:-webkit-autofill {
 	color: white;
 }
 
-.sent-success{
+.sent-success {
 	margin-bottom: 10px;
 	background: #5cb85c;
 	padding: 5px;
@@ -188,130 +189,133 @@ input:-webkit-autofill {
 	color: white;
 }
 
-.close-info{
-	opacity: 0.8!important;
+.close-info {
+	opacity: 0.8 !important;
 }
 
-.close-info:hover{
-	opacity: 1!important;
+.close-info:hover {
+	opacity: 1 !important;
 }
 
 div.dataTables_wrapper {
 	margin: 0 auto;
 }
 
-th, td { 
+th,
+td {
 	background-color: rgb(37, 37, 37);
-	border: none!important;
+	border: none !important;
 }
 
-td{
+td {
 	cursor: context-menu;
 }
 
-tbody td{
-	border-bottom: solid 1px rgb(110, 156, 58)!important;
+tbody td {
+	border-bottom: solid 1px rgb(110, 156, 58) !important;
 }
 
-thead th{
-	border-bottom: solid 1px rgb(110, 156, 58)!important;
+thead th {
+	border-bottom: solid 1px rgb(110, 156, 58) !important;
 }
 
-.table-contener-received{
+.table-contener-received {
 	width: 100%;
 }
 
-.msg-contener{
+.msg-contener {
 	padding-top: 1rem;
 	margin: 20px 30px;
 }
 
-table{
-	width: 100%!important;
-	border: none!important;
+table {
+	width: 100% !important;
+	border: none !important;
 }
 
-.page-link{
-	background-color: rgb(37, 37, 37)!important;
-	color: white!important;
-	border: 2px rgb(148, 21, 80) solid!important;
-	border-radius: 0!important;
+.page-link {
+	background-color: rgb(37, 37, 37) !important;
+	color: white !important;
+	border: 2px rgb(148, 21, 80) solid !important;
+	border-radius: 0 !important;
 }
 
-.sorting_1{
-	background-color: rgb(37, 37, 37)!important;
+.sorting_1 {
+	background-color: rgb(37, 37, 37) !important;
 	color: rgb(148, 21, 80);
 }
 
-.sorting_desc{
+.sorting_desc {
 	color: rgb(148, 21, 80);
 }
 
-.sorting_asc{
+.sorting_asc {
 	color: rgb(148, 21, 80);
 }
 
-.paginate_button:hover{
-	background: rgb(116, 16, 63)!important;
+.paginate_button:hover {
+	background: none !important;
 }
 
-.paginate_button:hover .page-link{
-	border-color: rgb(116, 16, 63)!important;
+.paginate_button:hover .page-link {
+	background-color: rgb(116, 16, 63) !important;
+	border-color: rgb(116, 16, 63) !important;
+
 }
 
-select{
-	color: rgb(212, 211, 211)!important;
+select {
+	color: rgb(212, 211, 211) !important;
 }
 
-option{
-	color: rgb(212, 211, 211)!important;
-	background-color: rgb(37, 37, 37)!important;
+option {
+	color: rgb(212, 211, 211) !important;
+	background-color: rgb(37, 37, 37) !important;
 }
 
-.date-small{
+.date-small {
 	float: right;
 }
 
-.msg-title{
+.msg-title {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
-.msg-message{
+.msg-message {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
-.msg-show{
+.msg-show {
 	padding-bottom: 20px;
 }
 
-.msg-show div{
-	border: none!important;
+.msg-show div {
+	border: none !important;
 }
 
-.date-small{
-	font-size: 50%!important;
+.date-small {
+	font-size: 50% !important;
 }
 
-.arrow-received{
+.arrow-received {
 	padding-top: 20px;
 	padding-left: 16px;
 }
 
-.arrow-received i{
+.arrow-received i {
 	cursor: pointer;
 }
 
 /*fragment jquery data table*/
-#received-messages_info{
-	color: rgb(212, 211, 211)!important;
+#received-messages_info {
+	color: rgb(212, 211, 211) !important;
 }
 
-.show-col{
+.show-col {
 	cursor: pointer;
 }
 
-.no-max-width{
-	max-width: none!important;
+.no-max-width {
+	max-width: none !important;
 }

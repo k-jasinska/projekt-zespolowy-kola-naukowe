@@ -17,7 +17,7 @@
         <div class="mt-3 p-3 rounded section_divider">
             <h5 class="col-md-12">Członkowie</h5>
          </div>
-         <div class="event mt-3 p-3 article rounded">
+         <div class="event mt-3 p-3 article rounded member_table">
          
          <table id="table" class="table table-striped table-bordered nowrap" style="width:100%; background-color:white;">
       <thead>
@@ -61,6 +61,19 @@
         <script>
         $(document).ready(function() {
             $("#table").DataTable( {
+              language:{
+                "lengthMenu": "_MENU_ na stronę",
+                "zeroRecords": "Brak danych",
+                "info": "Strona _PAGE_ z _PAGES_",
+                "infoEmpty": "Brak osób",
+                "infoFiltered": "(odfiltrowano z _MAX_ wszystkich rekordów)",
+                "search": "",
+                "searchPlaceholder": "Szukaj",
+                "paginate": {
+                  "previous": "<i class=\'fa fa-chevron-left\' aria-hidden=\'true\'></i>",
+                  "next": "<i class=\'fa fa-chevron-right\' aria-hidden=\'true\'></i>"
+                }
+              },
                 responsive: true,
         });
         });

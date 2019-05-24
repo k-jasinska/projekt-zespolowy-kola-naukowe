@@ -7,6 +7,14 @@ body {
 	font-family: "Releway", Helvetica, sans-serif;
 }
 
+* {
+	color: #e6e6e6;
+}
+
+#table_info {
+	color: #e6e6e6;
+}
+
 h1,
 h2,
 h3,
@@ -256,6 +264,11 @@ thead th {
 table {
 	width: 100% !important;
 	border: none !important;
+
+}
+
+.member_table>div>div {
+	color: #e6e6e6 !important;
 }
 
 .page-link {

@@ -26,6 +26,7 @@
             sctrollTo(".dzialalnosc", -40);
         });
         $("#link3").click(function (e) {
+            console.log("dziala");
             sctrollTo(".group", -40);
         });
         $("#link4").click(function (e) {

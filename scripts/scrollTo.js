@@ -15,7 +15,7 @@
             return params;
         }
         
-        $_GET = getQueryParams(document.location.search);
+        var $_GET = getQueryParams(document.location.search);
         if($_GET['focus'] !== undefined)
             setTimeout(sctrollTo($_GET["focus"].replace(/HASH/g, "#"), -40), 200);
 

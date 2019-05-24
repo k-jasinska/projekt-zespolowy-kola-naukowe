@@ -7,7 +7,11 @@
     }
 	if($logged){
 		keepSession();
-	}
+    }
+    $access = checkIfUserHasAccess(array(AccountTypes::AccountTypes["Opiekun"], AccountTypes::AccountTypes["Uzytkownik"]));
+	if(!$access){
+        header("location: index.php");
+    }
 	$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
 	mysqli_set_charset ($link , "utf8" );
 ?>

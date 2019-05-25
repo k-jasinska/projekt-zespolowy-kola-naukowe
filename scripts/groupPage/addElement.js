@@ -70,3 +70,51 @@ $(document).ready(function () {
         });
     });
 });
+
+$(document).ready(function () {
+    $('#add_userAchievement').on("submit", function (event) {
+        event.preventDefault();
+        var id_group_ach = $("#addAc").attr("data-value");
+        var id_member = $("#addAc").attr("data-member");
+
+        $.ajax({
+            url: "../subsites/groupPage/addUserAchievement.php",
+            method: "POST",
+            data: {
+                id_group_ach: id_group_ach,
+                id_member: id_member
+            },
+            success: function (data) {
+                var cos = data.substring(0, 4);
+                if (cos == "Błąd") {
+                    $('#errUA').html(data);
+                } else {
+                    $('#add_userAchievement')[0].reset();
+                    $('#modalUserAchievement').modal('hide');
+                    $('#memberInfo').text('Dodano osiągnięcie!');
+                }
+            }
+        });
+    });
+});
+
+
+
+
+
+function addUserAchiev(id_member) {
+    $.ajax({
+        url: "../subsites/groupPage/userAchievementsModal.php",
+        method: "POST",
+        data: {
+            id_member: id_member
+        },
+        success: function (data) {
+            $('#details').html(data);
+            $('#modalUserAchievement').modal('show');
+        },
+        error: function () {
+            throw "Nie udało się wysłać danych!";
+        }
+    });
+};

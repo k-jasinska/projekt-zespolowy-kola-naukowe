@@ -14,9 +14,17 @@
                   <a href="#" onClick=clickEl("posts") class="btn btn-primary eve">Posty</a>
                   <a href="#" onClick=clickEl("events") class="btn btn-primary eve">Wydarzenia</a>
                   <a href="#" onClick=clickEl("achievements") class="btn btn-primary eve">Osiągnięcia</a>
-                  <a href="#" onClick=clickEl("members") class="btn btn-primary eve">Członkowie</a>
-                  <a href="#" onClick=deletePerson('.$reaction.','.$row2["id_member_right"].') class="btn btn-primary eve" style="float:right;">Opuść grupe</a>
-                  ';
+                  <a href="#" onClick=clickEl("members") class="btn btn-primary eve">Członkowie</a>';
+
+                  if($accountType == AccountTypes::AccountTypes["Uzytkownik"])
+                  {
+                    echo '<a href="#" onClick=deletePerson('.$reaction.','.$row2["id_member_right"].') class="btn btn-primary eve" style="float:right;">Opuść grupe</a><p style="clear:both; background-color:transparent; border:none;"></p>';
+                  }
+                  if($accountType == AccountTypes::AccountTypes["Opiekun"])
+                  {
+                    echo '<a href="#" onClick=deleteGroup() class="btn btn-primary eve" style="float:right;">Usuń koło</a><p style="clear:both; background-color:transparent; border:none;"></p>';
+                  }
+                  
                 }
                 else{
                   echo '<button onClick=joinToGroup('.$_COOKIE['id_grupy'].','. $user_id.') class="btn btn-primary">Dołącz</button>';

@@ -207,39 +207,14 @@ menu($logged);
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <!-- Modal body -->
+        <form role="form" method="post" id="add_userAchievement">
         <div class="modal-body" id="details">
-
         </div>
-        <div id="errUA"></div>
-        <div class="modal-footer">
-                <input type="submit" name="insert" value="Dodaj" class="btn btn-success" />
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
-        </div>
+        </form>
       </div>
     </div>
   </div>
   </div>
-
-<!-- view details -->
-<script>
-
-  function addUserAchiev(id_member) {
-  $.ajax({
-   url:"../subsites/groupPage/userAchievements.php",
-   method:"POST",
-   data:{id_member:id_member},
-   success:function(data){
-    $('#details').html(data);
-    $('#modalUserAchievement').modal('show');
-   },
-   error : function() {
-    throw "Nie udało się wysłać danych!";
-    }
-  });
- };
- </script>
-
-
 
  <script>
 	function clickEl(href) {

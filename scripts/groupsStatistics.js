@@ -8,11 +8,13 @@ function start_modal(element){
 	$.ajax({
 		method: "POST",
 		url: "../subsites/coordinatorsList.php",
-		data: {id: $(element).attr('data-id')}
+		data: {id: $(element).attr('data-id'), group: $(element).attr('data-group')}
 	}).done(function(data){
 		$("#select_coordinator").empty();
 		$("#select_coordinator").html(data);
 		$(".change-coordinator").submit(function(){
+			$("#change-btn").attr("disabled", true);
+			$("#change-btn").html('<span class="spinner-border spinner-border-sm text-light"></span>');
 			$.ajax({
 				method: "POST",
 				url: "../subsites/changeCoordinator.php",
@@ -23,9 +25,12 @@ function start_modal(element){
 					$(".table-container").empty();
 					$(".table-container").html(data);
 					initTable();
+					$('#coordinator').modal('toggle');
 				} else {
 					console.log(data)
 				}
+				$("#change-btn").attr("disabled", false);
+				$("#change-btn").html('Zmień');
 			});
 			return false;
 		});

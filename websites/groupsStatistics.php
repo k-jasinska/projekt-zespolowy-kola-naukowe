@@ -72,7 +72,7 @@
 					if (!mysqli_connect_errno()){
 						mysqli_set_charset($link, "utf8");
 						$query = 
-						'SELECT g.name as gorup_name, t1.czlonkowie, t2.posty, t3.eventy, u.id_user , concat(u.name, " ", u.surname) as coordinator
+						'SELECT g.name as gorup_name, g.id_group as group_id, t1.czlonkowie, t2.posty, t3.eventy, u.id_user , concat(u.name, " ", u.surname) as coordinator
 						FROM groups g LEFT JOIN users u ON g.id_coordinator = u.id_user LEFT JOIN (SELECT g.name, count(*) as czlonkowie 
 						 FROM groups g JOIN member m ON g.id_group = m.id_group GROUP BY g.name) t1 ON g.name = t1.name LEFT JOIN 
 						 (SELECT g.name, count(*) as posty FROM groups g JOIN posts p ON g.id_group = p.id_group GROUP BY g.name) t2 
@@ -84,19 +84,22 @@
 							<tr>
 								<?php
 									$id_user = null;
+									$id_group = null;
 									foreach($row as $key=>$val){
 										if($key === 'coordinator'){
 										?>
 											<td><span class="coordinator" data-toggle="modal" data-target="#coordinator" data-name="<?php echo $val; ?>" 
-											data-id="<?php echo $id_user; ?>" onclick="start_modal(this)">
+											data-id="<?php echo $id_user; ?>" data-group="<?php echo $id_group; ?>" onclick="start_modal(this)">
 											<?php echo $val === NULL ? 'BRAK' : $val; ?></span></td>
 										<?php
-										} else if($key !== "id_user") {
+										} else if($key !== "id_user" && $key !== "group_id") {
 											?>
 												<td><?php echo $val === NULL ? 0 : $val; ?></td>
 											<?php
 										} else if($key === "id_user") {
 											$id_user = $val;
+										} else if($key === "group_id"){
+											$id_group = $val;
 										}
 									}
 								?>
@@ -121,7 +124,7 @@
 					<form class="change-coordinator">
 						<select id="select_coordinator" class="form-control">
 						<select>
-						<button  type="submite" class="btn btn-danger btn-rounded btn-block z-depth-0 my-4 waves-effect">Zmień</button>
+						<button id="change-btn" type="submite" class="btn btn-danger btn-rounded btn-block z-depth-0 my-4 waves-effect">Zmień</button>
 					</form>
 				</div>
 				<div class="modal-footer">

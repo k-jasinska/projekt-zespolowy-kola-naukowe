@@ -25,7 +25,7 @@
 			mysqli_query($link, "UPDATE groups SET id_coordinator = '$id' WHERE id_group = '$group'");
 			if($result !== FALSE && !mysqli_errno($link) && mysqli_affected_rows($link) != 0){
 				$query = 
-				'SELECT g.name as gorup_name, g.id_group as group_id, t1.czlonkowie, t2.posty, t3.eventy, u.id_user , concat(u.name, " ", u.surname) as coordinator
+				'SELECT g.name as group_name, g.id_group as group_id, t1.czlonkowie, t2.posty, t3.eventy, u.id_user , concat(u.name, " ", u.surname) as coordinator
 				FROM groups g LEFT JOIN users u ON g.id_coordinator = u.id_user LEFT JOIN (SELECT g.name, count(*) as czlonkowie 
 				FROM groups g JOIN member m ON g.id_group = m.id_group GROUP BY g.name) t1 ON g.name = t1.name LEFT JOIN 
 				(SELECT g.name, count(*) as posty FROM groups g JOIN posts p ON g.id_group = p.id_group GROUP BY g.name) t2 
@@ -33,7 +33,7 @@
 				g.id_group = ge.id_group GROUP BY g.name) t3 ON t2.name = t3.name';
 				$result = mysqli_query($link, $query);
 				$error = true;
-				while($result !== NULL && $result !== FALSE && $row = $row = mysqli_fetch_assoc($result)){
+				while($result !== NULL && $result !== FALSE && $row = mysqli_fetch_assoc($result)){
 					if($error){
 						?>
 						<table id="stats" class="display nowrap table">
@@ -44,6 +44,7 @@
 									<th>Ilość postów</th>
 									<th>Ilość wydarzeń</th>
 									<th>Kordynator</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -60,8 +61,13 @@
 								<td><span class="coordinator" data-toggle="modal" data-target="#coordinator" data-name="<?php echo $val; ?>" 
 								data-id="<?php echo $id_user; ?>" data-group="<?php echo $id_group; ?>" onclick="start_modal(this)">
 								<?php echo $val === NULL ? 'BRAK' : $val; ?></span></td>
+								<td><span class="remove-group"  data-name="<?php echo $group_name; ?>" data-group="<?php echo $id_group; ?>" 
+								onclick="remove_group(this)" data-toggle="modal" data-target="#remove"><i class="far fa-trash-alt"></i></span></td>
 							<?php
 						} else if($key !== "id_user" && $key !== "group_id") {
+							if($key === "group_name"){
+								$group_name = $val;
+							}
 							?>
 								<td><?php echo $val === NULL ? 0 : $val; ?></td>
 							<?php

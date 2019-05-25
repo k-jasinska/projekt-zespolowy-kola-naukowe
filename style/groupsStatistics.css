@@ -114,7 +114,7 @@ table{
 
 .sorting_1{
 	background-color: rgb(37, 37, 37)!important;
-	color: rgb(148, 21, 80);
+	color: rgb(148, 21, 80)!important;
 }
 
 .sorting_desc{
@@ -151,9 +151,36 @@ option{
 	border-radius: 10px;
 }
 
+.coordinator{
+	color: inherit;
+}
+
 .coordinator:hover{
 	color: rgb(148, 21, 80);
 	text-decoration: underline;
 	text-decoration-color: rgb(110, 156, 58);
 	cursor: pointer;
+}
+
+.remove-group:hover{
+	cursor: pointer;
+}
+
+.sent-error{
+	margin-bottom: 30px;
+	background: #bd2130;
+	padding: 5px;
+	padding-left: 15px;
+	border: 1px solid #b21f2d;
+	width: 100%;
+	color: white;
+}
+
+
+.close-info{
+	opacity: 0.8!important;
+}
+
+.close-info:hover{
+	opacity: 1!important;
 }

@@ -150,3 +150,10 @@ option{
 	background-color: rgb(37, 37, 37);
 	border-radius: 10px;
 }
+
+.coordinator:hover{
+	color: rgb(148, 21, 80);
+	text-decoration: underline;
+	text-decoration-color: rgb(110, 156, 58);
+	cursor: pointer;
+}

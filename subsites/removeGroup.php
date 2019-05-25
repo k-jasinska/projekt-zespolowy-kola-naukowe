@@ -18,7 +18,6 @@
 		$result = mysqli_autocommit($link, false); 
 		$result = mysqli_query($link, "BEGIN");
 		mysqli_query($link, "DELETE FROM groups WHERE id_group='$id'");
-		//echo(mysqli_errno($link));
 		if($result !== FALSE && !mysqli_errno($link) && mysqli_affected_rows($link) != 0){
 		$query = 
 		'SELECT g.name as group_name, g.id_group as group_id, t1.czlonkowie, t2.posty, t3.eventy, u.id_user , concat(u.name, " ", u.surname) as coordinator

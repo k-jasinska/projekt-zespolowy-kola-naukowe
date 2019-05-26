@@ -9,10 +9,16 @@ if(!empty($_POST))
     $res = mysqli_query($link, $q);
     $output = '';
      $output .= '<form role="form" method="post" id="add_userAchievement">';
+     if(mysqli_num_rows($res)) {
         while($row = mysqli_fetch_array($res)){
             $output .= '<label><input id="addAc" type="radio" name="userAchievement" data-member="'.$id_member.'" data-value="'.$row["id_group_achievement"].'">'.$row["name"].'</label><br>';
         }
+     }
+     else{
+        $output .= '<div>Brak osiągnieć do dodania</div><br>';
+     }
 
+        
     $output .= '
     <div id="errUA"></div>
     <div class="modal-footer">

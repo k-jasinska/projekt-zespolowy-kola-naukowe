@@ -140,6 +140,7 @@
         </section>
 
         <section>
+            <!--
             <div class="group">
                 <h3>Nasze koła
                     <span class="underline"></span>
@@ -225,6 +226,63 @@
                         </div>
                     </div>
                 </div>
+                -->
+                <?php
+                        error_reporting(E_ERROR | E_PARSE);
+                    	$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
+                        if (mysqli_connect_errno()){
+                            ?>
+                                <div class="group">
+                                    <h3>Nasze koła
+                                        <span class="underline"></span>
+                                    </h3>
+                                    <h3>Przepraszamy nie można było pobrać danych</h3>
+                                </div>
+                            <?php
+                        } else {
+                            mysqli_set_charset($link, "utf8");
+                            $result = mysqli_query($link, "SELECT g.name as group_name, g.description, u.name, u.surname FROM 
+                            groups g LEFT JOIN users u ON g.id_coordinator = u.id_user");
+                            $empty = true;
+                            ?>
+                                <div class="group">
+                                    <h3>Nasze koła
+                                        <span class="underline"></span>
+                                    </h3>
+                            <?php
+                            while($result !== FALSE && $result !== NULL && $row = mysqli_fetch_assoc($result)){
+                                $empty = false;
+                                ?>
+                                <div class="container-fluid">
+                                    <div class="group-title">
+                                        <h4><?php echo htmlspecialchars($row['group_name']); ?></h4>
+                                    </div>
+                                    <div class="group-descr">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <?php echo htmlspecialchars($row['description']); ?>
+                                            </div>
+                                            <div class="col-sm-4">Opiekun: <?php echo htmlspecialchars($row['name']." ".$row['surname']); ?></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php
+                            }
+                            ?>
+                                </div>
+                            <?php
+                            if($empty){
+                                ?>
+                                <div class="group">
+                                    <h3>Nasze koła
+                                        <span class="underline"></span>
+                                    </h3>
+                                    <h3>Obecnie nie ma żadnych kół</h3>
+                                </div>
+                                <?php
+                            }
+                        }
+                ?>
         </section>
 
         <section>

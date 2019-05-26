@@ -17,7 +17,9 @@
         <div class="mt-3 p-3 rounded section_divider">
             <h5 class="col-md-12">Członkowie</h5>
          </div>
-         <div class="event mt-3 p-3 article rounded">
+         <div id="memberInfo" style="color:rgb(110, 156, 58);" class="mt-3">
+         </div>
+         <div class="event mt-3 p-3 article rounded member_table">
          
          <table id="table" class="table table-striped table-bordered nowrap" style="width:100%; background-color:white;">
       <thead>
@@ -46,7 +48,7 @@
                 $output .= '<td></td> <td><i class="fas fa-user-check"  onClick=acceptPerson('.$row["id_member_right"].')></i>  <i class="fas fa-user-times delet" onClick=deletePerson('.$row["id_member"].','.$row["id_member_right"].')></i></td></tr>';
             }
             if($row["id_right"]==2){
-                $output .= '<td><input type="button" name="log" value=" Dodaj " onClick=addUserAchiev('.$row["id_member"].') class="btn btn-primary addAchievement"/></td> <td><i class="fas fa-trash-alt delet" onClick=deletePerson('.$row["id_member"].','.$row["id_member_right"].')></i></td></tr>';
+                $output .= '<td><input type="button" name="log" value=" Dodaj " data-toggle="modal" data-target="#modalUserAchievement"  onClick=addUserAchiev('.$row["id_member"].') class="btn btn-primary addAchievement"/></td> <td><i class="fas fa-trash-alt delet" onClick=deletePerson('.$row["id_member"].','.$row["id_member_right"].')></i></td></tr>';
             }
         }
       }
@@ -61,6 +63,19 @@
         <script>
         $(document).ready(function() {
             $("#table").DataTable( {
+              language:{
+                "lengthMenu": "_MENU_ na stronę",
+                "zeroRecords": "Brak danych",
+                "info": "Strona _PAGE_ z _PAGES_",
+                "infoEmpty": "Brak osób",
+                "infoFiltered": "(odfiltrowano z _MAX_ wszystkich rekordów)",
+                "search": "",
+                "searchPlaceholder": "Szukaj",
+                "paginate": {
+                  "previous": "<i class=\'fa fa-chevron-left\' aria-hidden=\'true\'></i>",
+                  "next": "<i class=\'fa fa-chevron-right\' aria-hidden=\'true\'></i>"
+                }
+              },
                 responsive: true,
         });
         });

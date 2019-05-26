@@ -14,10 +14,16 @@
             $query5 ="SELECT id_coordinator FROM groups WHERE id_group = '".$_COOKIE["id_grupy"]."';";
             $result5 = mysqli_query($link, $query5);
             $id_coordinator = mysqli_fetch_array($result5);
-    
-            $query = "SELECT * FROM group_achievements WHERE id_group = '".$_COOKIE["id_grupy"]."' order by id_group_achievement desc;";
+    if($accountType == AccountTypes::AccountTypes["Uzytkownik"]){
+        $query = "SELECT * FROM group_achievements WHERE id_group = '".$_COOKIE["id_grupy"]."' and id_group_achievement in(select id_group_achievements from achievements join member on(member.id_member=achievements.id_member) where member.id_user = ".$user_id." and member.id_group=".$_COOKIE['id_grupy'].") order by id_group_achievement desc;";
             $output ='';
             $result = mysqli_query($link, $query);
+    }
+    else{
+        $query = "SELECT * FROM group_achievements WHERE id_group = '".$_COOKIE["id_grupy"]."' order by id_group_achievement desc;";
+        $result = mysqli_query($link, $query);
+    }
+            $output ='';
             $output .='
             <div class="mt-3 p-3 rounded section_divider">
             <div class="row">
@@ -27,39 +33,44 @@
                     }
                     $output .= '</div>
             </div>';
-        
-            while($row = mysqli_fetch_array($result))
-            {
-                $output .= '
-                <div class="event mt-3 p-3 article rounded">
-                    <div class="row mb-2">
-                        <div class="col-sm-10">
-                            <h6>'.$row["name"].'</h6>
-                        </div>
-                        <div class="col-sm-2 text-sm-right about-article">';
-        
-                    if($user_id==$id_coordinator["id_coordinator"]){
-                        $output .= '<div class="float-md-right float-left mx-1" onClick=deleteAchievement('.$row['id_group_achievement'].',"'. $row['image'].'")><i class="far fa-trash-alt"></i></div>
-                        <div class="float-md-right float-left mx-1"><i class="fas fa-pencil-alt"></i></div>
-                        <div class="float-md-none"></div>';
-                    }
-                    
+            if(mysqli_num_rows($result)) {
+                while($row = mysqli_fetch_array($result))
+                {
                     $output .= '
+                    <div class="event mt-3 p-3 article rounded">
+                        <div class="row mb-2">
+                            <div class="col-sm-10">
+                                <h6>'.$row["name"].'</h6>
+                            </div>
+                            <div class="col-sm-2 text-sm-right about-article">';
+            
+                        if($user_id==$id_coordinator["id_coordinator"]){
+                            $output .= '<div class="float-md-right float-left mx-1" onClick=deleteAchievement('.$row['id_group_achievement'].',"'. $row['image'].'")><i class="far fa-trash-alt"></i></div>
+                            <div class="float-md-right float-left mx-1"><i class="fas fa-pencil-alt"></i></div>
+                            <div class="float-md-none"></div>';
+                        }
+                        
+                        $output .= '
+                            </div>
                         </div>
-                    </div>
-        
-                    <div class="row mb-2">
-                        <div class="col-lg-6">
-                            <div>'. $row["description"].'</div>
+            
+                        <div class="row mb-2">
+                            <div class="col-lg-6">
+                                <div>'. $row["description"].'</div>
+                            </div>
+                            <div class="col-lg-6 text-center">
+                            <img style="max-width:100%; height:auto;" src="../imagesuploaded/'.$row['image'].'">
+                                <div class="float-md-none"></div>
+                            </div>
                         </div>
-                        <div class="col-lg-6 text-center">
-                        <img style="max-width:100%; height:auto;" src="../imagesuploaded/'.$row['image'].'">
-                            <div class="float-md-none"></div>
-                        </div>
-                    </div>
-            </div>
-            ';
+                </div>
+                ';
+                }
             }
+            else{
+                $output .= '<div style="margin:15px 15px;">Nie posiadasz jeszcze żadnych osiągnięć</div>'; 
+            }
+            
         echo $output;
         }
         else{

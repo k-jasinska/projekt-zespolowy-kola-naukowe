@@ -88,6 +88,7 @@
 									$id_group = null;
 									$group_name = null;
 									foreach($row as $key=>$val){
+										$val = htmlspecialchars($val);
 										if($key === 'coordinator'){
 										?>
 											<td><span class="coordinator" data-toggle="modal" data-target="#coordinator" data-name="<?php echo $val; ?>" 

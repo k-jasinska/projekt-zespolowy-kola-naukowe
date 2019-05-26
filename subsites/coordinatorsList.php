@@ -18,8 +18,8 @@
 		WHERE id_type = 4 AND id_user != '$id'");
 		while($result !== NULL && $result !== FALSE && $row = $row = mysqli_fetch_assoc($result)){
 			?>
-				<option value="<?php echo $row['id_user']."_".$_POST['group']; ?>"><?php 
-				echo $row['name']." ".$row['surname']; ?></option>
+				<option value="<?php echo htmlspecialchars($row['id_user'])."_".htmlspecialchars($_POST['group']); ?>"><?php 
+				echo htmlspecialchars($row['name'])." ".htmlspecialchars($row['surname']); ?></option>
 			<?php
 		}
 	}

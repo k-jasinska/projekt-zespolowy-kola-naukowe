@@ -101,10 +101,10 @@
 						</form>
 					</div>
 					<div class="msg-content background" style="display: none;" id="received-msg-list">
-						<div class="msg-contener">
+						<div class="msg-container">
 							<h2 class="msg-header">Otrzymane wiadomość</h2>
 							<h2 class="arrow-received" style="display: none;"><i class="fas fa-arrow-left"></i><small class="date-small"><i class="msg-date"></i></small></h2>
-							<div class="table-contener-received">
+							<div class="table-container-received">
 								 
 							</div>
 							<div class="msg-show" style="display: none;">
@@ -119,6 +119,22 @@
 						</div>
 					</div>
 					<div class="msg-content background" style="display: none;" id="sent-msg-list">
+					<div class="msg-container">
+							<h2 class="sent-header">Wysłane wiadomość</h2>
+							<h2 class="arrow-sent" style="display: none;"><i class="fas fa-arrow-left"></i><small class="date-small"><i class="sent-date"></i></small></h2>
+							<div class="table-container-sent">
+								 
+							</div>
+							<div class="sent-show" style="display: none;">
+								<div class="media border p-3">								
+									<div class="media-body">
+										<h4><small class="sent-name"></small> <small class="sent-surname"></small></h4>
+										<h4><small class="sent-title"></small></h4>
+										<p class="sent-message"></p>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

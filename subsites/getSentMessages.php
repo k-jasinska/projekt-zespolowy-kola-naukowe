@@ -15,7 +15,7 @@
 	$id = getIdOfUser();
 	if($id !== NULL){
 		$result = mysqli_query($link, "SELECT u.nick, u.name, u.surname, m.id_message, m.title, m.message, m.date FROM
-		users u RIGHT JOIN messages m ON u.id_user = m.id_user_from WHERE m.id_user_to = $id
+		users u RIGHT JOIN messages m ON u.id_user = m.id_user_to WHERE m.id_user_from = $id
 		ORDER BY m.date");
 		$messages = array();
 		while($result !== NULL && $result !== FALSE && $row = mysqli_fetch_assoc($result)){

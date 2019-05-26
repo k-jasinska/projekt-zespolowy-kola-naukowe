@@ -1,5 +1,5 @@
 var table_received = '<table id="received-messages" class="display nowrap table"><thead><tr><th class="td-sender">Nadawca</th><th>Data</th><th>Tytuł</th><th></th></tr></thead><tbody class="tbody-received"></tbody></table>';
-var table_sent = '<table id="sent-messages" class="display nowrap table"><thead><tr><th>Nadawca</th><th>Data</th><th>Tytuł</th></tr></thead><tbody class="tbody-sent"></tbody></table>';
+var table_sent = '<table id="sent-messages" class="display nowrap table"><thead><tr><th>Adresat</th><th>Data</th><th>Tytuł</th><th></th></tr></thead><tbody class="tbody-sent"></tbody></table>';
 
 $(document).ready(function(){
 
@@ -54,6 +54,7 @@ $(document).ready(function(){
 			$(this).addClass("active-msg-menu-item");
 		});
 		$(".list-group-item").unbind("click", searchReceived);
+		$(".list-group-item").unbind("click", searchSent);
 		$("#peopleList > .list-group-item").each(function(){
 			$(this).click({element: this}, chooseNick);
 		});
@@ -70,14 +71,14 @@ $(document).ready(function(){
 			});
 			$(this).addClass("active-msg-menu-item");
 		});
-		if($(".table-contener-received").css("display") !== "none"){
+		if($(".table-container-received").css("display") !== "none"){
 			$.ajax({
 				method: "POST",
 				url: "../subsites/getMessages.php",
 				dataType: 'json'
 			}).done(function(data){	
-				$(".table-contener-received").empty();
-				$(".table-contener-received").html(table_received);
+				$(".table-container-received").empty();
+				$(".table-container-received").html(table_received);
 				data.forEach(element => {
 					$(".tbody-received").html($(".tbody-received").html() + element.table);
 				});
@@ -107,7 +108,7 @@ $(document).ready(function(){
 					$(".msg-title").text(msg.title);
 					$(".msg-message").text(msg.message);
 					$(".msg-header").hide();
-					$(".table-contener-received").hide();
+					$(".table-container-received").hide();
 					$(".msg-show").show();
 					$(".arrow-received").show();
 					e.stopPropagation();
@@ -131,13 +132,71 @@ $(document).ready(function(){
 			});
 			$(this).addClass("active-msg-menu-item");
 		});
+
+		if($(".table-container-sent").css("display") !== "none"){
+			$.ajax({
+				method: "POST",
+				url: "../subsites/getSentMessages.php",
+				dataType: 'json'
+			}).done(function(data){	
+				$(".table-container-sent").empty();
+				$(".table-container-sent").html(table_sent);
+				data.forEach(element => {
+					$(".tbody-sent").html($(".tbody-sent").html() + element.table);
+				});
+				initTable("#sent-messages");
+				initTooltip();
+				$(".page-item").click(function(){
+					initTooltip();
+				});
+				$("select").change(function(){
+					initTooltip();
+				});
+				$(".form-control-sm").keydown(function(){
+					initTooltip();
+				});
+				$("th").click(function(){
+					initTooltip();
+				});
+				$("tbody tr .show-col").click(function(e){
+					var idMessage = $(this).parent().attr("id").split("-")[1];
+					var msg = $.grep(data, function(obj) {
+						return obj.data.id_message == idMessage;
+					});
+					msg = msg[0].data;
+					$(".sent-name").text(msg.name);
+					$(".sent-surname").text(msg.surname);
+					$(".sent-date").text(msg.date);
+					$(".sent-title").text(msg.title);
+					$(".sent-message").text(msg.message);
+					$(".sent-header").hide();
+					$(".table-container-sent").hide();
+					$(".sent-show").show();
+					$(".arrow-sent").show();
+					e.stopPropagation();
+				});
+			});
+		}
+		$(".list-group-item").unbind("click", chooseNick);
+		$(".list-group-item").unbind("click", searchReceived);
+		$("#peopleList > .list-group-item").each(function(){
+			$(this).click({element: this}, searchSent);
+		});
+
 	});
 
 	$(".arrow-received").click(function(){
 		$(".msg-header").show();
-		$(".table-contener-received").show();
+		$(".table-container-received").show();
 		$(".msg-show").hide();
 		$(".arrow-received").hide();
+	});
+
+	$(".arrow-sent").click(function(){
+		$(".sent-header").show();
+		$(".table-container-sent").show();
+		$(".sent-show").hide();
+		$(".arrow-sent").hide();
 	});
 });
 
@@ -200,7 +259,7 @@ function initTable(table){
 		{
 			targets: 2,
 			responsivePriority: 3
-		}]		
+		}]	
 	});
 	new $.fn.dataTable.FixedHeader( table );
 }
@@ -211,6 +270,12 @@ function initTooltip(){
 
 function searchReceived(event){
 	var table = $('#received-messages').DataTable();
+	var filtr = $(event.data.element).text();
+	table.search(filtr).draw();
+}
+
+function searchSent(event){
+	var table = $('#sent-messages').DataTable();
 	var filtr = $(event.data.element).text();
 	table.search(filtr).draw();
 }

@@ -24,7 +24,7 @@
 			}
 			while($result !== NULL && $result !== FALSE && $row = mysqli_fetch_assoc($result)){
 			?>
-				<li class="list-group-item"><?php echo $row["nick"]; ?></li>
+				<li class="list-group-item"><?php echo htmlspecialchars($row["nick"]); ?></li>
 			<?php
 			}
 		}

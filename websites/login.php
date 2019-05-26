@@ -376,7 +376,7 @@
 					<div class="account">
 						<span>
 							<p>
-								<?php echo $account['email']; ?>
+								<?php echo htmlspecialchars($account['email']); ?>
 							</p>
 							<form method="POST" style="display: none;">
 								<input type="hidden" value="<?php echo $account['selector']; ?>" name="selector">

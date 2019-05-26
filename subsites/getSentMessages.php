@@ -22,10 +22,15 @@
 			$data = new stdClass();
 			$date = explode("-", $row['date']);
 			$day = explode(" ", $date[2])[0];
+			$row['nick'] = htmlspecialchars($row['nick']);
+			$day = htmlspecialchars($day);
+			$date[0] = htmlspecialchars($date[0]);
+			$date[1] = htmlspecialchars($date[1]);
+			$row['title'] = htmlspecialchars($row['title']);
 			$data->table = "<tr id='msg-$row[id_message]'><td class='td-sender'>$row[nick]</td><td>$day.$date[1].$date[0]
 			</td><td data-toggle='tooltip' title='$row[title]'>$row[title]</td><td class='show-col'><i class='fas fa-arrow-circle-right'></i></td></tr>";
 			foreach($row as $key=>$val)
-				$data->data[$key] = $val;
+				$data->data[$key] = htmlspecialchars($val);
 			array_push($messages, $data);
 		}
 		echo json_encode($messages);

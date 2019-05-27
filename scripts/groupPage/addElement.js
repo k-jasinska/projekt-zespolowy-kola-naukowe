@@ -66,7 +66,6 @@ $(document).ready(function () {
                 } else {
                     $('#insert_ach')[0].reset();
                     $('#modalAchievements').modal('hide');
-                    $('#id_group_achievement').val('');
                     $('#showContent').load('groupContent/achievements.php');
                 }
             }

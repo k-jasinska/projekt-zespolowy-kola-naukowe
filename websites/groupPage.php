@@ -157,7 +157,6 @@ menu($logged);
                     <label for="file">Dodaj zdjęcie</label>
                     <input type="file" class="form-control-file" name="file" id="file">
                 </div>
-                <input type="hidden" name="id_group_achievement" id="id_group_achievement" /> 
                 <div id="errA"></div>
               <input type="submit" name="insert" id="insertAchievement" value="Dodaj" class="btn btn-success" />
           <button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>

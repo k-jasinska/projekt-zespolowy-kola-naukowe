@@ -215,7 +215,7 @@
 					if(!mysqli_commit($link)){
 						throw new Exception("Błąd serwera!");
 					}
-					$message = "Zmieniono imię i nazwisko";
+					$message = "Zmieniono hasło";
 				} else {
 					throw new Exception("Błąd serwera!");
 				}
@@ -225,8 +225,21 @@
 				array_push($errors, $e->getMessage());
 			}
         }       
-    }
-    //pass end
+	}
+	//pass end
+	if(isset($_POST['usun'])){
+		if($stmt = mysqli_prepare($link, "delete from users where id_user = ?")){
+			$me = getIdOfUser();
+			if(!mysqli_stmt_bind_param($stmt, "i", $me)){
+				throw new Exception("Błąd serwera!");
+			}
+			if(!mysqli_stmt_execute($stmt)){
+				throw new Exception("Błąd serwera!");
+			}
+			mysqli_stmt_close($stmt);
+			header("location: index.php?logout");
+		}
+	}
 ?>
 
 <!DOCTYPE html>
@@ -291,6 +304,25 @@
         </div>
     </nav>
 
+	<div class="modal fade register-form" id="myModal" role="dialog" style="position: fixed">
+		<div class="modal-dialog">
+		<div class="modal-content form-control" style='border: 0px'>
+			<div class="modal-header">
+			<h4 class="modal-title">Czy na pewno chcesz usunąć konto?</h4>
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<form id="register-form" method="POST">
+				<div class="modal-body" id = 'modal-body'>
+					<button type="submit" name="usun" class="btn btn-danger btn-rounded btn-block z-depth-0 my-4 waves-effect">Usun konto</button>
+				</div>
+				<div class="modal-footer">
+				</div>
+			</form>
+		</div>
+		
+		</div>
+	</div>
+
     <div class="register-form userpanel">
         <form id="register-form1" method="POST">
           <div class="form-group">
@@ -328,6 +360,9 @@
               <button type='submit' class="btn btn-success btn-rounded btn-block z-depth-0 my-4 waves-effect">Zmień</button>
           </div>
         </form>
+		<div class="form-group">
+			<button type='button' class='btn btn-danger btn-rounded btn-block z-depth-0 my-4 waves-effect' data-target='#myModal' data-toggle='modal'>Usuń konto</button>
+		</div>
 	</div>
 </body>
 </html>

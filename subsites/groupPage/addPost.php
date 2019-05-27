@@ -18,16 +18,20 @@ if(!empty($_POST))
 		exit("Błąd: Opis musi mieć 2000 znaków");
     }
 
-    $date = date('Y-m-d H:i:s');
-    $id_group=$_COOKIE['id_grupy'];
-    $user_id=getIdOfUser();
-    if($user_id){
-        mysqli_query($link, "insert into posts(id_user, id_group, title, text, date) values('$user_id', '$id_group', '$title','$opis_postu', '$date');");
+    if($_POST["id_post"] != '') 
+    {
+        mysqli_query($link, "update posts set title='$title', text='$opis_postu' where id_post=".$_POST['id_post'].";"); 
+    }else{
+        $date = date('Y-m-d H:i:s');
+        $id_group=$_COOKIE['id_grupy'];
+        $user_id=getIdOfUser();
+        if($user_id){
+            mysqli_query($link, "insert into posts(id_user, id_group, title, text, date) values('$user_id', '$id_group', '$title','$opis_postu', '$date');");
+        }
+        else{
+            exit("Błąd: Aby dodać post musisz być zalogowany!");
+        }
     }
-    else{
-        exit("Błąd: Aby dodać post musisz być zalogowany!");
-    }
-
 }
 else{
     header("Location: index.php");

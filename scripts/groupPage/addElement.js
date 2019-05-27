@@ -12,7 +12,31 @@
                 } else {
                     $('#insert_form')[0].reset();
                     $('#postModal').modal('hide');
+                    $('#id_post').val('');
                     $('#showContent').load('groupContent/posts.php');
+                }
+            }
+        });
+    });
+});
+
+
+$(document).ready(function () {
+    $('#insert_event').on("submit", function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: "../subsites/groupPage/addEvent.php",
+            method: "POST",
+            data: $('#insert_event').serialize(),
+            success: function (data) {
+                var cos = data.substring(0, 4);
+                if (cos == "Błąd") {
+                    $('#errE').html(data);
+                } else {
+                    $('#insert_event')[0].reset();
+                    $('#modalEvent').modal('hide');
+                    $('#id_event').val('');
+                    $('#showContent').load('groupContent/events.php');
                 }
             }
         });
@@ -42,6 +66,7 @@ $(document).ready(function () {
                 } else {
                     $('#insert_ach')[0].reset();
                     $('#modalAchievements').modal('hide');
+                    $('#id_group_achievement').val('');
                     $('#showContent').load('groupContent/achievements.php');
                 }
             }
@@ -50,26 +75,6 @@ $(document).ready(function () {
 });
 
 
-$(document).ready(function () {
-    $('#insert_event').on("submit", function (event) {
-        event.preventDefault();
-        $.ajax({
-            url: "../subsites/groupPage/addEvent.php",
-            method: "POST",
-            data: $('#insert_event').serialize(),
-            success: function (data) {
-                var cos = data.substring(0, 4);
-                if (cos == "Błąd") {
-                    $('#errE').html(data);
-                } else {
-                    $('#insert_event')[0].reset();
-                    $('#modalEvent').modal('hide');
-                    $('#showContent').load('groupContent/events.php');
-                }
-            }
-        });
-    });
-});
 
 $(document).ready(function () {
     $('#add_userAchievement').on("submit", function (event) {

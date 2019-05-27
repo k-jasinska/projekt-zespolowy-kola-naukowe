@@ -46,7 +46,7 @@
             
                         if($user_id==$id_coordinator["id_coordinator"]){
                             $output .= '<div class="float-md-right float-left mx-1" onClick=deleteAchievement('.$row['id_group_achievement'].',"'. $row['image'].'")><i class="far fa-trash-alt"></i></div>
-                            <div class="float-md-right float-left mx-1"><i class="fas fa-pencil-alt"></i></div>
+                            <div class="float-md-right float-left mx-1 editA" id='.$row["id_group_achievement"].'><i class="fas fa-pencil-alt"></i></div>
                             <div class="float-md-none"></div>';
                         }
                         

@@ -105,7 +105,6 @@ menu($logged);
       </div>
 	</div>
 
-
 <!-- modal add post-->
 <div class="modal fade" id="postModal">
     <div class="modal-dialog modal-dialog-centered">
@@ -125,8 +124,9 @@ menu($logged);
                     <label for="surname">Zawartość:</label>
                     <textarea class="form-control" rows = 5 id="opis_postu" name="opis_postu" placeholder="Napisz post"></textarea>
                 </div>
+                <input type="hidden" name="id_post" id="id_post" /> 
                 <div id="err"></div>
-              <input type="submit" name="insert" value="Dodaj" class="btn btn-success" />
+              <input type="submit" name="insert" id="insertPost" value="Dodaj" class="btn btn-success" />
           <button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
         </form>
         </div>
@@ -157,8 +157,9 @@ menu($logged);
                     <label for="file">Dodaj zdjęcie</label>
                     <input type="file" class="form-control-file" name="file" id="file">
                 </div>
+                <input type="hidden" name="id_group_achievement" id="id_group_achievement" /> 
                 <div id="errA"></div>
-              <input type="submit" name="insert" value="Dodaj" class="btn btn-success" />
+              <input type="submit" name="insert" id="insertAchievement" value="Dodaj" class="btn btn-success" />
           <button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
         </form>
         </div>
@@ -189,8 +190,9 @@ menu($logged);
                     <label for="event_dates">Wybierz datę wydarzenia</label>
                     <input class="form-control" type="date" name="event_date" id="event_date">
                 </div> 
+                <input type="hidden" name="id_event" id="id_event" value=''/>  
                 <div id="errE"></div>
-              <input type="submit" name="insert" value="Dodaj" class="btn btn-success" />
+              <input type="submit" name="insert" id="insertEvent" value="Dodaj" class="btn btn-success" />
           <button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
         </form>
         </div>
@@ -231,12 +233,13 @@ $(document).ready(function() {
 </script>
     <script src="../scripts/openWebsite.js"></script>
     <script src="../scripts/groupPage/deleteElement.js"></script>
+    <script src="../scripts/groupPage/editElement.js"></script>
     <script src="../scripts/groupPage/addElement.js"></script>
     <script src="../scripts/groupPage/addReaction.js"></script>
     <script src="../scripts/groupPage/joinToGroup.js"></script>
     <script src="../scripts/groupPage/filterGroups.js"></script>
     <script src="../scripts/hideNavbar.js"></script>
-
+    
     <link rel="stylesheet" href="../style/endstyle.css">
 </body>
 </html>

@@ -22,7 +22,12 @@ if(!empty($_POST))
     }
     $id_group=$_COOKIE['id_grupy'];
 
-    mysqli_query($link, "insert into group_achievements(id_group, name, description, image) values('$id_group', '$titleAch','$opis_osiagniecia', '$name');");
+    if($_POST["id_group_achievement"] != '') 
+    {
+        mysqli_query($link, "update group_achievements set name='$$titleAch', description='$opis_osiagniecia', image='$name' where id_group_achievement=".$_POST['id_group_achievement'].";"); 
+    }else{
+        mysqli_query($link, "insert into group_achievements(id_group, name, description, image) values('$id_group', '$titleAch','$opis_osiagniecia', '$name');");
+    }
     move_uploaded_file($_FILES['file']['tmp_name'],$target_dir.$name);
 
 }

@@ -208,8 +208,24 @@ function getPeopleList(){
 		data: {all: $("#check-users").is(':checked')}
 	}).done(function(data){
 		$("#peopleList").html(data);
+		var view;
+		$(".msg-content").each(function(){
+			if($(this).css("display") === "block"){
+				view = $(this).attr("id");
+			}
+		});
 		$("#peopleList > .list-group-item").each(function(){
-			$(this).click({element: this}, chooseNick);
+			switch(view){
+				case "new-msg":
+					$(this).click({element: this}, chooseNick);
+					break;
+				case "received-msg-list":
+					$(this).click({element: this}, searchReceived);
+					break;
+				case "sent-msg-list":
+					$(this).click({element: this}, searchSent);
+					break;
+			}
 		});
 		$.getScript('../scripts/searchList.js', function()
 		{

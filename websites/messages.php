@@ -84,7 +84,7 @@
 			</div>
 			<div class="col-lg-8 col-md-8 col-sm-12">
 				<div class="right-part mx-auto">
-					<div class="msg-content background" id="new-msg">
+					<div class="msg-content background" style="display: block;" id="new-msg">
 						<form method="POST" id="msg-form">
 						<h2>Utwórz wiadomość</h2>
 							<div class="msg-info"></div>

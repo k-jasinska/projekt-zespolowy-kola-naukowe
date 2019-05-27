@@ -19,16 +19,21 @@ if(!empty($_POST))
 		exit("Błąd: Opis musi mieć 2000 znaków");
     }
 
-    $date = date('Y-m-d H:i:s');
-    $id_group=$_COOKIE['id_grupy'];
-    $user_id=getIdOfUser();
-    if($user_id){
-         mysqli_query($link, "insert into events(id_owner, title, text, date, event_date) values('$user_id', '$titleEvent','$opis_wydarzenia', '$date', '$event_date');");
-        $insertID=mysqli_insert_id($link);
-        mysqli_query($link, "insert into group_events(id_group, id_event) values('$id_group', '$insertID');");
-    }
-    else{
-        exit("Błąd: Aby dodać post musisz być zalogowany!");
+    if($_POST["id_event"] != '') 
+    {
+        mysqli_query($link, "update events set title='$$titleEvent', text='$opis_wydarzenia', event_date='$event_date' where id_event=".$_POST['id_event'].";"); 
+    }else{
+        $date = date('Y-m-d H:i:s');
+        $id_group=$_COOKIE['id_grupy'];
+        $user_id=getIdOfUser();
+        if($user_id){
+             mysqli_query($link, "insert into events(id_owner, title, text, date, event_date) values('$user_id', '$titleEvent','$opis_wydarzenia', '$date', '$event_date');");
+            $insertID=mysqli_insert_id($link);
+            mysqli_query($link, "insert into group_events(id_group, id_event) values('$id_group', '$insertID');");
+        }
+        else{
+            exit("Błąd: Aby dodać post musisz być zalogowany!");
+        }
     }
 }
 else{

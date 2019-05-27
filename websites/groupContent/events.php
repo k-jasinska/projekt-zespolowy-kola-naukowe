@@ -46,7 +46,7 @@
     
                 if($user_id==$row["id_owner"] || $user_id==$id_coordinator["id_coordinator"]){
                     $output .= '<div class="float-md-right float-left mx-1" onClick=deleteEvent('.$row["id_event"].')><i class="far fa-trash-alt"></i></div>
-                    <div class="float-md-right float-left mx-1"><i class="fas fa-pencil-alt"></i></div>';
+                    <div class="float-md-right float-left mx-1 editE" id='.$row["id_event"].'><i class="fas fa-pencil-alt"></i></div>';
                 }
                 
                 $output .= '

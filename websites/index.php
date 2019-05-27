@@ -58,231 +58,135 @@
         </section>
 
         <section class="dzialalnosc">
-            <h3>Aktualności
-                <span class="underline"></span>
-            </h3>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="news col">
-                        <h4>Lorem, ipsum dolor.</h4>
-                        <p>
-                            quos
-                            molestiae velit nesciunt ea quam illo pariatur quidem expedita minus sunt quae, facilis
-                            maxime
-                            cupiditate.
-                            Fugiat, omnis debitis similique tempore officiis quibusdam quasi eveniet, possimus
-                            repellendus
-                            quos
-                            numquam
-                            quod. Ducimus assumenda, beatae expedita dignissimos, et repellendus sequi aliquid, magni
-                            reiciendis
-                            saepe autem obcaecati quas dolorum, sunt hic eius minima temporibus voluptate repellendus
-                            molestiae
-                            dicta ab
-                        </p>
-                        <br>
-                        <button type="button" class="btn btn-outline-danger pinkbtn">Czytaj więcej...</button>
-                    </div>
-                    <div class="news col">
-                        <h4>Lorem, ipsum.</h4>
-                        <p>
-                            quos
-                            molestiae velit nesciunt ea quam illo pariatur quidem expedita minus sunt quae, facilis
-                            maxime
-                            cupiditate.
-                            Fugiat, o
-                        </p>
-                        <br>
-                        <button type="button" class="btn btn-outline-danger pinkbtn">Czytaj więcej...</button>
-                    </div>
-                    <div class="news col">
-                        <h4>Lorem, ipsum dolor sit atmet.</h4>
-                        <p>quos
-                            molestiae velit nesciunt ea quam illo pariatur quidem expedita minus sunt quae, facilis
-                            maxime
-                            cupiditate.
-                            quod. Ducihic eius minima temporibus voluptate repellendus
-                            molestiae
-                            dicta ab
-                        </p>
-                        <br>
-                        <div><button type="button" class="btn btn-outline-danger pinkbtn">Czytaj więcej...</button>
+            <?php
+                error_reporting(E_ERROR | E_PARSE);
+                $link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
+                if (mysqli_connect_errno()){
+                    ?>
+                        <div>
+                            <h3>Aktualności
+                                <span class="underline"></span>
+                            </h3>
+                            <h3>Przepraszamy nie można było pobrać danych</h3>
                         </div>
-                    </div>
-                    <div class="news col">
-                        <h4>Lorem, ipsum dolor.</h4>
-                        <p>
-                            quos
-                            molestiae velit nesciunt ea quam illo pariatur quidem expedita minus sunt quae, facilis
-                            maxime
-                            cupiditate.
-                            Fugiat, omnis debitis similique tempore officiis quibusdam quasi eveniet, possimus
-                            repellendus
-                            quos
-                            saepe autem obcaecati quas dolorum, sunt hic eius minima temporibus voluptate repellendus
-                            molestiae
-                            dicta ab </p>
-                        <br>
-                        <button type="button" class="btn btn-outline-danger pinkbtn">Czytaj więcej...</button>
-                    </div>
-                    <div class="news col">
-                        <h4>Lorem, ipsum dolor.</h4>
-                        <p>
-                            quos
-                            molestiae velit nesciunt ea quam illo pariatur quidem expedita minus sunt quae, facilis
-                            maxime
-                            dicta ab </p>
-                        <br>
-                        <button type="button" class="btn btn-outline-danger pinkbtn">Czytaj więcej...</button>
-                    </div>
-                </div>
-            </div>
+                    <?php
+                } else {
+                    mysqli_set_charset($link, "utf8");
+                    $result = mysqli_query($link, "SELECT n.title, n.text, n.href, concat(u.name, ' ', u.surname) as name, 
+                    n.id_user FROM news n LEFT JOIN users u ON n.id_user = u.id_user");
+                    $empty = true;
+                    $create_wrapper = true;
+                    ?>
+                        <div>
+                            <h3>Aktualności
+                                <span class="underline"></span>
+                            </h3>
+                    <?php
+                    while($result !== FALSE && $result !== NULL && $row = mysqli_fetch_assoc($result)){
+                        $empty = false;
+                        if($create_wrapper){
+                            $create_wrapper = false;
+                            ?>
+                            <div class="container-fluid">
+                                <div class="row">
+                            <?php
+                        }
+                        ?>
+                        <div class="news col">
+                        <h4><?php echo htmlspecialchars($row['title']); ?></h4>
+                            <p><?php echo htmlspecialchars($row['text']); ?></p>
+                            <?php
+                            if($row['id_user'] !== NULL && $row['id_user'] !== ""){
+                            ?>
+                                <p><?php echo htmlspecialchars($row['name']); ?></p>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if($row['href'] !== NULL && $row['href'] !== ""){
+                            ?>
+                                <br>
+                                <button  onclick="window.location='<?php echo htmlspecialchars($row['href']); ?>'" type="button" class="btn btn-outline-danger pinkbtn">Czytaj więcej...</button>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                        <?php
+                    }
+                    if(!$create_wrapper){
+                    ?>
+                            </div>
+                        </div>
+                    <?php
+                    }
+                    if($empty){
+                        ?>
+                            <h3>Obecnie nie ma żadnych aktualności</h3>
+                        </div>
+                        <?php
+                    } else {
+                        ?>
+                        </div>
+                        <?php
+                    }
+                }
+            ?>
         </section>
 
         <section>
-            <!--
-            <div class="group">
-                <h3>Nasze koła
-                    <span class="underline"></span>
-                </h3>
-                <div class="">
-                    <div class="container-fluid">
-                        <div class="group-title">
-                            <h4>KN Informatyków</h4>
+            <?php
+                error_reporting(E_ERROR | E_PARSE);
+                $link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
+                if (mysqli_connect_errno()){
+                    ?>
+                        <div class="group">
+                            <h3>Nasze koła
+                                <span class="underline"></span>
+                            </h3>
+                            <h3>Przepraszamy nie można było pobrać danych</h3>
                         </div>
-                        <div class="group-descr">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam laborum
-                                    totam nam repudiandae vitae aperiauos iusto, placeat, facilis
-                                    commodi deserunt est corrupti. Ullam ipsum amet sed.
-                                </div>
-                                <div class="col-sm-3">Opiekun:</div>
-                                <div class="col-sm-3">Kontakt:</div>
+                    <?php
+                } else {
+                    mysqli_set_charset($link, "utf8");
+                    $result = mysqli_query($link, "SELECT g.name as group_name, g.description, u.name, u.surname FROM 
+                    groups g LEFT JOIN users u ON g.id_coordinator = u.id_user");
+                    $empty = true;
+                    ?>
+                        <div class="group">
+                            <h3>Nasze koła
+                                <span class="underline"></span>
+                            </h3>
+                    <?php
+                    while($result !== FALSE && $result !== NULL && $row = mysqli_fetch_assoc($result)){
+                        $empty = false;
+                        ?>
+                        <div class="container-fluid">
+                            <div class="group-title">
+                                <h4><?php echo htmlspecialchars($row['group_name']); ?></h4>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="container-fluid">
-                        <div class="group-title">
-                            <h4>KN Grafiki Komputerowej</h4>
-                        </div>
-                        <div class="group-descr">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam laborum
-                                    totam nam repudiandae vitae aperiam psum amet sed.
-                                </div>
-                                <div class="col-sm-3">Opiekun:</div>
-                                <div class="col-sm-3">Kontakt:</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container-fluid">
-                        <div class="group-title">
-                            <h4>KN Konstrukcji Mostowych</h4>
-                        </div>
-                        <div class="group-descr">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam laborum
-                                    totam nam repudiandae vitae aperiauos iusto, placeat, facilis
-                                    commodi deserunt est corrupti. Ullam ipsumr amet sed.
-                                </div>
-                                <div class="col-sm-3">Opiekun:</div>
-                                <div class="col-sm-3">Kontakt:</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container-fluid">
-                        <div class="group-title">
-                            <h4>KN Drogowców</h4>
-                        </div>
-                        <div class="group-descr">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam laborum
-                                    totam nam repudiandae vitae aperiam reic amet sed.
-                                </div>
-                                <div class="col-sm-3">Opiekun:</div>
-                                <div class="col-sm-3">Kontakt:</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container-fluid">
-                        <div class="group-title">
-                            <h4>KN Maszyn Roboczych</h4>
-                        </div>
-                        <div class="group-descr">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    Lorem ipsum dolor sit, amet cmr adipisicing elit. Ipsam laborum
-                                    totam nam repudiandae vitae aperiauos iusto, placeat, facilis
-                                    commodi deserunt est corrupti. Ullam ipsumet sed.
-                                </div>
-                                <div class="col-sm-3">Opiekun:</div>
-                                <div class="col-sm-3">Kontakt:</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                -->
-                <?php
-                        error_reporting(E_ERROR | E_PARSE);
-                    	$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt");
-                        if (mysqli_connect_errno()){
-                            ?>
-                                <div class="group">
-                                    <h3>Nasze koła
-                                        <span class="underline"></span>
-                                    </h3>
-                                    <h3>Przepraszamy nie można było pobrać danych</h3>
-                                </div>
-                            <?php
-                        } else {
-                            mysqli_set_charset($link, "utf8");
-                            $result = mysqli_query($link, "SELECT g.name as group_name, g.description, u.name, u.surname FROM 
-                            groups g LEFT JOIN users u ON g.id_coordinator = u.id_user");
-                            $empty = true;
-                            ?>
-                                <div class="group">
-                                    <h3>Nasze koła
-                                        <span class="underline"></span>
-                                    </h3>
-                            <?php
-                            while($result !== FALSE && $result !== NULL && $row = mysqli_fetch_assoc($result)){
-                                $empty = false;
-                                ?>
-                                <div class="container-fluid">
-                                    <div class="group-title">
-                                        <h4><?php echo htmlspecialchars($row['group_name']); ?></h4>
+                            <div class="group-descr">
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <?php echo htmlspecialchars($row['description']); ?>
                                     </div>
-                                    <div class="group-descr">
-                                        <div class="row">
-                                            <div class="col-sm-8">
-                                                <?php echo htmlspecialchars($row['description']); ?>
-                                            </div>
-                                            <div class="col-sm-4">Opiekun: <?php echo htmlspecialchars($row['name']." ".$row['surname']); ?></div>
-                                        </div>
-                                    </div>
+                                    <div class="col-sm-4">Opiekun: <?php echo htmlspecialchars($row['name']." ".$row['surname']); ?></div>
                                 </div>
-                                <?php
-                            }
-                            ?>
-                                </div>
-                            <?php
-                            if($empty){
-                                ?>
-                                <div class="group">
-                                    <h3>Nasze koła
-                                        <span class="underline"></span>
-                                    </h3>
-                                    <h3>Obecnie nie ma żadnych kół</h3>
-                                </div>
-                                <?php
-                            }
-                        }
-                ?>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    if($empty){
+                        ?>
+                            <h3>Obecnie nie ma żadnych kół</h3>
+                        </div>
+                        <?php
+                    } else {
+                        ?>
+                        </div>
+                        <?php
+                    }
+                }
+            ?>
         </section>
 
         <section>

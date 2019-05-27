@@ -100,6 +100,16 @@ form {
 	}
 }
 
+.userpanel {
+	margin-top: 15em;
+}
+
+@media screen and (max-width: 500px) {
+	.userpanel {
+		margin-top: 15%;
+	}
+}
+
 option {
 	background-color: rgb(37, 37, 37);
 }
@@ -238,4 +248,63 @@ input:-webkit-autofill {
 
 .close-error:hover{
 	opacity: 1!important;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+	color: rgb(148, 21, 80);
+	width:100%;
+}
+
+.inputfile + label {
+	border: 1px solid rgb(148, 21, 80);
+	background-color: #ffffff;
+	padding: 0;
+	border-radius: 10px;
+}
+
+.inputfile:focus + label,
+.inputfile.has-focus + label,
+.inputfile + label:hover {
+    border-color: rgb(148, 21, 80);
+}
+
+.inputfile + label span,
+.inputfile + label strong {
+    padding: 0.625rem 1.25rem;
+    /* 10px 20px */
+}
+
+.inputfile + label span {
+	width: 50%;
+	min-height: 2em;
+	display: inline-block;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	vertical-align: top;
+	color:rgb(148, 21, 80);
+}
+
+.inputfile + label strong {
+	width:50%;
+	color: #ffffff;
+	background-color: rgb(148, 21, 80);
+	display: inline-block;
+	text-align: center;
+	border-radius: 10px;
+}
+
+@media screen and (max-width: 50em) {
+	.inputfile + label strong {
+		display: inline-block;
+	}
 }

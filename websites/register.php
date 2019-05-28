@@ -8,12 +8,16 @@
 	mysqli_set_charset($link, "utf8");
 	$errors = array();
 	$message = NULL;
-	if(isset($_POST['email']) && isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['pwd'])){
+	if(isset($_POST['email']) && isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['pwd']) && isset($_POST['cpwd'])){
 		$email = trim(mysqli_real_escape_string($link, $_POST['email']));
 		$nick = trim(mysqli_real_escape_string($link, $_POST['nick']));
 		$name = trim(mysqli_real_escape_string($link, $_POST['name']));
 		$surname = trim(mysqli_real_escape_string($link, $_POST['surname']));
-		$pwd = $_POST['pwd'];		
+		$pwd = $_POST['pwd'];	
+		$cpwd = $_POST['cpwd'];
+		if($pwd !== $cpwd){
+			array_push($errors, "Wprowadzono różne hasła!");
+		}
 		if(!(filter_var($email, FILTER_VALIDATE_EMAIL) && strlen($email) <= 40)){
 			array_push($errors, "Błędny format adresu email!");
 		}
@@ -158,7 +162,7 @@
           </div>
           <div class="form-group">
               <label for="cpwd">Potwierdź hasło:</label>
-              <input type="password" class="form-control" minlength="8" maxlength="32" id="cpwd" required>
+              <input type="password" class="form-control" minlength="8" maxlength="32" id="cpwd" name="cpwd" required>
           </div>
           <button type="submit" class="btn btn-danger btn-rounded btn-block z-depth-0 my-4 waves-effect">Zarejestruj</button>
         </form>

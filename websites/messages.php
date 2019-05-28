@@ -41,6 +41,7 @@
 	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 	<script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
 	<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+	<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
 
     <title>Koła Naukowe</title>
 </head>

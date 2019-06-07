@@ -1,8 +1,12 @@
 <?php
 	include('../subsites/functions.php');
 	noCache();
-	if(checkIfLogged()){
+	if(!checkIfLogged()){
 		header("location: index.php");
+    }
+    $access = checkIfUserHasAccess(array("Admin" => 1, "Uczelnia" => 3));
+	if(!$access){
+        header("location: index.php");
 	}
 	$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt") or die(mysqli_connect_error());
     mysqli_set_charset($link, "utf8");
@@ -27,40 +31,15 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
     <link rel="stylesheet" href="../style/homePage.css">
     <link rel="stylesheet" href="../style/loginPage.css">
+    <link rel="stylesheet" href="../style/scrollBar.css">
     <title>Dodaj koło</title>
 </head>
 <body>
 
     <!--NAVBAR-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <a class="navbar-brand" href="#"><i class="fas fa-user-graduate"></i> LOGO</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" id="link2" href="#">Działalność</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="link3" href="#">Spis kół</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="link4" href="#">Kontakt</a>
-                </li>
-                <?php if(!checkIfLogged()) :?>
-                    <li class="nav-item">
-                        <a class="nav-link" id="link5" href="login.php">Logowanie <i class="fas fa-sign-in-alt"></i></a>
-                    </li>
-                <?php else :?>
-                    <li class="nav-item">
-                        <a class="nav-link" id="link5" href="index.php?logout">Wyloguj <i class="fas fa-sign-in-alt"></i></a>
-                    </li>
-                <?php endif ?>
-            </ul>
-        </div>
-    </nav>
+    <?php
+        menu(1);
+    ?>
 
     <div class="form-login">
         <h2>Dodaj koło</h2>

@@ -13,10 +13,10 @@ if(!empty($_POST))
         exit("Błąd: Musisz wypełnić wszystkie pola");
     }
     if((strlen($titleEvent)<3) || (strlen($titleEvent)>100)){
-      	exit("Błąd: Tytuł musi mieć 100 znaków");
+      	exit("Błąd: Tytuł musi mieć od 3 do 100 znaków");
     }
     if((strlen($opis_wydarzenia)<3) || (strlen($opis_wydarzenia)>2000)){
-		exit("Błąd: Opis musi mieć 2000 znaków");
+		exit("Błąd: Opis musi mieć od 3 do 2000 znaków");
     }
 
     if($_POST["id_event"] != '') 

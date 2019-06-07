@@ -310,7 +310,7 @@
 							<a class="nav-link" href="messages.php">Wiadomości</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Moje konto</a>
+							<a class="nav-link" href="userPanel.php">Moje konto</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" id="link4" href="#">Kontakt</a>
@@ -345,10 +345,10 @@
 							<a class="nav-link" href="messages.php">Wiadomości</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Moje konto</a>
+							<a class="nav-link" href="userPanel.php">Moje konto</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Utwórz koło</a>
+							<a class="nav-link" href="myApplications.php">Wnioski</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" id="link4" href="#">Kontakt</a>
@@ -370,6 +370,18 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNavDropdown">
 					<ul class="navbar-nav ml-auto">
+						<li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administracja</a>
+                <div class="dropdown-menu" style="color: rgb(212, 211, 211); background-color:  rgba(14, 10, 10); font-weight: 400; letter-spacing: 2px; text-decoration: none; font-size: 13px; border-bottom: 1px solid rgb(148, 21, 80);" aria-labelledby="navbarDropdown">
+                  <a class="nav-link" style="color: rgb(212, 211, 211);" href="dodaj_kolo.php">Dodaj koło</a>
+									<a class="nav-link" style="color: rgb(212, 211, 211);" href="addUsers.php">Dodaj użytkownika</a>
+									<a class="nav-link" style="color: rgb(212, 211, 211);" href="addNewsAdmin.php">Dodaj aktualność</a>
+									<a class="nav-link" style="color: rgb(212, 211, 211);" href="addEventAdmin.php">Dodaj wydażenie</a>
+									<a class="nav-link" style="color: rgb(212, 211, 211);" href="applicationsAdmin.php">Wnioski</a>
+									<a class="nav-link" style="color: rgb(212, 211, 211);" href="changeStatusAdmin.php">Zarządzaj użytkownikami</a>
+									<a class="nav-link" style="color: rgb(212, 211, 211);" href="groupsStatistics.php">Statystyki</a>
+                </div>
+            </li>
 						<li class="nav-item">
 							<a class="nav-link" id="link2" href="#">Działalność</a>
 						</li>
@@ -383,7 +395,7 @@
 							<a class="nav-link" href="messages.php">Wiadomości</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Moje konto</a>
+							<a class="nav-link" href="userPanel.php">Moje konto</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" id="link4" href="#">Kontakt</a>

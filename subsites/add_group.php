@@ -3,7 +3,7 @@ include('../subsites/functions.php');
 if(checkIfLogged()){
     header("location: ../websites/index.php");
 }
-//wstawić tu funkcje o typ użytkownika
+
 $link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt") or die(mysqli_connect_error());
 mysqli_set_charset($link, "utf8");
 

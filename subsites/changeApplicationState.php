@@ -4,7 +4,7 @@
 	if(checkIfLogged()){
 		header("location: index.php");
 	}
-	$link = mysqli_connect("127.0.0.1", "root1", "", "pz_projekt") or die(mysqli_connect_error());
+	$link = mysqli_connect("127.0.0.1", "root", "", "pz_projekt") or die(mysqli_connect_error());
     mysqli_set_charset($link, "utf8");
 
     if(isset($_POST['data']) && isset($_POST['do']))

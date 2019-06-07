@@ -4,7 +4,11 @@
 	$logged = checkIfLogged();
     if(!$logged){
         header("location: index.php");
-    }
+	}
+	$access = checkIfUserHasAccess(array("Admin" => 1, "Uczelnia" => 3));
+	if(!$access){
+        header("location: index.php");
+	}
 	if($logged){
 		keepSession();
 	}
